@@ -1,0 +1,40 @@
+
+.demo-gallery figure {
+    display: none;
+}
+.pswp__img{
+    object-fit: contain; 
+}
+.pswp__caption small {
+    display: none;
+}
+.pswp__ui--idle .pswp__top-bar {
+    opacity: 1;
+}
+.pswp__top-bar {
+    position: absolute;
+    left: 0;
+    top: 35%;
+    height: auto;
+    width: 100%;
+    flex-direction: column;
+    display: flex;
+    left: 95%;
+}
+.pswp__button, .pswp__button--arrow--left:before, .pswp__button--arrow--right:before {
+
+    color: #ffff;
+    opacity: 1;
+}
+.eye .flaticon-witness:before {
+    color: #fff;
+    margin-left: 14px;
+}
+
+
+/*galerui vista*/
+.categorians-name{
+    display: flex;
+    text-align: center;
+    justify-content: space-evenly;
+}
