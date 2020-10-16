@@ -345,7 +345,11 @@
                                 this.dni = ""
                                 this.address = ""
                             } else {
-                                //alertify.error(res.data.msg)
+                                swal({
+                                    title: "Lo sentimos!",
+                                    text: res.data.msg,
+                                    icon: "error"
+                                });
                             }
 
                         })
