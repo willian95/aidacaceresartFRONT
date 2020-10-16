@@ -379,7 +379,7 @@
                                 password: this.passwordLogin
                             })
                             .then(res => {
-                                console.log(res.data)
+                                
                                 if (res.data.success == true) {
 
                                     swal({
@@ -390,6 +390,14 @@
                                     //this.cartInfo()
                                     this.auth = res.data.user
                                     window.localStorage.setItem("aida_user", JSON.stringify(res.data.user))
+
+                                    this.emailLogin = ""
+                                    this.passwrodLogin = ""
+
+                                    $("#loginModalClose").click();
+                                    $('body').removeClass('modal-open');
+                                    $('body').css('padding-right', '0px');
+                                    $('.modal-backdrop').remove();
 
                                 } else {
                                     alert(res.data.msg)
