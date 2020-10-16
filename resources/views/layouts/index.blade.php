@@ -284,8 +284,6 @@
         <script src="{{ asset('assets/js/main.js') }}"></script>
         <script src="{{ asset('/js/app.js') }}"></script>
         
-        
-
         <script>
            
             const navbar = new Vue({
@@ -347,7 +345,7 @@
                                 this.dni = ""
                                 this.address = ""
                             } else {
-                                alertify.error(res.data.msg)
+                                //alertify.error(res.data.msg)
                             }
 
                         })

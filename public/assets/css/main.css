@@ -437,7 +437,7 @@ body.offcanvas-expanded {
 }*/
 
 .modal {
-  z-index: 999999;
+  z-index: 9999;
 }
 
 .wrapper {

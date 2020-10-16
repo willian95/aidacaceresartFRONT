@@ -58,7 +58,7 @@ class RegisterController extends Controller
                 $user->update();
 
                 //Auth::loginUsingId($user->id);
-                return redirect()->to("/", ["user_id" => $user->id]);
+                return redirect()->to("/")->with("user_id", $user->id);
 
             }else{
 
