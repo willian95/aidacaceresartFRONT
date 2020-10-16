@@ -344,6 +344,7 @@
                                     text: res.data.msg,
                                     icon: "success"
                                 });
+                                
                                 this.name = ""
                                 this.email = ""
                                 this.password = ""
@@ -351,6 +352,12 @@
                                 this.phone = ""
                                 this.dni = ""
                                 this.address = ""
+
+                                $("#registerModalClose").click();
+                                $('body').removeClass('modal-open');
+                                $('body').css('padding-right', '0px');
+                                $('.modal-backdrop').remove();
+
                             } else {
                                 swal({
                                     title: "Lo sentimos!",
