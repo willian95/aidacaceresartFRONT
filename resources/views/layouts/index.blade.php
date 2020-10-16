@@ -19,6 +19,13 @@
     <link rel="stylesheet" href="{{ asset('assets/fonts/Flaticon.woff') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/detalle.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+
+    <style>
+        .swal-overlay{
+            z-index: 100000000 !important;
+        }
+    </style>
+
     <title>Document</title>
 
     </head>
