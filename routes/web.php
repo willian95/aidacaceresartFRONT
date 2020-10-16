@@ -13,6 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get("/", function(){
+
+    return view("comingSoon");
+
+});
+
+Route::get('/front-test', function () {
     return view('welcome');
 });
+
+Route::post("/register", "RegisterController@register");
+Route::post("/login", "LoginController@authenticate");
+Route::post("/get-user", "LoginController@getAuthenticatedUser");
+Route::get("/email/check/{hash}", "RegisterController@check");

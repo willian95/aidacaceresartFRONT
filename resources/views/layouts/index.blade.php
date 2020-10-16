@@ -124,43 +124,48 @@
                                         <p class="m-0 title-login">Registro</p>
                                         <form action="">
                                             <div class="form-group">                           
-                                                <input placeholder="Nombre y apellido" type="email" autocomplete="off" class="form-control"
-                                                  id="email" aria-describedby="emailHelp">
+                                                <input placeholder="Nombre y apellido" type="text" autocomplete="off" class="form-control"
+                                                  id="email" aria-describedby="emailHelp" v-model="name">
                                                 <i class="fa fa-user icon_form"></i>
+                                                <small v-if="errors.hasOwnProperty('name')">@{{ errors['name'][0] }}</small>
                                               </div>
                       
                                               <div class="form-group">
                                                 <input placeholder="Correo electrónico" type="email" autocomplete="off" class="form-control"
-                                                  id="email" aria-describedby="emailHelp">
+                                                  id="email" aria-describedby="emailHelp" v-model="email">
                                                 <i class="fa fa-envelope icon_form"></i>
+                                                <small v-if="errors.hasOwnProperty('email')">@{{ errors['email'][0] }}</small>
                                               </div>
         
                                               <div class="row">
                                                   <div class="col-md-6 form-group">
-                                                    <input placeholder="Cèdula" type="email" class="form-control">                                       
+                                                    <input placeholder="Cèdula" type="text" class="form-control" v-model="dni">   
+                                                    <small v-if="errors.hasOwnProperty('dni')">@{{ errors['dni'][0] }}</small>                                    
                                                   </div>
                                                   <div class="col-md-6 form-group">
-                                                    <input placeholder="Télefono" type="email" class="form-control">
+                                                    <input placeholder="Télefono" type="telephone" class="form-control" v-model="phone">
+                                                    <small v-if="errors.hasOwnProperty('phone')">@{{ errors['phone'][0] }}</small>
                                                 </div>
                                               </div>
                                               <div class="row">
                                                   <div class="col-md-12 form-group">
-                                                    <input placeholder="Dirección" type="password" class="form-control  " >
-                                            
+                                                    <input placeholder="Dirección" type="text" class="form-control" v-model="address">
+                                                    <small v-if="errors.hasOwnProperty('address')">@{{ errors['address'][0] }}</small>
                                                   </div>
                                               </div>
         
                                               <div class="form-group">
-                                                <input placeholder="Contraseña" type="password" class="form-control  " id="password">
+                                                <input placeholder="Contraseña" type="password" class="form-control" id="password" v-model="password">
                                                 <i class="fa fa-lock icon_form"></i>
+                                                <small v-if="errors.hasOwnProperty('password')">@{{ errors['password'][0] }}</small>
                                               </div>
                                               <div class="form-group">
-                                                <input placeholder="Confirmar contraseña" type="password" class="form-control  " id="password">
+                                                <input placeholder="Confirmar contraseña" type="password" class="form-control  "id="password" v-model="password_confirmation">
                                                 <i class="fa fa-lock icon_form"></i>
                                               </div>
                                        
                                             <div class=" form-group mt-4 text-center">
-                                                <button class="btn btn-primary btn-custom "">Registrarme<i class=" fa
+                                                <button type="button" class="btn btn-primary btn-custom" @click="register()">Registrarme<i class=" fa
                                                     fa-angle-right" aria-hidden="true"></i>
                                                 </button>
                                             </div>
@@ -176,7 +181,7 @@
                                     </div>
                                     <div class=" col-md-5 gray flex-center">
                                         <div class=" text-center registrar_facil">
-                                            <a class="txt" href="">¡Inicia sesión! <i class=" fa
+                                            <a class="txt" href="#" data-toggle="modal" data-target="#loginModal" data-dismiss="modal">¡Inicia sesión! <i class=" fa
                                               fa-angle-right" aria-hidden="true"></i></a>
                                             <p>¿Ya tienes cuenta?</p>
         
@@ -210,21 +215,23 @@
                                             <div class="form-group">
                                                 <!---  <label for="email">Correo electrónico</label>-->
                                                 <input placeholder="Correo electrónico" type="email" autocomplete="off"
-                                                    class="form-control" id="email" aria-describedby="emailHelp">
+                                                    class="form-control" id="email" aria-describedby="emailHelp" v-model="emailLogin">
                                                 <i class="fa fa-envelope icon_form"></i>
+                                                <small v-if="errorsLogin.hasOwnProperty('email')">@{{ errorsLogin['email'][0] }}</small>
                                             </div>
                                             <div class="form-group">
                                                 <!--<label for="password">Contraseña</label>-->
         
-                                                <input placeholder="Contraseña" type="password" class="form-control  "
+                                                <input placeholder="Contraseña" type="password" class="form-control" v-model="passwordLogin"
                                                     id="password">
                                                 <i class="fa fa-lock icon_form"></i>
+                                                <small v-if="errorsLogin.hasOwnProperty('password')">@{{ errorsLogin['password'][0] }}</small>
                                             </div>
                                             <div class="form-group  text-lg-right">
                                                 <a href="" class="texto">¿Has olvidado tu contraseña?</a>
                                             </div>
                                             <div class=" form-group mt-4 text-center">
-                                                <button class="btn btn-primary btn-custom "">Ingresar <i class=" fa
+                                                <button type="button" @click="login()" class="btn btn-primary btn-custom">Ingresar <i class=" fa
                                                     fa-angle-right" aria-hidden="true"></i>
                                                 </button>
                                             </div>
@@ -240,7 +247,7 @@
                                     </div>
                                     <div class=" col-md-6 gray flex-center">
                                         <div class=" text-center registrar_facil">
-                                            <a class="txt" href="" data-toggle="modal" data-target="#register-modal">¡Registrate facíl! <i class=" fa
+                                            <a class="txt" href="#" data-toggle="modal" data-target="#registerModal" data-dismiss="modal">¡Registrate facíl! <i class=" fa
                                                 fa-angle-right" aria-hidden="true"></i></a>
                                             <p>¿Aún no tienes cuenta?</p>
         
@@ -270,10 +277,12 @@
         </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.0/photoswipe.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.0/photoswipe-ui-default.min.js"></script>
+
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         
         <script src="{{ asset('assets/js/slick.min.js') }}"></script>
         <script src="{{ asset('assets/js/main.js') }}"></script>
-        
+        <script src="{{ asset('/js/app.js') }}"></script>
         
         
 
@@ -283,19 +292,22 @@
                 el: '#authModal',
                 data() {
                     return {
+                        userId:"@if(isset($user_id)) {{ $user_id }} @endif",
                         name: "",
                         email: "",
                         password: "",
                         password_confirmation: "",
                         phone: "",
-                        identification: "",
+                        dni: "",
                         address: "",
+                        errors:"",
+                        errorsLogin:"",
                         emailLogin: "",
                         passwordLogin: "",
                         products: [],
-                        guesProducts: [],
-                        authCheck: "{{ Auth::check() }}",                
-                        url:"{{ url('/') }}"
+                        guesProducts: [],              
+                        url:"{{ url('/') }}",
+                        auth:""
                     }
                 },
                 methods: {
@@ -312,60 +324,36 @@
                     register() {
 
                         axios.post("{{ url('/register') }}", {
-                                name: this.name,
-                                email: this.email,
-                                password: this.password,
-                                password_confirmation: this.password_confirmation,
-                                phone: this.phone,
-                                identification: this.identification,
-                                address: this.address
-                            }).then(res => {
+                            name: this.name,
+                            email: this.email,
+                            password: this.password,
+                            password_confirmation: this.password_confirmation,
+                            phone: this.phone,
+                            dni: this.dni,
+                            address: this.address
+                        }).then(res => {
 
-                                if (res.data.success == true) {
-                                    swal({
-                                        title: "Excelente!",
-                                        text: res.data.msg,
-                                        icon: "success"
-                                    });
-                                    this.name = ""
-                                    this.email = ""
-                                    this.password = ""
-                                    this.password_confirmation = ""
-                                    this.phone = ""
-                                    this.identification = ""
-                                    this.address = ""
-                                } else {
-                                    alertify.error(res.data.msg)
-                                }
-
-                            })
-                            .catch(err => {
-                                $.each(err.response.data.errors, function(key, value) {
-                                    alertify.error(value[0])
-                                    //alertify.error(value);
-                                    //alertify.alert('Basic: true').set('basic', true); 
+                            if (res.data.success == true) {
+                                swal({
+                                    title: "Excelente!",
+                                    text: res.data.msg,
+                                    icon: "success"
                                 });
-                            })
+                                this.name = ""
+                                this.email = ""
+                                this.password = ""
+                                this.password_confirmation = ""
+                                this.phone = ""
+                                this.dni = ""
+                                this.address = ""
+                            } else {
+                                alertify.error(res.data.msg)
+                            }
 
-                    },
-                    openRegisterModal() {
-
-                        $("#loginModalClose").click();
-                        $('body').removeClass('modal-open');
-                        $('body').css('padding-right', '0px');
-                        $('.modal-backdrop').remove();
-
-                        $("#openRegisterModal").click()
-
-                    },
-                    openLoginModal() {
-
-                        $("#registerModalClose").click();
-                        $('body').removeClass('modal-open');
-                        $('body').css('padding-right', '0px');
-                        $('.modal-backdrop').remove();
-
-                        $("#openLoginModal").click()
+                        })
+                        .catch(err => {
+                            this.errors = err.response.data.errors
+                        })
 
                     },
                     login() {
@@ -375,22 +363,25 @@
                                 password: this.passwordLogin
                             })
                             .then(res => {
-
+                                console.log(res.data)
                                 if (res.data.success == true) {
 
                                     swal({
                                         title: "Excelente!",
                                         text: res.data.msg,
                                         icon: "success"
-                                    }).then(() => {
-                                        window.location.href = "{{ url('/') }}"
-                                    });
-                                    this.cartInfo()
-
+                                    })
+                                    //this.cartInfo()
+                                    this.auth = res.data.user
+                                    window.localStorage.setItem("aida_user", JSON.stringify(res.data.user))
 
                                 } else {
-                                    alertify.error(res.data.msg)
+                                    alert(res.data.msg)
+                                    //alertify.error(res.data.msg)
                                 }
+                            })
+                            .catch(err => {
+                                this.errorsLogin = err.response.data.errors
                             })
 
 
@@ -398,6 +389,11 @@
                  
 
                 },
+                mounted(){
+
+                    this.auth = JSON.parse(window.localStorage.getItem("aida_user"))
+
+                }
               
 
             })
