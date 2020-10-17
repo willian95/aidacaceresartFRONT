@@ -178,9 +178,9 @@
                                             </div>
                                             <div class=" mb-5 text-center">
                                                 <p class="inicia">ó registrate facil</p>
-                                                <a class="btn-login  mr-2" href=""> <img class=img_social
+                                                <a class="btn-login  mr-2" href="{{ url('facebook/redirect') }}"> <img class=img_social
                                                         src="assets/img/facebook.png" alt=""> Facebook</a>
-                                                <a class="btn-login btn-login2" href=""> <img class="img_social"
+                                                <a class="btn-login btn-login2"href="{{ url('google/redirect') }}"> <img class="img_social"
                                                         src="assets/img/google.png" alt="">
                                                     Google</a>
                                             </div>
@@ -244,7 +244,7 @@
                                             </div>
                                             <div class=" mb-5 text-center">
                                                 <p class="inicia">ó inicia sesión con</p>
-                                                <a class="btn-login  mr-2" href=""> <img class=img_social
+                                                <a class="btn-login  mr-2" href="{{ url('facebook/redirect') }}"> <img class=img_social
                                                         src="assets/img/facebook.png" alt=""> Facebook</a>
                                                 <a class="btn-login btn-login2" href="{{ url('google/redirect') }}"> <img class="img_social"
                                                         src="assets/img/google.png" alt="">
