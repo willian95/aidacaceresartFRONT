@@ -26,8 +26,13 @@ class GoogleLoginController extends Controller
             if($finduser){
      
                 $token = JWTAuth::fromUser($finduser);
-    
-                return redirect()->to('/front-test')->with("token", $token);
+                
+                if(env('APP_ENV') == "local"){
+                    return redirect()->to('/front-test')->with("token", $token);
+                }else{
+                    return redirect()->to('/')->with("token", $token);
+                }
+                
      
             }else{
                 $newUser = User::create([
@@ -36,7 +41,11 @@ class GoogleLoginController extends Controller
                     'password' => bcrypt(uniqid())
                 ]);
     
-                return redirect()->to('/front-test')->with("token", $token);
+                if(env('APP_ENV') == "local"){
+                    return redirect()->to('/front-test')->with("token", $token);
+                }else{
+                    return redirect()->to('/')->with("token", $token);
+                }
             }
     
         } catch (Exception $e) {
