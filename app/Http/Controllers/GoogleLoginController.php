@@ -27,7 +27,7 @@ class GoogleLoginController extends Controller
      
                 $token = JWTAuth::fromUser($finduser);
     
-                return redirect()->to('/')->with("token", $token);
+                return redirect()->to('/front-test')->with("token", $token);
      
             }else{
                 $newUser = User::create([
@@ -36,7 +36,7 @@ class GoogleLoginController extends Controller
                     'password' => encrypt(uniqid())
                 ]);
     
-                return redirect()->to('/')->with("token", $token);
+                return redirect()->to('/front-test')->with("token", $token);
             }
     
         } catch (Exception $e) {
