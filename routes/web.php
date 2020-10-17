@@ -27,3 +27,6 @@ Route::post("/register", "RegisterController@register");
 Route::post("/login", "LoginController@authenticate");
 Route::post("/get-user", "LoginController@getAuthenticatedUser");
 Route::get("/email/check/{hash}", "RegisterController@check");
+
+Route::get('google/redirect', 'GoogleLoginController@redirectToGoogle');
+Route::get('google/callback', 'GoogleLoginController@handleGoogleCallback');
