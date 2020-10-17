@@ -39,6 +39,8 @@ class GoogleLoginController extends Controller
                     'name' => $user->name,
                     'email' => $user->email,
                     "role_id" => 2,
+                    "telephone" => "0",
+                    "address" => "0",
                     'password' => bcrypt(uniqid())
                 ]);
 
