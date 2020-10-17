@@ -30,3 +30,6 @@ Route::get("/email/check/{hash}", "RegisterController@check");
 
 Route::get('google/redirect', 'GoogleLoginController@redirectToGoogle');
 Route::get('google/callback', 'GoogleLoginController@handleGoogleCallback');
+
+Route::get('facebook/redirect', 'FacebookLoginController@redirectToFacebook');
+Route::get('facebook/callback', 'FacebookLoginController@callback');

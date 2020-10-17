@@ -40,6 +40,8 @@ class GoogleLoginController extends Controller
                     'email' => $user->email,
                     'password' => bcrypt(uniqid())
                 ]);
+
+                $token = JWTAuth::fromUser($newUser);
     
                 if(env('APP_ENV') == "local"){
                     return redirect()->to('/front-test')->with("token", $token);
