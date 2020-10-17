@@ -33,7 +33,7 @@ class GoogleLoginController extends Controller
                 $newUser = User::create([
                     'name' => $user->name,
                     'email' => $user->email,
-                    'password' => encrypt(uniqid())
+                    'password' => bcrypt(uniqid())
                 ]);
     
                 return redirect()->to('/front-test')->with("token", $token);
