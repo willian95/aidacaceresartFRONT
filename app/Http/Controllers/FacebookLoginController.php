@@ -35,6 +35,7 @@ class FacebookLoginController extends Controller
             $user->name = $social_user->name;
             $user->email = $social_user->email;
             $user->password = bcrypt(uniqid());
+            $user->role_id = 2;
             //$user->facebook_id = $social_user->id;
             $user->save();
 
