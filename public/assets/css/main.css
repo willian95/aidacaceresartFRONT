@@ -1,18 +1,5 @@
-@font-face {
-  font-family: 'Cardo', serif;
-  src: url(../fonts/made/MADE\ Bon\ Voyage\ Regular\ PERSONAL\ USE.otf);
-}
 
-@font-face {
-  font-family: "made-thin";
-  src: url(../fonts/made/MADE\ Bon\ Voyage\ Thin\ PERSONAL\ USE.otf);
-}
-
-@font-face {
-  font-family: "montserrat";
-  src: url(../fonts/montserrat/Montserrat-Regular.ttf);
-}
-@import url("https://fonts.googleapis.com/css?family=Cardo|Pathway+Gothic+One");
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
 
 
 ::-webkit-scrollbar {
@@ -37,11 +24,10 @@ video {
 }
 
 body {
-  font-family: 'EB Garamond', serif;
   font-size: 18px;
   color: rgb(24 41 52);
   scroll-behavior: smooth !important;
-
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 body :focus {
@@ -68,7 +54,7 @@ body.offcanvas-expanded {
   overflow: auto !important;
 }
 .title-bold{
-  font-family: 'Cardo', serif;
+
   font-weight: bold;
 }
 .item_texto{
@@ -83,7 +69,6 @@ body.offcanvas-expanded {
   width: 100%;
   background: white;
   transition: .6s;
-  box-shadow: 0px 0px 20px #00000024;
 }
 
 .container- .hamburger {
@@ -278,7 +263,7 @@ body.offcanvas-expanded {
 .navbar-expand-md .navbar-nav .nav-link {
   padding-right: 0.9rem;
   cursor: pointer;
-  font-family: 'EB Garamond', serif;
+
 }
 
 .slick-dotted.slick-slider {
@@ -353,8 +338,6 @@ body.offcanvas-expanded {
   right: 5px;
   bottom: 0;
   color: #fff;
-  
-  font-family: initial;
 
 }
 
@@ -381,7 +364,7 @@ body.offcanvas-expanded {
 }
 
 .slick-next {
-  right: -40px !important;
+  right: 40px !important;
 }
 
 
@@ -389,8 +372,7 @@ body.offcanvas-expanded {
   content: "\f105";
   font: normal normal normal 14px/1 FontAwesome;
   font-size: 24px;
-  color: #47545d;
-
+  color: #ffffff;
   opacity: 1;
   /* background: #ffffff9e; */
   padding: 10px 28px;
@@ -404,12 +386,9 @@ body.offcanvas-expanded {
 .slick-prev:before {
   font: normal normal normal 14px/1 FontAwesome;
   content: "\f104";
-  color: #909897;
   font-size: 24px;
-  color: #47545d;
-
+  color: #ffffff;
   opacity: 1;
-
   padding: 10px 28px;
   border-radius: 50%;
   text-align: center;
@@ -419,7 +398,7 @@ body.offcanvas-expanded {
 }
 
 .slick-prev {
-  left: -70px;
+  left: 0px;
 }
 
 .slick-prev,
@@ -437,7 +416,7 @@ body.offcanvas-expanded {
 }*/
 
 .modal {
-  z-index: 9999;
+  z-index: 999999;
 }
 
 .wrapper {
@@ -482,7 +461,7 @@ a {
   color: #000;
   position: relative;
   padding: 30px;
-  text-align: center;
+ 
 }
 
 .galeria-brick:after {
@@ -598,14 +577,19 @@ div#galeria:hover img:hover {
 }
 
 .galeria_name p {
-  font-size: 16px;
-  letter-spacing: 3px;
-  font-family: 'Cardo', serif;
+  font-size: 18px;
+  letter-spacing: 0;
   font-weight: bolder;
+  margin: 0;
+}
+.galeria_dimension p{
+  font-size: 17px;
+    color: #8c8c8c;
+    font-weight: 100;
+    margin-bottom: 7px;
 }
 
 .titulo-banner_cuadro {
-  font-family: 'Cardo', serif;
   font-weight: bolder;
   letter-spacing: 2px;
 }
@@ -636,15 +620,16 @@ div#galeria:hover img:hover {
 
 .main_title-general {
   text-align: center;
-  font-size: 40px;
-  font-family: 'Cardo', serif;
+  font-size: 44px;
   letter-spacing: 2px;
   color: #182934;
+  font-weight: 500;
+  text-transform: unset;
 }
 
 .main_video {
-  padding-right: 4vw;
-  padding-left: 4vw;
+ /* padding-right: 4vw;
+  padding-left: 4vw;*/
 }
 
 /*login*/
@@ -655,7 +640,6 @@ div#galeria:hover img:hover {
 
 .title-login {
   font-size: 30px;
-  font-family: 'Cardo', serif;
   letter-spacing: 2px;
   color: #182934;
   padding: 30px 0px;
@@ -666,10 +650,10 @@ div#galeria:hover img:hover {
 }
 
 .form-group i {
-  position: absolute;
-  top: 30%;
-  left: 10px;
-  font-size: 15px;
+  position: absolute!important;
+  top: 30%!important;
+  left: 10px!important;
+  font-size: 15px!important;
 }
 
 .login_main .form-control {
@@ -793,7 +777,7 @@ a:hover .fa-angle-right {
 
 .main-banner__content .flaticon-zoom-in-2 {
   position: absolute;
-  top: 50%;
+  top: 70%;
   color: #ffffff;
   left: 50%;
   border-radius: 50%;
@@ -892,7 +876,7 @@ display: flex;
   transition: 0.4s;
   padding: 0 10px;
   box-sizing: border-box;
-  font-family: "Pathway Gothic One", sans-serif;
+
   color: #fff;
 }
 .timeline__content-desc {
@@ -900,7 +884,7 @@ display: flex;
   font-size: 15px;
   box-sizing: border-box;
   color: rgba(255, 255, 255, 0.7);
-  font-family: Cardo;
+
   font-weight: normal;
   line-height: 25px;
 }
@@ -936,7 +920,6 @@ display: flex;
   position: absolute;
   color: rgba(255, 255, 255, 0.5);
   font-size: 13px;
-  font-family: "Pathway Gothic One", sans-serif;
   border-left: 2px solid rgba(255, 255, 255, 0.5);
   top: 70%;
   margin-top: -5px;
@@ -1017,19 +1000,26 @@ display: flex;
 .timeline-header__title {
   color: #fff;
   font-size: 46px;
-  font-family: Cardo;
+
   font-weight: normal;
   margin: 0;
 }
 .timeline-header__subtitle {
   color: rgba(255, 255, 255, 0.5);
-  font-family: "Pathway Gothic One", sans-serif;
   font-size: 16px;
   letter-spacing: 5px;
   margin: 10px 0 0 0;
   font-weight: normal;
 }
+.perfil .icon_form{
+  position: absolute!important;
+  top: 64%!important;
+  color: #042b3a!important;
+}
+.form-control {
 
+  padding-left: 30px;
+}
 .demo-footer {
   padding: 60px 0;
   text-align: center;
@@ -1037,11 +1027,39 @@ display: flex;
 .demo-footer a {
   color: #999;
   display: inline-block;
-  font-family: Cardo;
 }
-
+.news{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  height: 50vh;
+}
+.img-new{
+  width: 100%;
+  height: 50vh;
+    object-fit: cover;
+}
+.new-w{
+  max-width: 600px!important;
+}
+.triangle{
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: white;
+  left: 49%;
+  top: 23%;
+  transform: rotate(45deg);
+  z-index: 1;
+}
 .footer {
   display: flex;
   text-align: center;
   justify-content: center;
+}
+.brand-xs{
+  display: none;
 }
