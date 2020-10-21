@@ -234,7 +234,7 @@
                                                 <small v-if="errorsLogin.hasOwnProperty('password')">@{{ errorsLogin['password'][0] }}</small>
                                             </div>
                                             <div class="form-group  text-lg-right">
-                                                <a href="" class="texto">¿Has olvidado tu contraseña?</a>
+                                                <a href="{{ route('forgot.password') }}" class="texto">¿Has olvidado tu contraseña?</a>
                                             </div>
                                             <div class=" form-group mt-4 text-center">
                                                 <button type="button" @click="login()" class="btn btn-primary btn-custom">Ingresar <i class=" fa
