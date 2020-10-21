@@ -24,7 +24,7 @@ Route::get('/front-test', function () {
 });
 
 Route::get("forgot-password", "ForgotPasswordController@index")->name("forgot.password");
-Route::post("forgot-password", "ForgotPasswordController@index");
+Route::post("forgot-password", "ForgotPasswordController@forgot");
 Route::get("/forgot-password/check/{hash}", "ForgotPasswordController@check");
 Route::post("/password/update", "ForgotPasswordController@update");
 
