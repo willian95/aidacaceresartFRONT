@@ -38,7 +38,7 @@ const devArea = new Vue({
     methods: {
 
         update() {
-            alert("hey")
+         
             axios.post("{{ url('/password/update') }}", {
                     id: this.userId,
                     password: this.password,
@@ -49,7 +49,7 @@ const devArea = new Vue({
                     if (res.data.success == true) {
 
                         swal({
-                            icon:"success"
+                            icon:"success",
                             text:res.data.msg
                         }).then(res => {
                             window.location.href = "{{ url('/') }}"
@@ -59,7 +59,7 @@ const devArea = new Vue({
                     } else {
 
                         swal({
-                            icon:"error"
+                            icon:"error",
                             text:res.data.msg
                         }).then(res => {
                             window.location.href = "{{ url('/') }}"
