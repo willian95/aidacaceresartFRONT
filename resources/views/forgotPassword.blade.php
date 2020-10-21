@@ -50,10 +50,16 @@
                             .then(res => {
 
                                 if (res.data.success == true) {
-                                    alertify.success(res.data.msg)
+                                    swal({
+                                        icon:"success",
+                                        text:res.data.msg
+                                    })
                                     this.email = ""
                                 } else {
-                                    alertify.error(res.data.msg)
+                                    swal({
+                                        icon:"success",
+                                        text:res.data.msg
+                                    })
                                 }
 
                             })
