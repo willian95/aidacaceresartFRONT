@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ForgotPasswordRequest;
+use App\Http\Requests\UpdatePasswordRequest;
+use Illuminate\Support\Str;
+use App\User;
 
 class ForgotPasswordController extends Controller
 {
