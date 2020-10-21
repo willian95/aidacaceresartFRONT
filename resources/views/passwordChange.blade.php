@@ -38,7 +38,7 @@ const devArea = new Vue({
     methods: {
 
         update() {
-
+            alert("hey")
             axios.post("{{ url('/password/update') }}", {
                     id: this.userId,
                     password: this.password,
