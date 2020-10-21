@@ -4,7 +4,11 @@
     }, 3000);
 });
 */
+$(document).ready(function($) {
+  $("#mostrarmodal").modal("show");
 
+
+});
 // Menú responsive
 $(function () {
     $('[data-toggle="offcanvas"]').on("click", function () {
