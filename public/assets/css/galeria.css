@@ -12,14 +12,13 @@
     opacity: 1;
 }
 .pswp__top-bar {
-    position: absolute;
+  /*  position: absolute;
     left: 0;
     top: 35%;
     height: auto;
     width: 100%;
     flex-direction: column;
-    display: flex;
-    left: 95%;
+    display: flex*/
 }
 .pswp__button, .pswp__button--arrow--left:before, .pswp__button--arrow--right:before {
 
