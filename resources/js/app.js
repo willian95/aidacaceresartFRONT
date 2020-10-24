@@ -9,8 +9,14 @@ require('./bootstrap');
 window.Vue = require('vue');
 //window.Slick = require("vue-slick");
 import Slick from 'vue-slick';
+import {PhotoSwipe, PhotoSwipeGallery}  from 'v-photoswipe';
+
 Vue.use(Slick)
 Vue.component("Slick", Slick)
+
+Vue.component("v-photoswipe", PhotoSwipe)
+Vue.component("v-photoswipe-gallery", PhotoSwipeGallery )
+
 
 /**
  * The following block of code may be used to automatically register your
