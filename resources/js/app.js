@@ -7,6 +7,10 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+//window.Slick = require("vue-slick");
+import Slick from 'vue-slick';
+Vue.use(Slick)
+Vue.component("Slick", Slick)
 
 /**
  * The following block of code may be used to automatically register your
