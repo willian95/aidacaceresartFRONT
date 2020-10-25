@@ -12,11 +12,10 @@
     opacity: 1;
 }
 .pswp__top-bar {
-    position: absolute;
-    left: 0!important;
+    position: absolute!important;
+    left: 94%!important;
     top: 35%!important;
     height: auto!important;
-    width: 100%!important;
     flex-direction: column!important;
     display: flex!important;
 }

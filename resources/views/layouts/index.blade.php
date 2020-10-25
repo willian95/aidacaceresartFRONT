@@ -96,17 +96,31 @@
 
                                 </a>
                             </li>
+
+                           
                             <li class='nav-item'>
                                 <a id="openLoginModal" class='nav-link' href='#tienda' data-toggle="modal" data-target="#loginModal" v-if="authCheck == false">
                                     <i class="flaticon-user"></i>
+                                </a>                
+                            </li>
+                            <li class='nav-item dropdown dowms' v-if="authCheck == true">
+                                <a href='#' aria-expanded='false' aria-haspopup='true'
+                                    class='nav-link dropdown-toggle nav-link-black d-flex' data-toggle='dropdown'>                               
+                                    @{{ user.name }} 
                                 </a>
-
-                                <div class="user-login" v-if="authCheck == true">
-                                    <i class="flaticon-user mr-2"></i>
-                                    <!--<p>Willian R.   </p> -->
-                                    <p>@{{ user.name }}</p>
+                                <div aria-labelledby='dropdownMenuButton' class='dropdown-menu'>
+                                    <div class='content-drop'>
+                                        <a class='dropdown-item' href='#'>
+                                            <p>Perfil</p>
+                                        </a>
+                                        <a class='dropdown-item' href='#' @click="logout()"> 
+                                            <p>Salir</p>
+                                        </a>
+                                    </div>
                                 </div>
                             </li>
+
+                            
        
                         </div>
                     </ul>
@@ -136,14 +150,14 @@
                                         <form action="">
                                             <div class="form-group">                           
                                                 <input placeholder="Nombre y apellido" type="text" autocomplete="off" class="form-control"
-                                                  id="email" aria-describedby="emailHelp" v-model="name">
+                                               aria-describedby="emailHelp" v-model="name">
                                                 <i class="fa fa-user icon_form"></i>
                                                 <small v-if="errors.hasOwnProperty('name')">@{{ errors['name'][0] }}</small>
                                               </div>
                       
                                               <div class="form-group">
                                                 <input placeholder="Correo electrónico" type="email" autocomplete="off" class="form-control"
-                                                  id="email" aria-describedby="emailHelp" v-model="email">
+                                               aria-describedby="emailHelp" v-model="email">
                                                 <i class="fa fa-envelope icon_form"></i>
                                                 <small v-if="errors.hasOwnProperty('email')">@{{ errors['email'][0] }}</small>
                                               </div>
@@ -166,7 +180,7 @@
                                               </div>
         
                                               <div class="form-group">
-                                                <input placeholder="Contraseña" type="password" class="form-control" id="password" v-model="password">
+                                                <input placeholder="Contraseña" type="password" class="form-control"  v-model="password">
                                                 <i class="fa fa-lock icon_form"></i>
                                                 <small v-if="errors.hasOwnProperty('password')">@{{ errors['password'][0] }}</small>
                                               </div>
@@ -183,9 +197,9 @@
                                             <div class=" mb-5 text-center">
                                                 <p class="inicia">ó registrate facil</p>
                                                 <a class="btn-login  mr-2" href="{{ url('facebook/redirect') }}"> <img class=img_social
-                                                        src="assets/img/facebook.png" alt=""> Facebook</a>
+                                                        src="{{ asset('assets/img/facebook.png') }}" alt=""> Facebook</a>
                                                 <a class="btn-login btn-login2"href="{{ url('google/redirect') }}"> <img class="img_social"
-                                                        src="assets/img/google.png" alt="">
+                                                        src="{{ asset('assets/img/google.png') }}" alt="">
                                                     Google</a>
                                             </div>
                                         </form>
@@ -234,7 +248,7 @@
                                                 <!--<label for="password">Contraseña</label>-->
         
                                                 <input placeholder="Contraseña" type="password" class="form-control" v-model="passwordLogin"
-                                                    id="password">
+                                                >
                                                 <i class="fa fa-lock icon_form"></i>
                                                 <small v-if="errorsLogin.hasOwnProperty('password')">@{{ errorsLogin['password'][0] }}</small>
                                             </div>
@@ -249,9 +263,9 @@
                                             <div class=" mb-5 text-center">
                                                 <p class="inicia">ó inicia sesión con</p>
                                                 <a class="btn-login  mr-2" href="{{ url('facebook/redirect') }}"> <img class=img_social
-                                                        src="assets/img/facebook.png" alt=""> Facebook</a>
+                                                        src="{{ asset('assets/img/facebook.png') }}" alt=""> Facebook</a>
                                                 <a class="btn-login btn-login2" href="{{ url('google/redirect') }}"> <img class="img_social"
-                                                        src="assets/img/google.png" alt="">
+                                                        src="{{ asset('assets/img/google.png') }}" alt="">
                                                     Google</a>
                                             </div>
                                         </form>
@@ -821,6 +835,12 @@
                     }
                 },
                 methods: {
+
+                    logout(){
+                        window.localStorage.removeItem("aida_user")
+                        this.authCheck = false
+                    }
+
                 },
                 created(){
 
