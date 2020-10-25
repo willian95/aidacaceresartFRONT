@@ -23,8 +23,5 @@
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10"
     },
-    "dependencies": {
-        "vue-picture-swipe": "^2.0.2",
-        "vue-slick": "^1.1.15"
-    }
+    "dependencies": {}
 }

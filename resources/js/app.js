@@ -8,14 +8,14 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 //window.Slick = require("vue-slick");
-import Slick from 'vue-slick';
+/*import Slick from 'vue-slick';
 
 Vue.use(Slick)
 Vue.component("Slick", Slick)
 
 import VuePictureSwipe from 'vue-picture-swipe';
 Vue.component('vue-picture-swipe', VuePictureSwipe);
-
+*/
 
 
 /**
