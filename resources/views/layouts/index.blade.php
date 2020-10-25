@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Pathway+Gothic+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/galeria.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
+    
     <link rel="stylesheet" href="{{ asset('assets/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/slick-theme.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.css') }}">
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="{{ asset('assets/fonts/Flaticon.woff') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/detalle.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
     <style>
         .swal-overlay{
             z-index: 100000000 !important;
@@ -33,12 +33,17 @@
     <header>
         <nav class='navbar navbar-expand-md navbar-fixed-js'>
             <div class='container flex-content'>
-                <button class='navbar-toggler p-2 border-0 hamburger hamburger--elastic d-none-lg'
-                    data-toggle='offcanvas' type='button'>
-                    <span class='hamburger-box'>
-                        <span class='hamburger-inner'></span>
-                    </span>
-                </button>
+                <div class="d-flex w-100 logoxs">
+                    <a class='brand-xs' href='#'>
+                        <img alt='' src='{{ asset('assets/img/logo.png') }}'>
+                    </a>
+                    <button class='navbar-toggler p-2 border-0 hamburger hamburger--elastic d-none-lg'
+                        data-toggle='offcanvas' type='button'>
+                        <span class='hamburger-box'>
+                            <span class='hamburger-inner'></span>
+                        </span>
+                    </button>
+                   </div>
                 <div class='offcanvas-collapse fil' id='navbarNav'>
 
                     <ul class='navbar-nav'>
@@ -81,7 +86,7 @@
                             </li>
                             <li class='nav-item'>
                                 <a class='brand' href='#'>
-                                    <img alt='' src='assets/img/logo.png'>
+                                    <img alt='' src='{{ asset('assets/img/logo.png') }}'>
                                 </a>
                             </li>
 
