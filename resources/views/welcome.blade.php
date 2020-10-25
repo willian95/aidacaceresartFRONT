@@ -2,9 +2,9 @@
 
 @section("content")
 
-    <div id="home">
+
         <!----banner------>
-        {{--<section class="main-banner pb-0 pt-0">
+        <section class="main-banner pb-0 pt-0">
             <div id="demo-test-gallery" class="demo-gallery" data-pswp-uid="1">
                 <div class=" main-banner__content ">
                     <div>
@@ -84,62 +84,8 @@
 
             </div>
 
-        </section>--}}
-        <!----banner------>
-        <section class="main-banner pb-0 pt-0 main-banner__content">
-            <slick ref="slick" :options="slickOptions" class="demo-gallery">
-                
-                <div v-for="slide in slides">
-                    <div class="main-banner_item">
-                        <a>
-                            <img :src="slide.image" alt="">
-                            
-                            <i class="flaticon-zoom-in-2">
-                            
-                            </i>
-                            
-                        </a>
-                    </div>
-                    <div class="main-banner_text">
-                        <ul>
-                            <li>
-                                <p class="titulo-banner_cuadro">@{{ slide.title }}</p>
-                                <a href="">Ver más <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                </a>
-                            </li>
-                            <li>$ @{{ slide.price }}</li>
-                            <li>@{{ slide.description }} <br> $ @{{ slide.minPrice }} - $ @{{ slide.maxPrice }} </li>
-                            <li><a class="btn-add " href=""><i class="flaticon-shopping-bag
-                                "><span>+</span></i></a> </li>
-                        </ul>
-                    </div>
-                </div>
-
-            </slick>
         </section>
-
-
-        <div>
-            <!--<div class="paragraph">
-                <h3>PhotoSwipe</h3>
-                <div>
-                    <img style="width: 20%;" @click="showPhotoSwipe(0)" src="https://farm4.staticflickr.com/3894/15008518202_c265dfa55f_h.jpg" alt="">
-                    <img style="width: 20%;" @click="showPhotoSwipe(1)" src="https://farm4.staticflickr.com/3902/14985871946_24f47d4b53_h.jpg" alt="">
-                </div>
-            </div>-->
-            <div class="paragraph">
-                <h3>PhotoSwipe Gallery</h3>
-                <div>
-                    <v-photoswipe-gallery :isOpen="isOpenGallery" :options="optionsGallery" :items="items">
-                    <img slot-scope="props" :src="props.item.src" alt="picture" style="width: 20%;"/>
-                    </v-photoswipe-gallery>
-                </div>
-            </div>
-            <v-photoswipe :isOpen="isOpen" :items="items" :options="options" @close="hidePhotoSwipe">
-            </v-photoswipe>
-        </div>
-
-        
+        <!----banner------>
 
         <!----VIDEO----->
         <section class="">
@@ -250,7 +196,7 @@
             </div>
         </section>
         <!----PAGO SEGURP----->
-    </div>
+
 
 
 @endsection
@@ -284,41 +230,12 @@
                     slickOptions: {
                         slidesToShow: 1,
                         // Any other options that can be got from plugin documentation
-                    },
-                    isOpen: false,
-                    isOpenGallery: false,
-                    options: {
-                        index: 0,
-                        modal:true
-                    },
-                    optionsGallery: {
-                        modal:true
-                    },
-                    items: [
-                        {
-                        src: 'https://farm4.staticflickr.com/3894/15008518202_c265dfa55f_h.jpg',
-                        w: 1600,
-                        h: 1600,
-                        title: 'This is dummy caption.'
-                        }, {
-                        src: 'https://farm4.staticflickr.com/3902/14985871946_24f47d4b53_h.jpg',
-                        w: 1600,
-                        h: 1066,
-                        title: 'This is dummy caption. It has been placed here solely to demonstrate the look and feel of finished, typeset text.'
-                        }
-                    ]
+                    }
                 }
             },
             methods: {
 
-                showPhotoSwipe (index) {
-                   
-                    this.isOpen = true
-                    this.$set(this.options, 'index', index)
-                },
-                hidePhotoSwipe () {
-                    this.isOpen = false
-                }
+                
 
             },
             mounted(){
