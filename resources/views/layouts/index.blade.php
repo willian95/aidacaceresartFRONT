@@ -97,10 +97,14 @@
                                 </a>
                             </li>
                             <li class='nav-item'>
-                                <a id="openLoginModal" class='nav-link' href='#tienda' data-toggle="modal" data-target="#loginModal"><i
-                                        class="flaticon-user"></i>
-
+                                <a id="openLoginModal" class='nav-link' href='#tienda' data-toggle="modal" data-target="#loginModal">
+                                    <i class="flaticon-user"></i>
                                 </a>
+
+                                <div class="user-login">
+                                    <i class="flaticon-user mr-2"></i>
+                                    <p>Willian R.   </p> 
+                                </div>
                             </li>
        
                         </div>
