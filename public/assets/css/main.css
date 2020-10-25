@@ -652,8 +652,8 @@ div#galeria:hover img:hover {
 .form-group i {
   position: absolute!important;
   top: 30%!important;
-  left: 10px!important;
   font-size: 15px!important;
+  margin-left: 9px;
 }
 
 .login_main .form-control {

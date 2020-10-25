@@ -164,17 +164,20 @@
         
                                               <div class="row">
                                                   <div class="col-md-6 form-group">
-                                                    <input placeholder="Cèdula" type="text" class="form-control" v-model="dni">   
+                                                    <input placeholder="Cédula" type="text" class="form-control" v-model="dni">  
+                                                    <i class="fa fa-id-card icon_form"></i> 
                                                     <small v-if="errors.hasOwnProperty('dni')">@{{ errors['dni'][0] }}</small>                                    
                                                   </div>
                                                   <div class="col-md-6 form-group">
                                                     <input placeholder="Télefono" type="telephone" class="form-control" v-model="phone">
+                                                    <i class="fa fa-phone icon_form"></i>
                                                     <small v-if="errors.hasOwnProperty('phone')">@{{ errors['phone'][0] }}</small>
                                                 </div>
                                               </div>
                                               <div class="row">
                                                   <div class="col-md-12 form-group">
                                                     <input placeholder="Dirección" type="text" class="form-control" v-model="address">
+                                                    <i class="fa fa-globe icon_form"></i>
                                                     <small v-if="errors.hasOwnProperty('address')">@{{ errors['address'][0] }}</small>
                                                   </div>
                                               </div>
@@ -196,10 +199,8 @@
                                             </div>
                                             <div class=" mb-5 text-center">
                                                 <p class="inicia">ó registrate facil</p>
-                                                <a class="btn-login  mr-2" href="{{ url('facebook/redirect') }}"> <img class=img_social
-                                                        src="{{ asset('assets/img/facebook.png') }}" alt=""> Facebook</a>
-                                                <a class="btn-login btn-login2"href="{{ url('google/redirect') }}"> <img class="img_social"
-                                                        src="{{ asset('assets/img/google.png') }}" alt="">
+                                                <a class="btn-login  mr-2" href="{{ url('facebook/redirect') }}"> <i class="fa fa-facebook"></i> Facebook</a>
+                                                <a class="btn-login btn-login2"href="{{ url('google/redirect') }}"> <i class="fa fa-google"></i>
                                                     Google</a>
                                             </div>
                                         </form>
@@ -262,10 +263,8 @@
                                             </div>
                                             <div class=" mb-5 text-center">
                                                 <p class="inicia">ó inicia sesión con</p>
-                                                <a class="btn-login  mr-2" href="{{ url('facebook/redirect') }}"> <img class=img_social
-                                                        src="{{ asset('assets/img/facebook.png') }}" alt=""> Facebook</a>
-                                                <a class="btn-login btn-login2" href="{{ url('google/redirect') }}"> <img class="img_social"
-                                                        src="{{ asset('assets/img/google.png') }}" alt="">
+                                                <a class="btn-login  mr-2" href="{{ url('facebook/redirect') }}"> <i class="fa fa-facebook"></i>  Facebook</a>
+                                                <a class="btn-login btn-login2" href="{{ url('google/redirect') }}"><i class="fa fa-google"></i>
                                                     Google</a>
                                             </div>
                                         </form>
