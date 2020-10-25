@@ -47,10 +47,10 @@
 
 
                                 <a href='#' aria-expanded='false' aria-haspopup='true'
-                                    class='nav-link dropdown-toggle nav-link-black ' data-toggle='dropdown'>
+                                    class='nav-link dropdown-toggle nav-link-black ' data-toggle='dropdown' @click="toggleCurrencyMenu()">
                                     USD
                                 </a>
-                                <div aria-labelledby='dropdownMenuButton' class='dropdown-menu'>
+                                <div aria-labelledby='dropdownMenuButton' class='dropdown-menu' id="currencyMenu">
                                     <div class='content-drop'>
                                         <a class='dropdown-item' href='#'>
                                             <p> HKD</p>
@@ -58,14 +58,14 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class='nav-item dropdown dowms'>
+                            <li class='nav-item dropdown dowms' >
                                 <a href='#' aria-expanded='false' aria-haspopup='true'
-                                    class='nav-link dropdown-toggle nav-link-black ' data-toggle='dropdown'>
+                                    class='nav-link dropdown-toggle nav-link-black ' data-toggle='dropdown' @click="toggleLanguageMenu()">
                                     EN
                                     <!---<i class="flaticon-translation"></i>--->
 
                                 </a>
-                                <div aria-labelledby='dropdownMenuButton' class='dropdown-menu'>
+                                <div aria-labelledby='dropdownMenuButton' class='dropdown-menu' id="languageMenu">
                                     <div class='content-drop'>
                                         <a class='dropdown-item' href='#'>
                                             <p> ES</p>
@@ -105,10 +105,10 @@
                             </li>
                             <li class='nav-item dropdown dowms' v-if="authCheck == true">
                                 <a href='#' aria-expanded='false' aria-haspopup='true'
-                                    class='nav-link dropdown-toggle nav-link-black d-flex' data-toggle='dropdown'>                               
+                                    class='nav-link dropdown-toggle nav-link-black d-flex' data-toggle='dropdown' @click="toggleUserMenu()">                               
                                     @{{ user.name }} 
                                 </a>
-                                <div aria-labelledby='dropdownMenuButton' class='dropdown-menu'>
+                                <div aria-labelledby='dropdownMenuButton' class='dropdown-menu' id="userMenu">
                                     <div class='content-drop'>
                                         <a class='dropdown-item' href='#'>
                                             <p>Perfil</p>
@@ -839,6 +839,33 @@
                     logout(){
                         window.localStorage.removeItem("aida_user")
                         this.authCheck = false
+                    },
+                    toggleUserMenu(){
+
+                        if($("#userMenu").hasClass("show")){
+                            $("#userMenu").removeClass("show")
+                        }else{
+                            $("#userMenu").addClass("show")
+                        }
+
+                    },
+                    toggleLanguageMenu(){
+
+                        if($("#languageMenu").hasClass("show")){
+                            $("#languageMenu").removeClass("show")
+                        }else{
+                            $("#languageMenu").addClass("show")
+                        }
+
+                    },
+                    toggleCurrencyMenu(){
+
+                        if($("#currencyMenu").hasClass("show")){
+                            $("#currencyMenu").removeClass("show")
+                        }else{
+                            $("#currencyMenu").addClass("show")
+                        }
+
                     }
 
                 },
@@ -847,7 +874,7 @@
                     if(!this.authCheck){
 
                         var interval = window.setInterval(() => {
-                            console.log("here", window.localStorage.getItem("aida_user"))
+                            
                             if(window.localStorage.getItem("aida_user")){
                                 this.authCheck = true
                                 this.user = JSON.parse(window.localStorage.getItem("aida_user"))
