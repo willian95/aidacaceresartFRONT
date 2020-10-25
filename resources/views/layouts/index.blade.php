@@ -96,16 +96,34 @@
 
                                 </a>
                             </li>
+
+                           <!-- 
                             <li class='nav-item'>
                                 <a id="openLoginModal" class='nav-link' href='#tienda' data-toggle="modal" data-target="#loginModal">
                                     <i class="flaticon-user"></i>
-                                </a>
+                                </a>                
+                            </li>-->
+                            <li class='nav-item dropdown dowms'>
 
-                                <div class="user-login">
-                                    <i class="flaticon-user mr-2"></i>
+
+                                <a href='#' aria-expanded='false' aria-haspopup='true'
+                                    class='nav-link dropdown-toggle nav-link-black ' data-toggle='dropdown'>
+                                  
                                     <p>Willian R.   </p> 
+                                </a>
+                                <div aria-labelledby='dropdownMenuButton' class='dropdown-menu'>
+                                    <div class='content-drop'>
+                                        <a class='dropdown-item' href='#'>
+                                            <p>Perfil</p>
+                                        </a>
+                                        <a class='dropdown-item' href='#'>
+                                            <p>Salir</p>
+                                        </a>
+                                    </div>
                                 </div>
                             </li>
+
+                            
        
                         </div>
                     </ul>
