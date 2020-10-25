@@ -7,30 +7,37 @@
         <section class="main-banner pb-0 pt-0">
             <div id="demo-test-gallery" class="demo-gallery" data-pswp-uid="1">
                 <div class=" main-banner__content ">
-                    <div>
-                        <div class="main-banner_item">
-                            <a href="http://imgfz.com/i/7Fw3pJi.jpeg" data-size="1600x1068" data-author=""
-                                data-med="http://imgfz.com/i/7Fw3pJi.jpeg" data-med-size="1024x683">
-                                <img src="http://imgfz.com/i/7Fw3pJi.jpeg" alt="">
-                                <i class="flaticon-zoom-in-2
-                                    "></i>
-                            </a>
+                    @foreach(App\Product::where("show_on_carousel", 1)->get() as $carousel)
+                        <div>
+                            <div class="main-banner_item">
+                                <a href="{{ $carousel->image }}" data-size="1600x1068" data-author=""
+                                    data-med="{{ $carousel->image }}" data-med-size="1024x683">
+                                    <img src="{{ $carousel->image }}" alt="">
+                                    <i class="flaticon-zoom-in-2
+                                        "></i>
+                                </a>
+                            </div>
+                            <div class="main-banner_text">
+                                <ul>
+                                    <li>
+                                        <p class="titulo-banner_cuadro">{{ $carousel->name }}</p>
+                                        <a href="">Ver más <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                        </a>
+                                    </li>
+                                    <li>$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "desc")->first()->price, 2, ",", ".") }}</li>
+                                    <li>Available on Canvas & Super HD Print <br> 
+                                    $ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price, 2, ",", ".") }} 
+                                    @if(App\ProductFormatSize::where("product_id", $carousel->id)->count() > 1) - 
+                                        $ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "desc")->first()->price, 2, ",", ".") }}
+                                    @endif 
+                                     </li>
+                                    <li><a class="btn-add " href=""><i class="flaticon-shopping-bag
+                                        "><span>+</span></i></a> </li>
+                                </ul>
+                            </div>
                         </div>
-                        <div class="main-banner_text">
-                            <ul>
-                                <li>
-                                    <p class="titulo-banner_cuadro">Title Cuadro XYZ</p>
-                                    <a href="">Ver más <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-                                <li>$ 1,000.000</li>
-                                <li>Available on Canvas & Super HD Print <br> $ 80.000 - $ 95.000 </li>
-                                <li><a class="btn-add " href=""><i class="flaticon-shopping-bag
-                                    "><span>+</span></i></a> </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div>
+                    @endforeach
+                    {{--<div>
                         <div class="main-banner_item">
                             <a href="http://imgfz.com/i/ywPrSJ8.jpeg" data-size="1600x1067"
                                 data-med="http://imgfz.com/i/ywPrSJ8.jpeg" data-med-size="1024x683"
@@ -79,7 +86,7 @@
                                 <li><a href="">Add to cart</a> </li>
                             </ul>
                         </div>
-                    </div>
+                    </div>--}}
                 </div>
 
             </div>

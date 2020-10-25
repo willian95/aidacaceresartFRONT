@@ -97,13 +97,14 @@
                                 </a>
                             </li>
                             <li class='nav-item'>
-                                <a id="openLoginModal" class='nav-link' href='#tienda' data-toggle="modal" data-target="#loginModal">
+                                <a id="openLoginModal" class='nav-link' href='#tienda' data-toggle="modal" data-target="#loginModal" v-if="authCheck == false">
                                     <i class="flaticon-user"></i>
                                 </a>
 
-                                <div class="user-login">
+                                <div class="user-login" v-if="authCheck == true">
                                     <i class="flaticon-user mr-2"></i>
-                                    <p>Willian R.   </p> 
+                                    <!--<p>Willian R.   </p> -->
+                                    <p>@{{ user.name }}</p>
                                 </div>
                             </li>
        
@@ -675,11 +676,9 @@
 
         <script src="{{ asset('/js/app.js') }}"></script>
 
-
-        
         <script>
            
-            const navbar = new Vue({
+            const authModal = new Vue({
                 el: '#authModal',
                 data() {
                     return {
@@ -809,6 +808,39 @@
             })
 
           
+        </script>
+
+        <script>
+
+            const navbar = new Vue({
+                el: '#navbarNav',
+                data() {
+                    return {
+                        user:"",
+                        authCheck:false,
+                    }
+                },
+                methods: {
+                },
+                created(){
+
+                    if(!this.authCheck){
+
+                        var interval = window.setInterval(() => {
+                            console.log("here", window.localStorage.getItem("aida_user"))
+                            if(window.localStorage.getItem("aida_user")){
+                                this.authCheck = true
+                                this.user = JSON.parse(window.localStorage.getItem("aida_user"))
+                                window.clearInterval(interval)
+                            }
+
+                        }, 1000)
+
+                    }
+
+                }
+            })
+            
         </script>
 
         @stack("scripts")
