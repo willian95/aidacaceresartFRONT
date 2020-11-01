@@ -2,7 +2,7 @@
 
 @section("content")
 
-    <div class="container fleex p-50" id="dev-area">
+    <div class="container fleex p-50 style-pass" id="dev-area">
         <div class="title__general text-center  justify-content-between" style="    width: 100%;">
             <h2>Recuperar mi contraseña</h2>
         </div>
@@ -12,8 +12,9 @@
 
                 <div class="form-group mb-4" style="    width: 320px;">
 
-                    <label for="">Correo electrónico</label>
-                    <input type="text" class="form-control" v-model="email">
+                    <label for=""></label>
+                    <input type="text" class="form-control" v-model="email" placeholder="Correo electrónico">
+                    <i class="fa fa-envelope icon_form"></i>
 
                 </div>
 
