@@ -781,14 +781,24 @@
                                 
                                 if (res.data.success == true) {
 
-                                    swal({
-                                        title: "Excelente!",
-                                        text: res.data.msg,
-                                        icon: "success"
-                                    })
                                     //this.cartInfo()
                                     this.auth = res.data.user
+                                    window.localStorage.setItem("aida_token", res.data.token)
                                     window.localStorage.setItem("aida_user", JSON.stringify(res.data.user))
+                                    
+                                    var cart = JSON.parse(window.localStorage.getItem("aida_cart"))
+                                    if(cart){
+                                        cart.forEach((data) => {
+
+                                            axios.post("{{ url('/cart/store') }}", {formatSizeId: data.id}, {
+                                                headers: {
+                                                Authorization: "Bearer "+window.localStorage.getItem('aida_token')
+                                                }
+                                            }).then(res => {})
+
+                                        })
+                                    }
+                                    
 
                                     this.emailLogin = ""
                                     this.passwrodLogin = ""
@@ -798,8 +808,20 @@
                                     $('body').css('padding-right', '0px');
                                     $('.modal-backdrop').remove();
 
+                                    swal({
+                                        title: "Excelente!",
+                                        text: res.data.msg,
+                                        icon: "success"
+                                    }).then(res => {
+                                        window.location.reload()
+                                    })
+
                                 } else {
-                                    alert(res.data.msg)
+                                    swal({
+                                        title: "Lo sentimos!",
+                                        text: res.data.msg,
+                                        icon: "error"
+                                    })
                                     //alertify.error(res.data.msg)
                                 }
                             })
@@ -838,6 +860,8 @@
 
                     logout(){
                         window.localStorage.removeItem("aida_user")
+                        window.localStorage.removeItem("aida_token")
+                        window.localStorage.removeItem("aida_cart")
                         this.authCheck = false
                     },
                     toggleUserMenu(){

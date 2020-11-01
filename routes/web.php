@@ -38,3 +38,16 @@ Route::get('google/callback', 'GoogleLoginController@handleGoogleCallback');
 
 Route::get('facebook/redirect', 'FacebookLoginController@redirectToFacebook');
 Route::get('facebook/callback', 'FacebookLoginController@callback');
+
+Route::get("/home/products", "HomeController@fetchProduct");
+
+Route::get("/product/{slug}", "ProductController@show");
+Route::get("/format-sizes/product/{productId}", "FormatSizeController@fetchByProduct");
+
+Route::get("profile", "ProfileController@index");
+Route::post("profile/update", "ProfileController@update");
+
+Route::get("cart", "CartController@index");
+Route::post("cart/store", "CartController@store");
+Route::get("cart/fetch", "CartController@fetch");
+Route::post("cart/guest-fetch", "CartController@guestFetch");

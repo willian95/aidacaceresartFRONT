@@ -2,7 +2,7 @@
 
 @section("content")
 
-
+    <div id="home">
         <!----banner------>
         <section class="main-banner pb-0 pt-0">
             <div id="demo-test-gallery" class="demo-gallery" data-pswp-uid="1">
@@ -93,87 +93,89 @@
 
         </section>
         <!----banner------>
-
+        
+        @if(App\HomeVideo::where("active", 1)->first())
         <!----VIDEO----->
         <section class="">
             <div class="main_video">
-                <video autoplay>
-                    <source src="ejemplo.webm" type="video/webm">
-                    <source src="ejemplo.ogg" type="video/ogg">
-                    <source src="assets/img/nrw6.mp4" type="video/mp4">
+                <video loop autoplay="true" muted="muted">
+                    <!--<source src="ejemplo.webm" type="video/webm">
+                    <source src="ejemplo.ogg" type="video/ogg">-->
+                    <source src="{{ App\HomeVideo::first()->video }}" type="video/mp4">
                 </video>
             </div>
         </section>
         <!----VIDEO----->
 
+        @endif
+
         <!----GALERIA------>
         <section>
             <p class="main_title-general">Gallery</p>
             <div id="galeria" class="galeria galeria--h container">
-                <div class="galeria-brick galeria-brick--h">
-                <a href="detalle.html">
-                    <div class="galeria_name">
-                        <p>Name</p>
-                    </div>
-                    <div class="galeria_dimension">
-                        <p>2 x 4
-                        </p>
-                    </div>
-                    <img src="http://imgfz.com/i/8nCzm5i.jpeg" class="galeria-img" alt="galeria aidaart">
-                
-                </a>
+                <div class="galeria-brick galeria-brick--h" v-for="product in products">
+                    <a :href="'{{ url('/product/') }}'+'/'+product.slug">
+                        <div class="galeria_name">
+                            <p>@{{ product.name }}</p>
+                        </div>
+                        <div class="galeria_dimension">
+                            <p v-for="size in product.product_format_sizes">@{{ size.size.width }}cm x @{{ size.size.height }}cm</p>
+                        </div>
+                        <img :src="product.image" class="galeria-img" alt="galeria aidaart">
+                    
+                    </a>
+                </div>
+                {{--<div class="galeria-brick galeria-brick--h">
+                    <a href="detalle.html">
+                        <div class="galeria_name">
+                            <p>Lorem ipsum asmet</p>
+                        </div>
+                        <div class="galeria_dimension">
+                            <p>2 x 4
+                            </p>
+                        </div>
+                        <img src="http://imgfz.com/i/ywPrSJ8.jpeg" class="galeria-img" alt="galeria idaart">
+                    
+                    </a>
                 </div>
                 <div class="galeria-brick galeria-brick--h">
-                <a href="detalle.html">
-                    <div class="galeria_name">
-                        <p>Lorem ipsum asmet</p>
-                    </div>
-                    <div class="galeria_dimension">
-                        <p>2 x 4
-                        </p>
-                    </div>
-                    <img src="http://imgfz.com/i/ywPrSJ8.jpeg" class="galeria-img" alt="galeria idaart">
-                
-                </a>
+                    <a href="detalle.html">
+                        <div class="galeria_name">
+                            <p>Name</p>
+                        </div>
+                        <div class="galeria_dimension">
+                            <p>2 x 4
+                            </p>
+                        </div>
+                        <img src="http://imgfz.com/i/sLGAmZN.jpeg" class="galeria-img" alt="galeria idaart">
+                    
+                    </a>
                 </div>
                 <div class="galeria-brick galeria-brick--h">
-                <a href="detalle.html">
-                    <div class="galeria_name">
-                        <p>Name</p>
-                    </div>
-                    <div class="galeria_dimension">
-                        <p>2 x 4
-                        </p>
-                    </div>
-                    <img src="http://imgfz.com/i/sLGAmZN.jpeg" class="galeria-img" alt="galeria idaart">
-                
-                </a>
+                    <a href="detalle.html">
+                        <div class="galeria_name">
+                            <p>Name</p>
+                        </div>
+                        <div class="galeria_dimension">
+                            <p>2 x 4
+                            </p>
+                        </div>
+                        <img src="http://imgfz.com/i/LXNdayR.jpeg" class="galeria-img" alt="galeria idaart">
+                    
+                    </a>
                 </div>
                 <div class="galeria-brick galeria-brick--h">
-                <a href="detalle.html">
-                    <div class="galeria_name">
-                        <p>Name</p>
-                    </div>
-                    <div class="galeria_dimension">
-                        <p>2 x 4
-                        </p>
-                    </div>
-                    <img src="http://imgfz.com/i/LXNdayR.jpeg" class="galeria-img" alt="galeria idaart">
-                
-                </a>
-                </div>
-                <div class="galeria-brick galeria-brick--h">
-                <a href="">
-                    <div class="galeria_name">
-                        <p>Name</p>
-                    </div>
-                    <div class="galeria_dimension">
-                        <p>2 x 4
-                        </p>
-                    </div>
-                    <img src="http://imgfz.com/i/vSkhKCQ.jpeg" class="galeria-img" alt="galeria idaart">
-                
-                </a>
+                    <a href="">
+                        <div class="galeria_name">
+                            <p>Name</p>
+                        </div>
+                        <div class="galeria_dimension">
+                            <p>2 x 4
+                            </p>
+                        </div>
+                        <img src="http://imgfz.com/i/vSkhKCQ.jpeg" class="galeria-img" alt="galeria idaart">
+                    
+                    </a>
                 </div>
                 <div class="galeria-brick galeria-brick--h">
                     <div class="galeria_name">
@@ -185,7 +187,7 @@
                     </div>
                     <img src="http://imgfz.com/i/7Fw3pJi.jpeg" class="galeria-img" alt="galeria idaart">
                 
-                </div>
+                </div>--}}
             </div>
         </section>
         <!----GALERIA------>
@@ -204,7 +206,7 @@
         </section>
         <!----PAGO SEGURP----->
 
-
+    </div>
 
 @endsection
 
@@ -216,38 +218,25 @@
             el: '#home',
             data() {
                 return {
-                    slides:[
-                        {
-                            "image": "http://imgfz.com/i/7Fw3pJi.jpeg",
-                            "title": "Title Cuadro XYZ",
-                            "price": "1,000.000",
-                            "description": "Available on Canvas & Super HD Print",
-                            "minPrice": "80.000",
-                            "maxPrice": "95.000"
-                        },
-                        {
-                            "image": "http://imgfz.com/i/ywPrSJ8.jpeg",
-                            "title": "Title Cuadro XYZ",
-                            "price": "1,000.000",
-                            "description": "Available on Canvas & Super HD Print",
-                            "minPrice": "80.000",
-                            "maxPrice": "95.000"
-                        }
-                    ],
-                    slickOptions: {
-                        slidesToShow: 1,
-                        // Any other options that can be got from plugin documentation
-                    }
+                    products:[]
                 }
             },
             methods: {
 
-                
+                fetchProducts(){
+
+                    axios.get("{{ url('/home/products') }}").then(res => {
+
+                        this.products = res.data.products
+
+                    })
+                    
+                }
 
             },
             mounted(){
 
-                
+                this.fetchProducts()
 
             }
             

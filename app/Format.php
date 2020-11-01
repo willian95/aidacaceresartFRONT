@@ -4,11 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Format extends Model
 {
-    protected $table = "products";
+    protected $table = "formats";
 
     public function productFormatSizes(){
         return $this->hasMany(ProductFormatSize::class);
     }
+
 }
