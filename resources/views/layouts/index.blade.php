@@ -96,7 +96,7 @@
                         </div>
                         <div class="flex-content ">
                             <li class='nav-item active'>
-                                <a  id="openRegisterModal"  class='nav-link active' data-toggle="modal" data-target="#registerModal">
+                                <a  href="{{ url('/cart') }}">
                                     <i class="flaticon-shopping-bag"></i>
 
                                 </a>
