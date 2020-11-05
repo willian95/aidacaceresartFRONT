@@ -8,13 +8,15 @@
         <div class="col-sm-12 ">
             <div class="carrito">
                 <div class="title__general text-justify">
-                    <h2 class="title-bold">Your cart</h2>
+                    <h2 class="title-bold" v-if="selectedLanguage == 'english'">Your cart</h2>
+                    <h2 class="title-bold" v-if="selectedLanguage == 'spanish'">Tu carrito</h2>
                 </div>
                 <div class="row">
                     <div class="col-md-8">
                         <table class="items-content">
                             <div class="titulo-table">
-                                <p>Items</p>
+                                <p v-if="selectedLanguage == 'english'">Items</p>
+                                <p v-if="selectedLanguage == 'spanish'">Artículos</p>
                             </div>
 
                             <!-------producto-------->
@@ -26,9 +28,11 @@
                                                 <img :src="product.product.image" alt="">
                                             </div>
                                             <div class="item_texto">
-                                                <p  class="title-bold">@{{ product.name }}</p>
+                                                <p  class="title-bold" v-if="selectedLanguage == 'spanish'">@{{ product.name }}</p>
+                                                <p  class="title-bold" v-if="selectedLanguage == 'english'">@{{ product.english_name }}</p>
                                                 <span>@{{ product.size.width }}cm x @{{ product.size.height }}cm</span>
-                                                <span>Formato: @{{ product.format.name }}</span>
+                                                <span v-if="selectedLanguage == 'spanish'">Formato: @{{ product.format.name }}</span>
+                                                <span v-if="selectedLanguage == 'english'">Format: @{{ product.format.english_name }}</span>
                                             </div>
 
                                         </div>
@@ -79,14 +83,15 @@
 
                             </div>
                             <div class="text-center mt-3">
-                                <a href=""><button class="btn-custom btn-custom2">Continue <i class="fa fa-angle-right" aria-hidden="true"></i></button></a>
+                                <a href=""><button class="btn-custom btn-custom2"><span v-if="selectedLanguage == 'english'">Continue</span> <span v-if="selectedLanguage == 'spanish'">Continuar</span> <i class="fa fa-angle-right" aria-hidden="true"></i></button></a>
                             </div>
 
 
 
 
                             <div class="titulo-table mt-5">
-                                <p>      Shipping & Billing</p>
+                                <p v-if="selectedLanguage == 'english'">      Shipping & Billing</p>
+                                <p v-if="selectedLanguage == 'spanish'">      Envío y Facturación</p>
                             </div>
                       
 
@@ -97,7 +102,8 @@
                     <div class="col-md-4">
                         <div class="pedido pt-0">
 
-                            <p class="title-bold" style="    font-size: 21px;">Order sumary</p>
+                            <p class="title-bold" style="    font-size: 21px;" v-if="selectedLanguage == 'english'">Order sumary</p>
+                            <p class="title-bold" style="    font-size: 21px;" v-if="selectedLanguage == 'spanish'">Total de la orden </p>
 
                             <p class="space_total">Total: <span>$ @{{ total }}</span> </p>
                             <p class="space_total">Subtotal: <span>$ @{{ total }}</span> </p>
@@ -129,7 +135,8 @@
             data() {
                 return {
                     total:0,
-                    products:[]
+                    products:[],
+                    selectedLanguage:""
                 }
             },
             methods: {
@@ -179,6 +186,13 @@
                     this.fetch()
                 }else{
                     this.guestFetch()
+                }
+
+                if(window.localStorage.getItem("aida_language") == null){
+                    window.localStorage.setItem("aida_language", "spanish")
+                    this.selectedLanguage = "spanish"
+                }else{
+                    this.selectedLanguage = window.localStorage.getItem("aida_language")
                 }
 
             }

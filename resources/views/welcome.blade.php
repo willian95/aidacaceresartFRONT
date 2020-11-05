@@ -20,8 +20,11 @@
                             <div class="main-banner_text">
                                 <ul>
                                     <li>
-                                        <p class="titulo-banner_cuadro">{{ $carousel->name }}</p>
-                                        <a href="">Ver más <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                        <p class="titulo-banner_cuadro" v-if="selectedLanguage == 'spanish'">{{ $carousel->name }}</p>
+                                        <p class="titulo-banner_cuadro" v-if="selectedLanguage == 'english'">{{ $carousel->english_name }}</p>
+                                        <a href="" v-if="selectedLanguage == 'spanish'">Ver más <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                        </a>
+                                        <a href="" v-if="selectedLanguage == 'english'">See more <i class="fa fa-angle-right" aria-hidden="true"></i>
                                         </a>
                                     </li>
                                     <li>$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "desc")->first()->price, 2, ",", ".") }}</li>
@@ -111,12 +114,14 @@
 
         <!----GALERIA------>
         <section>
-            <p class="main_title-general">Gallery</p>
+            <p class="main_title-general" v-if="selectedLanguage == 'english'">Gallery</p>
+            <p class="main_title-general" v-if="selectedLanguage == 'spanish'">Galería</p>
             <div id="galeria" class="galeria galeria--h container">
                 <div class="galeria-brick galeria-brick--h" v-for="product in products">
                     <a :href="'{{ url('/product/') }}'+'/'+product.slug">
                         <div class="galeria_name">
-                            <p>@{{ product.name }}</p>
+                            <p v-if="selectedLanguage == 'spanish'">@{{ product.name }}</p>
+                            <p v-if="selectedLanguage == 'english'">@{{ product.english_name }}</p>
                         </div>
                         <div class="galeria_dimension">
                             <p v-for="size in product.product_format_sizes">@{{ size.size.width }}cm x @{{ size.size.height }}cm</p>
@@ -196,11 +201,13 @@
         <section>
             <div class="main_pagos">
                 <ul>
-                    <li>Pago Seguros! Via </li>
+                    <li v-if="selectedLanguage == 'spanish'">Pago Seguros! Via </li>
+                    <li v-if="selectedLanguage == 'english'">Safety payments by!</li>
                     <li class=" mr-5"><img src="assets/img/iconos/stripe.png" alt=""> <img
                             src="assets/img/iconos/enviado.svg" alt=""></li>
-                    <li class="w-200"> Envios Nacionales e
+                    <li class="w-200" v-if="selectedLanguage == 'spanish'"> Envios Nacionales e
                         Internacionales Rápidos! </li>
+                    <li class="w-200" v-if="selectedLanguage == 'english'">Fast National & International Shippings!</li>
                 </ul>
             </div>
         </section>
@@ -218,7 +225,8 @@
             el: '#home',
             data() {
                 return {
-                    products:[]
+                    products:[],
+                    selectedLanguage:""
                 }
             },
             methods: {
@@ -237,6 +245,13 @@
             mounted(){
 
                 this.fetchProducts()
+
+                if(window.localStorage.getItem("aida_language") == null){
+                    window.localStorage.setItem("aida_language", "spanish")
+                    this.selectedLanguage = "spanish"
+                }else{
+                    this.selectedLanguage = window.localStorage.getItem("aida_language")
+                }
 
             }
             

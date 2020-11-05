@@ -16,6 +16,7 @@
         "laravel/socialite": "^5.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.4",
+        "stripe/stripe-php": "^7.61",
         "tymon/jwt-auth": "dev-develop"
     },
     "require-dev": {

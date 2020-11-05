@@ -66,15 +66,27 @@
                             <li class='nav-item dropdown dowms' >
                                 <a href='#' aria-expanded='false' aria-haspopup='true'
                                     class='nav-link dropdown-toggle nav-link-black ' data-toggle='dropdown' @click="toggleLanguageMenu()">
-                                    EN
+                                    <span v-if="selectedLanguage == 'spanish'">
+                                        ES
+                                    </span>
+                                    <span v-else>
+                                        EN
+                                    </span>
+                                    
                                     <!---<i class="flaticon-translation"></i>--->
 
                                 </a>
                                 <div aria-labelledby='dropdownMenuButton' class='dropdown-menu' id="languageMenu">
                                     <div class='content-drop'>
-                                        <a class='dropdown-item' href='#'>
+                                        <a class='dropdown-item' href='#' v-if="selectedLanguage == 'spanish'" @click="setLanguage('english')">
+                                            <p> EN</p>
+                                        </a>
+
+                                        <a class='dropdown-item' href='#' v-else @click="setLanguage('spanish')">
                                             <p> ES</p>
                                         </a>
+
+                                        
                                     </div>
                                 </div>
                             </li>
@@ -82,7 +94,7 @@
                         </div>
                         <div class="flex-content m-155">
                             <li class='nav-item mr-5'>
-                                <a class='nav-link nav-link-black ' href='galeria.html'>Gallery</a>
+                                <a class='nav-link nav-link-black ' href='galeria.html'><span v-if="selectedLanguage == 'english'">Gallery</span> <span v-if="selectedLanguage == 'spanish'">Gallería</span></a>
                             </li>
                             <li class='nav-item'>
                                 <a class='brand' href='#'>
@@ -91,7 +103,7 @@
                             </li>
 
                             <li class='nav-item ml-5'>
-                                <a class='nav-link ' href="aboutme.html">About me</a>
+                                <a class='nav-link ' href="aboutme.html"> <span v-if="selectedLanguage == 'english'">About me</span> <span v-if="selectedLanguage == 'spanish'">Acerca de mí</span></a>
                             </li>
                         </div>
                         <div class="flex-content ">
@@ -116,10 +128,12 @@
                                 <div aria-labelledby='dropdownMenuButton' class='dropdown-menu' id="userMenu">
                                     <div class='content-drop'>
                                         <a class='dropdown-item' href='#'>
-                                            <p>Perfil</p>
+                                            <p v-if="selectedLanguage == 'english'">Profile</p>
+                                            <p v-if="selectedLanguage == 'spanish'">Perfil</p>
                                         </a>
                                         <a class='dropdown-item' href='#' @click="logout()"> 
-                                            <p>Salir</p>
+                                            <p v-if="selectedLanguage == 'english'">Logout</p>
+                                            <p v-if="selectedLanguage == 'spanish'">Salir</p>
                                         </a>
                                     </div>
                                 </div>
@@ -151,59 +165,70 @@
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-md-7 p-50">
-                                        <p class="m-0 title-login">Registro</p>
+                                        <p class="m-0 title-login" v-if="selectedLanguage == 'spanish'">Registro</p>
+                                        <p class="m-0 title-login" v-if="selectedLanguage == 'english'">Register</p>
                                         <form action="">
                                             <div class="form-group">                           
                                                 <input placeholder="Nombre y apellido" type="text" autocomplete="off" class="form-control"
-                                               aria-describedby="emailHelp" v-model="name">
+                                               aria-describedby="emailHelp" v-model="name"  v-if="selectedLanguage == 'spanish'">
+                                               <input placeholder="Name and Lastname" type="text" autocomplete="off" class="form-control"
+                                               aria-describedby="emailHelp" v-model="name"  v-if="selectedLanguage == 'english'">
                                                 <i class="fa fa-user icon_form"></i>
                                                 <small v-if="errors.hasOwnProperty('name')">@{{ errors['name'][0] }}</small>
                                               </div>
                       
                                               <div class="form-group">
                                                 <input placeholder="Correo electrónico" type="email" autocomplete="off" class="form-control"
-                                               aria-describedby="emailHelp" v-model="email">
+                                               aria-describedby="emailHelp" v-model="email" v-if="selectedLanguage == 'spanish'">
+                                               <input placeholder="Email" type="text" autocomplete="off" class="form-control"
+                                               aria-describedby="emailHelp" v-model="email"  v-if="selectedLanguage == 'english'">
                                                 <i class="fa fa-envelope icon_form"></i>
                                                 <small v-if="errors.hasOwnProperty('email')">@{{ errors['email'][0] }}</small>
                                               </div>
         
                                               <div class="row">
                                                   <div class="col-md-6 form-group">
-                                                    <input placeholder="Cédula" type="text" class="form-control" v-model="dni">  
+                                                    <input placeholder="Cédula" type="text" class="form-control" v-model="dni" v-if="selectedLanguage == 'spanish'">
+                                                    <input placeholder="DNI" type="text" class="form-control" v-model="dni" v-if="selectedLanguage == 'english'">  
                                                     <i class="fa fa-id-card icon_form"></i> 
                                                     <small v-if="errors.hasOwnProperty('dni')">@{{ errors['dni'][0] }}</small>                                    
                                                   </div>
                                                   <div class="col-md-6 form-group">
-                                                    <input placeholder="Télefono" type="telephone" class="form-control" v-model="phone">
+                                                    <input placeholder="Télefono" type="telephone" class="form-control" v-model="phone" v-if="selectedLanguage == 'spanish'">
+                                                    <input placeholder="Phone" type="telephone" class="form-control" v-model="phone" v-if="selectedLanguage == 'english'">
                                                     <i class="fa fa-phone icon_form"></i>
                                                     <small v-if="errors.hasOwnProperty('phone')">@{{ errors['phone'][0] }}</small>
                                                 </div>
                                               </div>
                                               <div class="row">
                                                   <div class="col-md-12 form-group">
-                                                    <input placeholder="Dirección" type="text" class="form-control" v-model="address">
+                                                    <input placeholder="Dirección" type="text" class="form-control" v-model="address" v-if="selectedLanguage == 'spanish'">
+                                                    <input placeholder="Address" type="text" class="form-control" v-model="address" v-if="selectedLanguage == 'english'">
                                                     <i class="fa fa-globe icon_form"></i>
                                                     <small v-if="errors.hasOwnProperty('address')">@{{ errors['address'][0] }}</small>
                                                   </div>
                                               </div>
         
                                               <div class="form-group">
-                                                <input placeholder="Contraseña" type="password" class="form-control"  v-model="password">
+                                                <input placeholder="Contraseña" type="password" class="form-control"  v-model="password" v-if="selectedLanguage == 'spanish'">
+                                                <input placeholder="Password" type="password" class="form-control"  v-model="password" v-if="selectedLanguage == 'english'">
                                                 <i class="fa fa-lock icon_form"></i>
                                                 <small v-if="errors.hasOwnProperty('password')">@{{ errors['password'][0] }}</small>
                                               </div>
                                               <div class="form-group">
-                                                <input placeholder="Confirmar contraseña" type="password" class="form-control  "id="password" v-model="password_confirmation">
+                                                <input placeholder="Confirmar contraseña" type="password" class="form-control  "id="password" v-model="password_confirmation" v-if="selectedLanguage == 'spanish'">
+                                                <input placeholder="Password confirmation" type="password" class="form-control  "id="password" v-model="password_confirmation" v-if="selectedLanguage == 'english'">
                                                 <i class="fa fa-lock icon_form"></i>
                                               </div>
                                        
                                             <div class=" form-group mt-4 text-center">
-                                                <button type="button" class="btn btn-primary btn-custom" @click="register()">Registrarme<i class=" fa
+                                                <button type="button" class="btn btn-primary btn-custom" @click="register()"><span v-if="selectedLanguage == 'spanish'">Registrarme</span><span v-if="selectedLanguage == 'english'">Sign Up</span><i class=" fa
                                                     fa-angle-right" aria-hidden="true"></i>
                                                 </button>
                                             </div>
                                             <div class=" mb-5 text-center">
-                                                <p class="inicia">ó registrate facil</p>
+                                                <p class="inicia"  v-if="selectedLanguage == 'spanish'">ó registrate fácil con</p>
+                                                <p class="inicia"  v-if="selectedLanguage == 'english'">or sign up easy with</p>
                                                 <a class="btn-login  mr-2" href="{{ url('facebook/redirect') }}"> <i class="fa fa-facebook"></i> Facebook</a>
                                                 <a class="btn-login btn-login2"href="{{ url('google/redirect') }}"> <i class="fa fa-google"></i>
                                                     Google</a>
@@ -212,7 +237,7 @@
                                     </div>
                                     <div class=" col-md-5 gray flex-center">
                                         <div class=" text-center registrar_facil">
-                                            <a class="txt" href="#" data-toggle="modal" data-target="#loginModal" data-dismiss="modal">¡Inicia sesión! <i class=" fa
+                                            <a class="txt" href="#" data-toggle="modal" data-target="#loginModal" data-dismiss="modal"><span v-if="selectedLanguage == 'spanish'">¡Inicia sesión!</span> <span v-if="selectedLanguage == 'english'">¡Login!</span> <i class=" fa
                                               fa-angle-right" aria-hidden="true"></i></a>
                                             <p>¿Ya tienes cuenta?</p>
         
@@ -241,33 +266,36 @@
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-md-6 p-50">
-                                        <p class="m-0 title-login">Inicio de sesión</p>
+                                        <p class="m-0 title-login" v-if="selectedLanguage == 'spanish'">Inicio de sesión</p>
+                                        <p class="m-0 title-login" v-if="selectedLanguage == 'english'">Log In</p>
                                         <form action="">
                                             <div class="form-group">
                                                 <!---  <label for="email">Correo electrónico</label>-->
                                                 <input placeholder="Correo electrónico" type="email" autocomplete="off"
-                                                    class="form-control" id="email" aria-describedby="emailHelp" v-model="emailLogin">
+                                                    class="form-control" id="email" aria-describedby="emailHelp" v-model="emailLogin" v-if="selectedLanguage == 'spanish'">
+                                                <input placeholder="Email" type="email" autocomplete="off" class="form-control" id="email" aria-describedby="emailHelp" v-model="emailLogin" v-if="selectedLanguage == 'english'">
                                                 <i class="fa fa-envelope icon_form"></i>
                                                 <small v-if="errorsLogin.hasOwnProperty('email')">@{{ errorsLogin['email'][0] }}</small>
                                             </div>
                                             <div class="form-group">
                                                 <!--<label for="password">Contraseña</label>-->
         
-                                                <input placeholder="Contraseña" type="password" class="form-control" v-model="passwordLogin"
-                                                >
+                                                <input placeholder="Contraseña" type="password" class="form-control" v-model="passwordLogin" v-if="selectedLanguage == 'spanish'">
+                                                <input placeholder="Password" type="password" class="form-control" v-model="passwordLogin" v-if="selectedLanguage == 'english'">
                                                 <i class="fa fa-lock icon_form"></i>
                                                 <small v-if="errorsLogin.hasOwnProperty('password')">@{{ errorsLogin['password'][0] }}</small>
                                             </div>
                                             <div class="form-group  text-lg-right">
-                                                <a href="{{ route('forgot.password') }}" class="texto">¿Has olvidado tu contraseña?</a>
+                                                <a href="{{ route('forgot.password') }}" class="texto"><span v-if="selectedLanguage == 'spanish'">¿Has olvidado tu contraseña?</span><span v-if="selectedLanguage == 'english'">¿Have you forggoten your password?</span></a>
                                             </div>
                                             <div class=" form-group mt-4 text-center">
-                                                <button type="button" @click="login()" class="btn btn-primary btn-custom">Ingresar <i class=" fa
+                                                <button type="button" @click="login()" class="btn btn-primary btn-custom"><span v-if="selectedLanguage == 'spanish'">Ingresar</span><span v-if="selectedLanguage == 'english'">Login</span> <i class=" fa
                                                     fa-angle-right" aria-hidden="true"></i>
                                                 </button>
                                             </div>
                                             <div class=" mb-5 text-center">
-                                                <p class="inicia">ó inicia sesión con</p>
+                                                <p class="inicia" v-if="selectedLanguage == 'spanish'">ó inicia sesión con</p>
+                                                <p class="inicia" v-if="selectedLanguage == 'english'">or log in easily with</p>
                                                 <a class="btn-login  mr-2" href="{{ url('facebook/redirect') }}"> <i class="fa fa-facebook"></i>  Facebook</a>
                                                 <a class="btn-login btn-login2" href="{{ url('google/redirect') }}"><i class="fa fa-google"></i>
                                                     Google</a>
@@ -276,7 +304,7 @@
                                     </div>
                                     <div class=" col-md-6 gray flex-center">
                                         <div class=" text-center registrar_facil">
-                                            <a class="txt" href="#" data-toggle="modal" data-target="#registerModal" data-dismiss="modal">¡Registrate facíl! <i class=" fa
+                                            <a class="txt" href="#" data-toggle="modal" data-target="#registerModal" data-dismiss="modal"><span v-if="selectedLanguage == 'spanish'">¡Registrate facíl! </span><span v-if="selectedLanguage == 'english'">¡Sign Up! </span><i class=" fa
                                                 fa-angle-right" aria-hidden="true"></i></a>
                                             <p>¿Aún no tienes cuenta?</p>
         
@@ -713,7 +741,9 @@
                         emailLogin: "",
                         passwordLogin: "",
                         products: [],
-                        guesProducts: [],              
+                        selectedLanguage:"",
+                        guesProducts: [],  
+                        selectedLanguage:"",            
                         url:"{{ url('/') }}",
                         auth:""
                     }
@@ -842,6 +872,14 @@
 
                     this.auth = JSON.parse(window.localStorage.getItem("aida_user"))
 
+                    if(window.localStorage.getItem("aida_language") == null){
+                        window.localStorage.setItem("aida_language", "spanish")
+                        this.selectedLanguage = "spanish"
+                    }else{
+                        this.selectedLanguage = window.localStorage.getItem("aida_language")
+                    }
+                    
+
                 }
               
 
@@ -894,6 +932,12 @@
                             $("#currencyMenu").addClass("show")
                         }
 
+                    },
+                    setLanguage(language){
+            
+                        this.selectedLanguage = language
+                        window.localStorage.setItem("aida_language", language)
+                        window.location.reload()
                     }
 
                 },
@@ -911,6 +955,13 @@
 
                         }, 1000)
 
+                    }
+
+                    if(window.localStorage.getItem("aida_language") == null){
+                        window.localStorage.setItem("aida_language", "spanish")
+                        this.selectedLanguage = "spanish"
+                    }else{
+                        this.selectedLanguage = window.localStorage.getItem("aida_language")
                     }
 
                 }
