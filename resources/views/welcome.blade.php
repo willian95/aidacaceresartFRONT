@@ -27,12 +27,22 @@
                                         <a href="" v-if="selectedLanguage == 'english'">See more <i class="fa fa-angle-right" aria-hidden="true"></i>
                                         </a>
                                     </li>
-                                    <li>$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "desc")->first()->price, 2, ",", ".") }}</li>
-                                    <li>Available on Canvas & Super HD Print <br> 
-                                    $ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price, 2, ",", ".") }} 
-                                    @if(App\ProductFormatSize::where("product_id", $carousel->id)->count() > 1) - 
+                                    <li v-if="selectedCurrency == 'USD'">
                                         $ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "desc")->first()->price, 2, ",", ".") }}
-                                    @endif 
+                                    </li>
+                                    <li v-if="selectedCurrency == 'COP'">
+                                        $ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "desc")->first()->price * App\DolarPrice::first()->rate, 2, ",", ".") }}
+                                    </li>
+                                    {{--<li>Available on Canvas & Super HD Print <br> --}}
+                                    <li v-if="selectedCurrency == 'USD'">$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price, 2, ",", ".") }} 
+                                        @if(App\ProductFormatSize::where("product_id", $carousel->id)->count() > 1) - 
+                                            $ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "desc")->first()->price, 2, ",", ".") }}
+                                        @endif 
+                                     </li>
+                                     <li v-if="selectedCurrency == 'COP'">$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price * App\DolarPrice::first()->rate, 2, ",", ".") }} 
+                                        @if(App\ProductFormatSize::where("product_id", $carousel->id)->count() > 1) - 
+                                            $ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "desc")->first()->price * App\DolarPrice::first()->rate, 2, ",", ".") }}
+                                        @endif 
                                      </li>
                                     <li><a class="btn-add " href=""><i class="flaticon-shopping-bag
                                         "><span>+</span></i></a> </li>
@@ -226,7 +236,9 @@
             data() {
                 return {
                     products:[],
-                    selectedLanguage:""
+                    selectedLanguage:"",
+                    selectedCurrency:"",
+                    exchangeRate:1,
                 }
             },
             methods: {
@@ -239,6 +251,20 @@
 
                     })
                     
+                },
+                getFetchExchangeRate(){
+
+                    if(this.selectedCurrency == "COP"){
+                        axios.get("{{ url('dolar-price') }}").then(res => {
+
+                            this.exchangeRate = res.data.dolar
+
+                        })
+                    }else{
+                        this.exchageRate = 1
+                    }
+                    
+
                 }
 
             },
@@ -252,6 +278,15 @@
                 }else{
                     this.selectedLanguage = window.localStorage.getItem("aida_language")
                 }
+
+                if(window.localStorage.getItem("aida_currency") == null){
+                    window.localStorage.setItem("aida_currency", "USD")
+                    this.selectedCurrency = "USD"
+                }else{
+                    this.selectedCurrency = window.localStorage.getItem("aida_currency")
+                }
+
+                this.getFetchExchangeRate()
 
             }
             

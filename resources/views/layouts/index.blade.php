@@ -53,12 +53,21 @@
 
                                 <a href='#' aria-expanded='false' aria-haspopup='true'
                                     class='nav-link dropdown-toggle nav-link-black ' data-toggle='dropdown' @click="toggleCurrencyMenu()">
-                                    USD
+                                    <span v-if="selectedCurrency == 'USD'">
+                                        USD
+                                    </span>
+                                    <span v-else>
+                                        COP
+                                    </span>
                                 </a>
                                 <div aria-labelledby='dropdownMenuButton' class='dropdown-menu' id="currencyMenu">
                                     <div class='content-drop'>
-                                        <a class='dropdown-item' href='#'>
-                                            <p> HKD</p>
+                                        <a class='dropdown-item' href='#' v-if="selectedCurrency == 'COP'" @click="setCurrency('USD')">
+                                            <p> USD</p>
+                                        </a>
+
+                                        <a class='dropdown-item' href='#' v-else @click="setCurrency('COP')">
+                                            <p> COP</p>
                                         </a>
                                     </div>
                                 </div>
@@ -742,8 +751,8 @@
                         passwordLogin: "",
                         products: [],
                         selectedLanguage:"",
-                        guesProducts: [],  
-                        selectedLanguage:"",            
+                        selectedCurrency:"",
+                        guesProducts: [],            
                         url:"{{ url('/') }}",
                         auth:""
                     }
@@ -938,6 +947,12 @@
                         this.selectedLanguage = language
                         window.localStorage.setItem("aida_language", language)
                         window.location.reload()
+                    },
+                    setCurrency(currency){
+            
+                        this.selectedCurrency = currency
+                        window.localStorage.setItem("aida_currency", currency)
+                        window.location.reload()
                     }
 
                 },
@@ -962,6 +977,13 @@
                         this.selectedLanguage = "spanish"
                     }else{
                         this.selectedLanguage = window.localStorage.getItem("aida_language")
+                    }
+
+                    if(window.localStorage.getItem("aida_currency") == null){
+                        window.localStorage.setItem("aida_currency", "USD")
+                        this.selectedCurrency = "USD"
+                    }else{
+                        this.selectedCurrency = window.localStorage.getItem("aida_currency")
                     }
 
                 }

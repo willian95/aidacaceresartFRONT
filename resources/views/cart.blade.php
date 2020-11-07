@@ -37,7 +37,7 @@
 
                                         </div>
                                         <div class="col-md-6">
-                                            <p class="space"><span>$ @{{ product.price }}</span> </p>
+                                            <p class="space"><span>$ @{{ number_format(product.price * exchangeRate, 2, ",", ".") }}</span> </p>
                                         </div>
                                     </div>
                                    
@@ -105,8 +105,8 @@
                             <p class="title-bold" style="    font-size: 21px;" v-if="selectedLanguage == 'english'">Order sumary</p>
                             <p class="title-bold" style="    font-size: 21px;" v-if="selectedLanguage == 'spanish'">Total de la orden </p>
 
-                            <p class="space_total">Total: <span>$ @{{ total }}</span> </p>
-                            <p class="space_total">Subtotal: <span>$ @{{ total }}</span> </p>
+                            <p class="space_total">Total: <span>$ @{{ number_format(total * exchangeRate, 2, ",", ".") }}</span> </p>
+                            <p class="space_total">Subtotal: <span>$ @{{ number_format(total * exchangeRate, 2, ",", ".") }}</span> </p>
 
                             <!---<div class="text-center">
                                 <a href=""><button class="btn-custom">Finalizar compra ></button></a>
@@ -136,7 +136,9 @@
                 return {
                     total:0,
                     products:[],
-                    selectedLanguage:""
+                    selectedLanguage:"",
+                    selectedCurrency:"",
+                    exchangeRate:1,
                 }
             },
             methods: {
@@ -159,6 +161,39 @@
                     })
 
                 },
+                number_format(number, decimals, dec_point, thousands_point) {
+
+                    if (number == null || !isFinite(number)) {
+                        throw new TypeError("number is not valid");
+                    }
+
+                    if (!decimals) {
+                        var len = number.toString().split('.').length;
+                        decimals = len > 1 ? len : 0;
+                    }
+
+                    if (!dec_point) {
+                        dec_point = '.';
+                    }
+
+                    if (!thousands_point) {
+                        thousands_point = ',';
+                    }
+
+                    if(this.selectedCurrency == "COP"){
+                        decimals = 0
+                    }
+
+                    number = parseFloat(number).toFixed(decimals);
+
+                    number = number.replace(".", dec_point);
+
+                    var splitNum = number.split(dec_point);
+                    splitNum[0] = splitNum[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands_point);
+                    number = splitNum.join(dec_point);
+
+                    return number;
+                },
                 guestFetch(){
 
                     var cart = JSON.parse(window.localStorage.getItem('aida_cart'))
@@ -175,6 +210,20 @@
 
                     })
             
+
+                },
+                getFetchExchangeRate(){
+
+                    if(this.selectedCurrency == "COP"){
+                        axios.get("{{ url('dolar-price') }}").then(res => {
+
+                            this.exchangeRate = res.data.dolar
+
+                        })
+                    }else{
+                        this.exchageRate = 1
+                    }
+
 
                 }
                 
@@ -194,6 +243,15 @@
                 }else{
                     this.selectedLanguage = window.localStorage.getItem("aida_language")
                 }
+
+                if(window.localStorage.getItem("aida_currency") == null){
+                    window.localStorage.setItem("aida_currency", "USD")
+                    this.selectedCurrency = "USD"
+                }else{
+                    this.selectedCurrency = window.localStorage.getItem("aida_currency")
+                }
+
+                this.getFetchExchangeRate()
 
             }
             

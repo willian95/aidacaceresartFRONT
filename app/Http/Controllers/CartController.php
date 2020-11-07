@@ -51,8 +51,10 @@ class CartController extends Controller
         foreach($carts as $item){
             
             $product = ProductFormatSize::where("id", $item->product_format_size_id)->with("product", "format","size")->first();
-
-            array_push($itemArray, $product);
+            if($product){
+                array_push($itemArray, $product);
+            }
+            
         }
 
         return response()->json(["items" => $itemArray]);
@@ -65,8 +67,10 @@ class CartController extends Controller
         foreach($request->item as $item){
             
             $product = ProductFormatSize::where("id", $item['id'])->with("product", "format","size")->first();
-
-            array_push($itemArray, $product);
+            if($product){
+                array_push($itemArray, $product);
+            }
+            
         }
 
         return response()->json(["items" => $itemArray]);

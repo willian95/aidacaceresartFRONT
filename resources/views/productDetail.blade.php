@@ -9,16 +9,16 @@
             <div class="col-md-6">
               <div id="demo-test-gallery" class="demo-gallery" data-pswp-uid="1">
                 <div class="main-banner_item main-detalle_item">
-                  <a href="http://imgfz.com/i/7Fw3pJi.jpeg" data-size="1600x1068" data-author=""
-                    data-med="http://imgfz.com/i/7Fw3pJi.jpeg" data-med-size="1024x683">
-                    <img src="http://imgfz.com/i/7Fw3pJi.jpeg" alt="">
+                  <a href="{{ $product->image }}" data-size="1600x1068" data-author=""
+                    data-med="{{ $product->image }}" data-med-size="1024x683">
+                    <img src="{{ $product->image }}" alt="">
                   </a>
                 </div>
               </div>
 
               <div class="iconos_detalle text-center">
-                <i class="flaticon-eye-variant-with-enlarged-pupil">Scale View</i>
-                <i class="flaticon-zoom-in-1">Zoom/Betterm
+                <i class="flaticon-eye-variant-with-enlarged-pupil" id="scaleText">Scale View</i>
+                <i class="flaticon-zoom-in-1" id="zoomText">Zoom/Better
                   View</i>
               </div>
             </div>
@@ -43,7 +43,7 @@
                           </div>
                         </div>
                         <div class="col-md-6 p-per">
-                          <div class="form-group">
+                          {{--<div class="form-group">
                             <label for="exampleFormControlSelect1" v-if="selectedLanguage == 'spanish'"><strong>Formatos</strong></label>
                             <label for="exampleFormControlSelect1" v-if="selectedLanguage == 'english'"><strong>Formats</strong></label>
                             <select class="form-control" id="exampleFormControlSelect1" @change="selectSizes()" v-model="format">
@@ -56,9 +56,9 @@
                                 
                               </option>
                             </select>
-                          </div>
+                          </div>--}}
                           <div class="main-top__price">
-                            <p>$ @{{ price }} </p>
+                            <p>$ @{{ number_format(price * exchangeRate, 2, ",", ".") }} </p>
                           </div>
                           <div class="text-center main-top__btn ">
                             <a class="btn-custom mr-4"  @click="addToCart()">
@@ -191,6 +191,8 @@
                   products:[],
                   formats:[],
                   sizes:[],
+                  selectedCurrency:"",
+                  exchangeRate:1,
                   price:0
                 }
             },
@@ -319,6 +321,53 @@
 
 
               },
+              getFetchExchangeRate(){
+
+                if(this.selectedCurrency == "COP"){
+                    axios.get("{{ url('dolar-price') }}").then(res => {
+
+                        this.exchangeRate = res.data.dolar
+
+                    })
+                }else{
+                    this.exchageRate = 1
+                }
+
+
+              },
+              number_format(number, decimals, dec_point, thousands_point) {
+
+                if (number == null || !isFinite(number)) {
+                    throw new TypeError("number is not valid");
+                }
+
+                if (!decimals) {
+                    var len = number.toString().split('.').length;
+                    decimals = len > 1 ? len : 0;
+                }
+
+                if (!dec_point) {
+                    dec_point = '.';
+                }
+
+                if (!thousands_point) {
+                    thousands_point = ',';
+                }
+
+                if(this.selectedCurrency == "COP"){
+                  decimals = 0
+                }
+
+                number = parseFloat(number).toFixed(decimals);
+
+                number = number.replace(".", dec_point);
+
+                var splitNum = number.split(dec_point);
+                splitNum[0] = splitNum[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands_point);
+                number = splitNum.join(dec_point);
+
+                return number;
+              },
               
                 
 
@@ -333,6 +382,15 @@
                 }else{
                     this.selectedLanguage = window.localStorage.getItem("aida_language")
                 }
+
+                if(window.localStorage.getItem("aida_currency") == null){
+                    window.localStorage.setItem("aida_currency", "USD")
+                    this.selectedCurrency = "USD"
+                }else{
+                    this.selectedCurrency = window.localStorage.getItem("aida_currency")
+                }
+
+                this.getFetchExchangeRate()
 
             }
             
@@ -373,8 +431,24 @@
                 if(window.localStorage.getItem("aida_language") == null){
                     window.localStorage.setItem("aida_language", "spanish")
                     this.selectedLanguage = "spanish"
+
+                    $("#scaleText").html("Vista a escala")
+                    $("#zoomText").html("Zoom/Mejor vista")
+
                 }else{
                     this.selectedLanguage = window.localStorage.getItem("aida_language")
+
+                    if(this.selectedLanguage == "spanish"){
+                      $("#scaleText").html("Vista a escala")
+                      $("#zoomText").html("Zoom/Mejor vista")
+
+                    }else{
+                      $("#scaleText").html("View Scale")
+                    $("#zoomText").html("Zoom/Better View")
+                    }
+
+                    
+                    
                 }
 
             }
