@@ -103,7 +103,7 @@
                         </div>
                         <div class="flex-content m-155">
                             <li class='nav-item mr-5'>
-                                <a class='nav-link nav-link-black ' href='galeria.html'><span v-if="selectedLanguage == 'english'">Gallery</span> <span v-if="selectedLanguage == 'spanish'">Gallería</span></a>
+                                <a class='nav-link nav-link-black ' href="{{url('gallery') }}"><span v-if="selectedLanguage == 'english'">Gallery</span> <span v-if="selectedLanguage == 'spanish'">Gallería</span></a>
                             </li>
                             <li class='nav-item'>
                                 <a class='brand' href='#'>
@@ -112,7 +112,7 @@
                             </li>
 
                             <li class='nav-item ml-5'>
-                                <a class='nav-link ' href="aboutme.html"> <span v-if="selectedLanguage == 'english'">About me</span> <span v-if="selectedLanguage == 'spanish'">Acerca de mí</span></a>
+                                <a class='nav-link ' href="{{ url('about') }}"> <span v-if="selectedLanguage == 'english'">About me</span> <span v-if="selectedLanguage == 'spanish'">Acerca de mí</span></a>
                             </li>
                         </div>
                         <div class="flex-content ">

@@ -52,5 +52,12 @@ Route::post("cart/store", "CartController@store");
 Route::get("cart/fetch", "CartController@fetch");
 Route::post("cart/guest-fetch", "CartController@guestFetch");
 
+Route::get("gallery", "GalleryController@index");
+Route::get("gallery/fetch", "GalleryController@fetchAll");
+
+Route::get("about", function(){
+    return view("about");
+});
+
 //Route::get("dolar-update", "DolarUpdateController@index");
 Route::get("dolar-price", "DolarUpdateController@getPrice");
