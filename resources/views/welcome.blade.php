@@ -22,9 +22,9 @@
                                     <li>
                                         <p class="titulo-banner_cuadro" v-if="selectedLanguage == 'spanish'">{{ $carousel->name }}</p>
                                         <p class="titulo-banner_cuadro" v-if="selectedLanguage == 'english'">{{ $carousel->english_name }}</p>
-                                        <a href="" v-if="selectedLanguage == 'spanish'">Ver más <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                        <a href="{{ url('/product/'.$carousel->slug) }}" v-if="selectedLanguage == 'spanish'">Ver más <i class="fa fa-angle-right" aria-hidden="true"></i>
                                         </a>
-                                        <a href="" v-if="selectedLanguage == 'english'">See more <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                        <a href="{{ url('/product/'.$carousel->slug) }}" v-if="selectedLanguage == 'english'">See more <i class="fa fa-angle-right" aria-hidden="true"></i>
                                         </a>
                                     </li>
                                     <li v-if="selectedCurrency == 'USD'">
