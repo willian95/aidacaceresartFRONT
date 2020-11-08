@@ -20,7 +20,7 @@
                                 <ul>
                                     <li>
                                         <p class="titulo-banner_cuadro show-spanish">{{ $carousel->name }}</p>
-                                        <p class="titulo-banner_cuadro show-enlish">{{ $carousel->english_name }}</p>
+                                        <p class="titulo-banner_cuadro show-english">{{ $carousel->english_name }}</p>
                                         <a class="show-spanish" href="{{ url('/product/'.$carousel->slug) }}">Ver más <i class="fa fa-angle-right" aria-hidden="true"></i>
                                         </a>
                                         <a class="show-english" href="{{ url('/product/'.$carousel->slug) }}">See more <i class="fa fa-angle-right" aria-hidden="true"></i>
