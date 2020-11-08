@@ -2,7 +2,6 @@
 
 @section("content")
 
-    <div id="home">
         <!----banner------>
         <section class="main-banner pb-0 pt-0">
             <div id="demo-test-gallery" class="demo-gallery" data-pswp-uid="1">
@@ -20,26 +19,26 @@
                             <div class="main-banner_text">
                                 <ul>
                                     <li>
-                                        <p class="titulo-banner_cuadro" v-if="selectedLanguage == 'spanish'">{{ $carousel->name }}</p>
-                                        <p class="titulo-banner_cuadro" v-if="selectedLanguage == 'english'">{{ $carousel->english_name }}</p>
-                                        <a href="{{ url('/product/'.$carousel->slug) }}" v-if="selectedLanguage == 'spanish'">Ver más <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                        <p class="titulo-banner_cuadro show-spanish">{{ $carousel->name }}</p>
+                                        <p class="titulo-banner_cuadro show-enlish">{{ $carousel->english_name }}</p>
+                                        <a class="show-spanish" href="{{ url('/product/'.$carousel->slug) }}">Ver más <i class="fa fa-angle-right" aria-hidden="true"></i>
                                         </a>
-                                        <a href="{{ url('/product/'.$carousel->slug) }}" v-if="selectedLanguage == 'english'">See more <i class="fa fa-angle-right" aria-hidden="true"></i>
+                                        <a class="show-english" href="{{ url('/product/'.$carousel->slug) }}">See more <i class="fa fa-angle-right" aria-hidden="true"></i>
                                         </a>
                                     </li>
-                                    <li v-if="selectedCurrency == 'USD'">
+                                    <li class="show-usd">
                                         $ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "desc")->first()->price, 2, ",", ".") }}
                                     </li>
-                                    <li v-if="selectedCurrency == 'COP'">
+                                    <li class="show-cop">
                                         $ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "desc")->first()->price * App\DolarPrice::first()->rate, 2, ",", ".") }}
                                     </li>
                                     {{--<li>Available on Canvas & Super HD Print <br> --}}
-                                    <li v-if="selectedCurrency == 'USD'">$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price, 2, ",", ".") }} 
+                                    <li class="show-usd">$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price, 2, ",", ".") }} 
                                         @if(App\ProductFormatSize::where("product_id", $carousel->id)->count() > 1) - 
                                             $ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "desc")->first()->price, 2, ",", ".") }}
                                         @endif 
                                      </li>
-                                     <li v-if="selectedCurrency == 'COP'">$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price * App\DolarPrice::first()->rate, 2, ",", ".") }} 
+                                     <li class="show-cop">$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price * App\DolarPrice::first()->rate, 2, ",", ".") }} 
                                         @if(App\ProductFormatSize::where("product_id", $carousel->id)->count() > 1) - 
                                             $ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "desc")->first()->price * App\DolarPrice::first()->rate, 2, ",", ".") }}
                                         @endif 
@@ -50,56 +49,7 @@
                             </div>
                         </div>
                     @endforeach
-                    {{--<div>
-                        <div class="main-banner_item">
-                            <a href="http://imgfz.com/i/ywPrSJ8.jpeg" data-size="1600x1067"
-                                data-med="http://imgfz.com/i/ywPrSJ8.jpeg" data-med-size="1024x683"
-                                data-author="Michael Hull">
-                                <img src="http://imgfz.com/i/ywPrSJ8.jpeg" alt="">
-                                <i class="flaticon-zoom-in-2
-                                "></i>
-                                <figure>Dummy caption. It's Greek to you. Unless, of course, you're Greek, in which case, it
-                                    really
-                                    makes no sense.</figure>
-                            </a>
-                        </div>
-                        <div class="main-banner_text">
-                            <ul>
-                                <li>
-                                    <p class="titulo-banner_cuadro">Title Cuadro XYZ</p>
-                                    <a href="">Ver más <i class="fa fa-angle-right" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-                                <li>$ 1,000.000</li>
-                                <li>Available on Canvas & Super HD Print <br> $ 80.000 - $ 95.000 </li>
-                                <li><a class="btn-add " href=""><i class="flaticon-shopping-bag
-                                    "><span>+</span></i></a> </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="main-banner_item">
-                            <a href="http://imgfz.com/i/S3XdEeA.jpeg" data-size="1600x1068" data-author=""
-                                data-med="http://imgfz.com/i/S3XdEeA.jpeg" data-med-size="1024x683">
-                                <img src="http://imgfz.com/i/S3XdEeA.jpeg" alt="">
-                                <figure>This is dummy caption. It has been placed here solely to demonstrate the look and
-                                    feel
-                                    of
-                                    finished, typeset text.</figure>
-                            </a>
-                        </div>
-                        <div class="main-banner_text">
-                            <ul>
-                                <li>
-                                    <p class="titulo-banner_cuadro">Title Cuadro XYZ</p>
-                                    <a href="">Ver más</a>
-                                </li>
-                                <li>$ 1,000.000</li>
-                                <li>Available on Canvas & Super HD Print <br> $ 80.000 - $ 95.000 </li>
-                                <li><a href="">Add to cart</a> </li>
-                            </ul>
-                        </div>
-                    </div>--}}
+        
                 </div>
 
             </div>
@@ -121,7 +71,8 @@
         <!----VIDEO----->
 
         @endif
-
+        
+    <div id="home">
         <!----GALERIA------>
         <section>
             <p class="main_title-general" v-if="selectedLanguage == 'english'">Gallery</p>
@@ -140,69 +91,7 @@
                     
                     </a>
                 </div>
-                {{--<div class="galeria-brick galeria-brick--h">
-                    <a href="detalle.html">
-                        <div class="galeria_name">
-                            <p>Lorem ipsum asmet</p>
-                        </div>
-                        <div class="galeria_dimension">
-                            <p>2 x 4
-                            </p>
-                        </div>
-                        <img src="http://imgfz.com/i/ywPrSJ8.jpeg" class="galeria-img" alt="galeria idaart">
-                    
-                    </a>
-                </div>
-                <div class="galeria-brick galeria-brick--h">
-                    <a href="detalle.html">
-                        <div class="galeria_name">
-                            <p>Name</p>
-                        </div>
-                        <div class="galeria_dimension">
-                            <p>2 x 4
-                            </p>
-                        </div>
-                        <img src="http://imgfz.com/i/sLGAmZN.jpeg" class="galeria-img" alt="galeria idaart">
-                    
-                    </a>
-                </div>
-                <div class="galeria-brick galeria-brick--h">
-                    <a href="detalle.html">
-                        <div class="galeria_name">
-                            <p>Name</p>
-                        </div>
-                        <div class="galeria_dimension">
-                            <p>2 x 4
-                            </p>
-                        </div>
-                        <img src="http://imgfz.com/i/LXNdayR.jpeg" class="galeria-img" alt="galeria idaart">
-                    
-                    </a>
-                </div>
-                <div class="galeria-brick galeria-brick--h">
-                    <a href="">
-                        <div class="galeria_name">
-                            <p>Name</p>
-                        </div>
-                        <div class="galeria_dimension">
-                            <p>2 x 4
-                            </p>
-                        </div>
-                        <img src="http://imgfz.com/i/vSkhKCQ.jpeg" class="galeria-img" alt="galeria idaart">
-                    
-                    </a>
-                </div>
-                <div class="galeria-brick galeria-brick--h">
-                    <div class="galeria_name">
-                        <p>Name</p>
-                    </div>
-                    <div class="galeria_dimension">
-                        <p>2 x 4
-                        </p>
-                    </div>
-                    <img src="http://imgfz.com/i/7Fw3pJi.jpeg" class="galeria-img" alt="galeria idaart">
                 
-                </div>--}}
             </div>
         </section>
         <!----GALERIA------>
@@ -287,6 +176,22 @@
                 }
 
                 this.getFetchExchangeRate()
+
+                if(this.selectedCurrency == "COP"){
+                    $(".show-usd").css("display", "none")
+                    $(".show-cop").css("display", "block")
+                }else{
+                    $(".show-usd").css("display", "block")
+                    $(".show-cop").css("display", "none")
+                }
+
+                if(this.selectedLanguage == "spanish"){
+                    $(".show-spanish").css("display", "block")
+                    $(".show-english").css("display", "none")
+                }else{
+                    $(".show-spanish").css("display", "none")
+                    $(".show-english").css("display", "block")
+                }
 
             }
             
