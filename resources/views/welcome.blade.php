@@ -1,7 +1,7 @@
 @extends("layouts.index")
 
 @section("content")
-
+@include('partials.loader')
         <!----banner------>
         <section class="main-banner pb-0 pt-0">
             <div id="demo-test-gallery" class="demo-gallery" data-pswp-uid="1">

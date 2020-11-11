@@ -1,9 +1,9 @@
-/*$(document).ready(function () {
+$(document).ready(function () {
     setTimeout(function () {
-        $(".elipse").fadeOut(300);
+        $(".elipse").fadeOut(100);
     }, 3000);
 });
-*/
+
 $(document).ready(function($) {
   $("#mostrarmodal").modal("show");
 

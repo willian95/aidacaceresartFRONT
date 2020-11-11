@@ -1136,3 +1136,15 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 .logoxs{
   display: none!important;
 }
+
+.video_loader{
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 9;
+    overflow: hidden;
+}
+.elipse{
+    transition: .5s ease-in-out;
+}
