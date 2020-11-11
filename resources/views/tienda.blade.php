@@ -1,7 +1,7 @@
 @extends("layouts.index")
 
 @section("content")
-
+@include('partials.loader')
    <!----VIDEO----->
    @if(App\HomeVideo::where("active", 1)->first())
         <!----VIDEO----->

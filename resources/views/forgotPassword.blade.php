@@ -1,7 +1,7 @@
 @extends("layouts.index")
 
 @section("content")
-
+@include('partials.loader')
     <div class="container fleex p-50 style-pass" id="dev-area">
         <div class="title__general text-center  justify-content-between" style="    width: 100%;">
             <h2>Recuperar mi contraseña</h2>

@@ -2,6 +2,10 @@ $(document).ready(function () {
     setTimeout(function () {
         $(".elipse").fadeOut(100);
     }, 3000);
+
+    setTimeout(function () {
+      $(".loader_video").fadeOut(100);
+  }, 3000);
 });
 
 $(document).ready(function($) {

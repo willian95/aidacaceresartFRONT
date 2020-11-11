@@ -1,7 +1,7 @@
 @extends("layouts.index")
 
 @section("content")
-
+@include('partials.loader')
 
 <section class="container">
     <p class="main_title-general">Who is Aida...</p>

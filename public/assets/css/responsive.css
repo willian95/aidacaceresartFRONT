@@ -1,6 +1,12 @@
 @media (max-width: 767px) {}
 
 @media (min-width: 0px) and (max-width: 767px) {
+    .elipse img {
+
+        width: 80%!important;
+        margin-left: 5rem!important;
+        margin-top: 5rem!important;
+    }
     .brand-xs {
         display: block !important;
         padding: 12px;

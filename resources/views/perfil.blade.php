@@ -1,7 +1,7 @@
 @extends("layouts.index")
 
 @section("content")
-
+@include('partials.loader')
 
 <section class="container mt-5 mb-5 perfil">
     <div class="car">

@@ -1,13 +1,5 @@
-
-<!--------------------------INTOR VIDEO--------------------------------->
 <div class="elipse">
-    <video class="video_loader" autoplay loop width="100%" muted="" preload="auto" src='{{ asset('assets/img/loader/intro.mp4') }}'></video>
-
-</div>
-
-<!--------------------------LOGO FIRMA--------------------------------->
-<!---<div class="elipse">
-    <img  class="ml-3" src="">
+    <img  src="{{ asset('assets/img/loader/loader.svg') }}">
 </div>
 
 
@@ -26,8 +18,7 @@
     }
 
     .elipse img {
-        opacity: 0.3;
-        width: 20rem;
+        /*opacity: 0.3;*/
         position: absolute;
         animation-name: colombia;
         animation-duration: 2s;
@@ -39,12 +30,14 @@
         animation-fill-mode: forwards;
         /* or: backwards, both, none */
         animation-delay: 1s;
-        width: 50%;
+        width: 60%;
+    margin-left: 14rem;
+    margin-top: 20rem;
     }
 
 
 
-    @-webkit-keyframes colombia {
+ /*   @-webkit-keyframes colombia {
         0% {
             opacity: 0.2;
         }
@@ -52,5 +45,5 @@
         100% {
             opacity: 1;
         }
-    }
-</style>---->
+    }*/
+</style>

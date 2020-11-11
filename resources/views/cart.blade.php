@@ -1,7 +1,7 @@
 @extends("layouts.index")
 
 @section("content")
-
+@include('partials.loader')
 
 <section class="container mt-5" id="cart-dev">
     <div class="row">
