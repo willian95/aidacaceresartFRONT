@@ -112,7 +112,82 @@
         </section>
         <!----PAGO SEGURP----->
 
+        {{--<div class="modal fade" id="mostrarmodal"  style="padding-right: 8px; display: block;" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="triangle"></div>
+                <div class="modal-dialog modal-dialog-centered new-w" role="document">
+                    <div class="modal-content ">
+            
+                        <div class="modal-bod">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <div class="row">
+                                <div class="col-md-6 p-0">
+                                    <img class="img-new" src="https://images.unsplash.com/photo-1522878308970-972ec5eedc0d?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=375&amp;q=80" alt="">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="news">
+                                
+                                        <p>Hi! Become an Art Collector or just get a  notified about my new art work</p>
+                
+                                        <div class="form-group">
+                                            <!--<label for="password">Contraseña</label>-->
+                                            <input placeholder="Email" type="text" class="form-control  ">
+                                            <i style="    top: 14%!important;" class="fa fa-envelope  icon_form"></i>
+                
+                                            <a href="" class="btn btn-custom mt-4">Subscribe!</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+            
+                    
+                        </div>
+            
+                    </div>
+                </div>
+            </div>--}}
+
+            <div class="modal fade" id="mostrarModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="triangle"></div>
+                <div class="modal-dialog modal-dialog-centered new-w" role="document">
+                    <div class="modal-content ">
+            
+                        <div class="modal-bod">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <div class="row">
+                                <div class="col-md-6 p-0">
+                                    <img class="img-new" src="https://images.unsplash.com/photo-1522878308970-972ec5eedc0d?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=375&amp;q=80" alt="">
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="news">
+                                
+                                        <p>Hi! Become an Art Collector or just get a  notified about my new art work</p>
+                
+                                        <div class="form-group">
+                                            <!--<label for="password">Contraseña</label>-->
+                                            <input placeholder="Email" type="text" class="form-control  ">
+                                            <i style="    top: 14%!important;" class="fa fa-envelope  icon_form"></i>
+                
+                                            <a href="" class="btn btn-custom mt-4">Subscribe!</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+            
+                    
+                        </div>
+            
+                    </div>
+                </div>
+            </div>
+        
+
     </div>
+
+
 
 @endsection
 
@@ -160,6 +235,28 @@
             mounted(){
 
                 this.fetchProducts()
+                
+                if(localStorage.getItem("aida_newsletter") == null){
+                    window.setTimeout(function(){
+                        $('#mostrarModal').modal()
+                    }, 5000)
+
+                    let date = new Date
+                    date.setHours(date.getHours() + 1)
+                   // console.log("date", date)
+                    localStorage.setItem("aida_newsletter", date.getTime())
+
+                }else{
+                    let date = new Date
+                    let time = localStorage.getItem("aida_newsletter")
+                    if(time < date){
+                        $('#mostrarModal').modal()
+
+                        date.setHours(date.getHours() + 1)
+                        localStorage.setItem("aida_newsletter", date.getTime())
+                    }
+
+                }
 
                 if(window.localStorage.getItem("aida_language") == null){
                     window.localStorage.setItem("aida_language", "spanish")
@@ -199,6 +296,29 @@
         })
 
          
+    </script>
+
+    <script>
+
+        const newsletterModal = new Vue({
+            el: '#newsletterModal',
+            data() {
+                return {
+                    test:""
+                }
+            },
+            created(){
+
+                
+
+                //if(localStorage.getItem("aidas_newsletter")==null){
+                    
+                //}
+
+            }
+
+        })
+
     </script>
 
 @endpush
