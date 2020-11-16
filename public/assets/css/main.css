@@ -306,7 +306,7 @@ body.offcanvas-expanded {
 }
 
 .main-banner_text ul {
-    background: #0000000a;
+    background: #fff;
     width: 100%;
     display: flex;
     padding: 15px;
@@ -1147,4 +1147,12 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 }
 .elipse{
     transition: .5s ease-in-out;
+}
+.aida-style{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.aida-style p{
+    margin-bottom: 0;
 }
