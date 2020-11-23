@@ -27,7 +27,7 @@ Route::get("test-email", function(){
     $data = ["user" => $user, "hash" => $hash];
     $to_name = "rodriguezwillian95@gmail.com";
     $to_email = "rodriguezwillian95@gmail.com";
-
+    dump(env("MAIL_PASSWORD"));
     \Mail::send("emails.forgotPassword", $data, function($message) use ($to_name, $to_email) {
 
         $message->to($to_email, $to_name)->subject("¡Recuperar contraseña!");
