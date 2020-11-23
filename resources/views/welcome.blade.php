@@ -18,7 +18,7 @@
                             </div>
                             <div class="main-banner_text">
                                 <ul>
-                                    <li>
+                                    <li class="aida-style">
                                         <p class="titulo-banner_cuadro show-spanish">{{ $carousel->name }}</p>
                                         <p class="titulo-banner_cuadro show-english">{{ $carousel->english_name }}</p>
                                         <a class="show-spanish" href="{{ url('/product/'.$carousel->slug) }}">Ver más <i class="fa fa-angle-right" aria-hidden="true"></i>
