@@ -19,6 +19,24 @@ Route::get("/", function(){
 
 });
 
+Route::get("test-email", function(){
+
+    $hash = Str::random(32).uniqid();
+    $user = App\User::first();
+
+    $data = ["user" => $user, "hash" => $hash];
+    $to_name = "rodriguezwillian95@gmail.com";
+    $to_email = "rodriguezwillian95@gmail.com";
+
+    \Mail::send("emails.forgotPassword", $data, function($message) use ($to_name, $to_email) {
+
+        $message->to($to_email, $to_name)->subject("¡Recuperar contraseña!");
+        $message->from(env("MAIL_FROM_ADDRESS"), env("MAIL_FROM_NAME"));
+
+    });
+
+}); 
+
 Route::get('/front-test', function () {
     return view('welcome');
 });
