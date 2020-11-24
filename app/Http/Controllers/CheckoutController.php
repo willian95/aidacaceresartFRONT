@@ -146,14 +146,12 @@ class CheckoutController extends Controller
 
             \Mail::send("emails.purchaseEmail", $data, function($message) use ($to_name, $to_email) {
 
-                $message->to($to_email, $to_name)->subject("¡Has realizado una compra en Aidacaceresart.com!");
+                $message->to($to_email, $to_name)->subject("¡Haz realizado una compra en Aidacaceresart.com!");
                 $message->from(env("MAIL_FROM_ADDRESS"), env("MAIL_FROM_NAME"));
 
             });
 
-            dd($products);
-
-            //Cart::where("user_id", $user->id)->delete();
+            Cart::where("user_id", $user->id)->delete();
 
         }catch(\Exception $e){
 
