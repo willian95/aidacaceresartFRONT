@@ -151,6 +151,8 @@ class CheckoutController extends Controller
 
             });
 
+            dd($products);
+
             //Cart::where("user_id", $user->id)->delete();
 
         }catch(\Exception $e){
