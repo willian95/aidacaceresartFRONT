@@ -144,7 +144,7 @@ class CheckoutController extends Controller
             $to_email = $user->email;
             $data = ["user" => $user, "products" => $products];
 
-            \Mail::send("emails.purchase", $data, function($message) use ($to_name, $to_email) {
+            \Mail::send("emails.purchaseEmail", $data, function($message) use ($to_name, $to_email) {
 
                 $message->to($to_email, $to_name)->subject("¡Has realizado una compra en Aidacaceresart.com!");
                 $message->from(env("MAIL_FROM_ADDRESS"), env("MAIL_FROM_NAME"));
