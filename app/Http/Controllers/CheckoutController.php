@@ -151,9 +151,11 @@ class CheckoutController extends Controller
 
             });
 
-            Cart::where("user_id", $user->id)->delete();
+            //Cart::where("user_id", $user->id)->delete();
 
         }catch(\Exception $e){
+
+            return response()->json(["err" => $e->getMessage()]);
 
         }
 
