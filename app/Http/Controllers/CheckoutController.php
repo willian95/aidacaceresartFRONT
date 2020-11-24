@@ -137,6 +137,20 @@ class CheckoutController extends Controller
         try{
 
             $user = JWTAuth::parseToken()->toUser();
+
+            $products = Cart::where("user_id", $user->id)->with("productFormatSize", "productFormatSize.product", "productFormatSize.size", "productFormatSize.format")->has("productFormatSize")->get();
+
+            $to_name = $user->name;
+            $to_email = $user->email;
+            $data = ["user" => $user, "products" => $products];
+
+            \Mail::send("emails.purchase", $data, function($message) use ($to_name, $to_email) {
+
+                $message->to($to_email, $to_name)->subject("¡Has realizado una compra en Aidacaceresart.com!");
+                $message->from(env("MAIL_FROM_ADDRESS"), env("MAIL_FROM_NAME"));
+
+            });
+
             Cart::where("user_id", $user->id)->delete();
 
         }catch(\Exception $e){
