@@ -25,9 +25,9 @@ Route::get('/front-test', function () {
 
 Route::get("test-email", function(){
 
-    $user = JWTAuth::parseToken()->toUser();
+    //$user = JWTAuth::parseToken()->toUser();
 
-    $products = Cart::where("user_id", $user->id)->with("productFormatSize", "productFormatSize.product", "productFormatSize.size", "productFormatSize.format")->has("productFormatSize")->get();
+    $products = Cart::where("user_id", 18)->with("productFormatSize", "productFormatSize.product", "productFormatSize.size", "productFormatSize.format")->has("productFormatSize")->get();
 
     $to_name = $user->name;
     $to_email = $user->email;
