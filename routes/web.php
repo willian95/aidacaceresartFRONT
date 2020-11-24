@@ -19,26 +19,27 @@ Route::get("/", function(){
 
 });
 
+Route::get('/front-test', function () {
+    return view('welcome');
+});
+
 Route::get("test-email", function(){
 
-    $hash = Str::random(32).uniqid();
-    $user = App\User::first();
+    $user = JWTAuth::parseToken()->toUser();
 
-    $data = ["user" => $user, "hash" => $hash];
-    $to_name = "rodriguezwillian95@gmail.com";
-    $to_email = "rodriguezwillian95@gmail.com";
-    dump(env("MAIL_PASSWORD"));
-    \Mail::send("emails.forgotPassword", $data, function($message) use ($to_name, $to_email) {
+    $products = Cart::where("user_id", $user->id)->with("productFormatSize", "productFormatSize.product", "productFormatSize.size", "productFormatSize.format")->has("productFormatSize")->get();
 
-        $message->to($to_email, $to_name)->subject("¡Recuperar contraseña!");
+    $to_name = $user->name;
+    $to_email = $user->email;
+    $data = ["user" => $user, "products" => $products];
+
+    \Mail::send("emails.purchaseEmail", $data, function($message) use ($to_name, $to_email) {
+
+        $message->to($to_email, $to_name)->subject("¡Has realizado una compra en Aidacaceresart.com!");
         $message->from(env("MAIL_FROM_ADDRESS"), env("MAIL_FROM_NAME"));
 
     });
 
-}); 
-
-Route::get('/front-test', function () {
-    return view('welcome');
 });
 
 Route::get("forgot-password", "ForgotPasswordController@index")->name("forgot.password");
