@@ -157,7 +157,7 @@ class CheckoutController extends Controller
 
         }catch(\Exception $e){
 
-            return response()->json(["err" => $e->getMessage()]);
+            return response()->json(["err" => $e->getMessage(), "ln" => $e->getLine()]);
 
         }
 
