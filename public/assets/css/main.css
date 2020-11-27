@@ -812,8 +812,10 @@ a:hover .fa-angle-right {
 .titulo-table {
     background: #1c2f3c14;
     color: #042b3a;
-    padding: 10px;
+    padding: 15px 10px;
     margin-bottom: 10px;
+    width: 100%;
+    font-size: 18px;
 
 }
 
@@ -1155,4 +1157,23 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 }
 .aida-style p{
     margin-bottom: 0;
+}
+.news .form-group i {
+
+    margin-left: -36px;
+    top: 12% !important;
+}
+#accordion button{
+    width: 100%;
+    text-align: start;
+    outline: none;
+    text-decoration: none;
+}
+
+#collapseTwo .form-group i {
+    top: 50% !important;
+}
+#collapseTwo .form-group{
+    line-height: 1;
+    margin: 0;
 }

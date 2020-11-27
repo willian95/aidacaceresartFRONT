@@ -169,7 +169,7 @@
                                         <div class="form-group">
                                             <!--<label for="password">Contraseña</label>-->
                                             <input placeholder="Email" type="text" class="form-control  ">
-                                            <i style="    top: 14%!important;" class="fa fa-envelope  icon_form"></i>
+                                            <i  class="fa fa-envelope  icon_form"></i>
                 
                                             <a href="" class="btn btn-custom mt-4">Subscribe!</a>
                                         </div>
