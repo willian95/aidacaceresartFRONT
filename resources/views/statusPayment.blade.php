@@ -75,6 +75,7 @@
             el: '#status-payment-dev',
             data() {
                 return {
+                    paymentId:"{{ $paymentId }}",
                     total:0,
                     status:"{{ $status }}",
                     selectedLanguage:"",
@@ -140,9 +141,11 @@
                 },
                 deleteCart(){
 
-                    axios.get("{{ url('checkout/process') }}", { headers: {
+                    axios.post("{{ url('checkout/process') }}", {"paymentId": this.paymentId}, 
+                    { headers: {
                         Authorization: "Bearer "+window.localStorage.getItem('aida_token')
-                    }}).then(res => {
+                    }}
+                    ).then(res => {
 
 
 
