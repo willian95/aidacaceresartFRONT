@@ -172,7 +172,7 @@
                     this.total = 0
                     var cart = JSON.parse(window.localStorage.getItem('aida_cart'))
                     
-                    axios.post("{{ url('/checkout/process') }}", {item: cart},{ headers: {
+                    axios.post("{{ url('cart/guest-fetch') }}", {item: cart},{ headers: {
                         Authorization: "Bearer "+window.localStorage.getItem('aida_token')
                     }}).then(res =>{
                        this.productsGuest = res.data.items

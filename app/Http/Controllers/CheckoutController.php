@@ -8,6 +8,8 @@ use PayPal\Rest\ApiContext;
 use PayPal\Api\Amount;
 use PayPal\Api\Payer;
 use PayPal\Api\Payment;
+use App\Payment as PaymentInfo;
+use App\ProductPurchase;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
 use PayPal\Api\PaymentExecution;
@@ -63,6 +65,8 @@ class CheckoutController extends Controller
         $price = Crypt::decryptString($request->price);
         $userId = Crypt::decryptString($request->userId);
 
+        session(['user_id' => $userId]);
+
         $payer = new Payer();
         $payer->setPaymentMethod('paypal');
 
@@ -104,7 +108,7 @@ class CheckoutController extends Controller
             
             $msg = 'Lo sentimos! El pago a través de PayPal no se pudo realizar.';
             $status = "failed";
-            return view('statusPayment', ["msg" => $msg, "status" => "approved"]);
+            return view('statusPayment', ["msg" => $msg, "status" => $status]);
 
         }
 
@@ -117,41 +121,67 @@ class CheckoutController extends Controller
         $result = $payment->execute($execution, $this->apiContext);
         //dd($result->getId());
         if ($result->getState() === 'approved') {
-            
+
+            $payment = new PaymentInfo;
+            $payment->status = "aprobado";
+            $payment->total_products = $result->transactions[0]->amount->total;
+            $payment->shipping_cost = 0;
+            $payment->total = $result->transactions[0]->amount->total;
+            $payment->order_id = $result->getId();
+            $payment->user_id = session("user_id");
+            $payment->tracking = "0";
+            $payment->address = "0";
+            $payment->status_shipping = "0";
+            $payment->save();
+
             $msg = 'Gracias! El pago a través de PayPal se ha realizado correctamente.';
             $status = "approved";
-            return view('statusPayment', ["msg" => $msg, "status" => "approved"]);
+            return view('statusPayment', ["msg" => $msg, "status" => "approved", "paymentId" => $payment->id]);
             //return redirect('/results')->with(compact('status'));
             
         }
 
         $msg = 'Lo sentimos! El pago a través de PayPal no se pudo realizar.';
         $status = "failed";
-        return view('statusPayment', ["msg" => $msg, "status" => "approved"]);
+        return view('statusPayment', ["msg" => $msg, "status" => $status]);
         //return redirect('/results')->with(compact('status'));
     }
 
 
-    function process(){
+    function process(Request $request){
 
         try{
 
-            $user = JWTAuth::parseToken()->toUser();
+            if(ProductPurchase::where("payment_id", $request->paymentId)->count() == 0){
+                
+                $user = JWTAuth::parseToken()->toUser();
 
-            $products = Cart::where("user_id", $user->id)->with("productFormatSize", "productFormatSize.product", "productFormatSize.size", "productFormatSize.format")->has("productFormatSize")->get();
+                $products = Cart::where("user_id", $user->id)->with("productFormatSize", "productFormatSize.product", "productFormatSize.size", "productFormatSize.format")->has("productFormatSize")->get();
 
-            $to_name = $user->name;
-            $to_email = $user->email;
-            $data = ["user" => $user, "products" => $products];
+                foreach($products as $product){
 
-            \Mail::send("emails.purchaseEmail", $data, function($message) use ($to_name, $to_email) {
+                    $productPurchase = new ProductPurchase;
+                    $productPurchase->product_format_size_id = $product->product_format_size_id;
+                    $productPurchase->amount = 1;
+                    $productPurchase->price = $product->productFormatSize->price;
+                    $productPurchase->payment_id = $request->paymentId;
+                    $productPurchase->save();
 
-                $message->to($to_email, $to_name)->subject("¡Haz realizado una compra en Aidacaceresart.com!");
-                $message->from(env("MAIL_FROM_ADDRESS"), env("MAIL_FROM_NAME"));
+                }
 
-            });
+                $to_name = $user->name;
+                $to_email = $user->email;
+                $data = ["user" => $user, "products" => $products];
 
-            Cart::where("user_id", $user->id)->delete();
+                \Mail::send("emails.purchaseEmail", $data, function($message) use ($to_name, $to_email) {
+
+                    $message->to($to_email, $to_name)->subject("¡Haz realizado una compra en Aidacaceresart.com!");
+                    $message->from(env("MAIL_FROM_ADDRESS"), env("MAIL_FROM_NAME"));
+
+                });
+
+                Cart::where("user_id", $user->id)->delete();
+            }
 
         }catch(\Exception $e){
 

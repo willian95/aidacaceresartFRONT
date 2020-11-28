@@ -83,7 +83,7 @@ Route::get("about", function(){
 Route::get("dolar-price", "DolarUpdateController@getPrice");
 
 Route::get("/checkout/encrypt-user", "CheckoutController@encryptUser");
-Route::get("/checkout/process", "CheckoutController@process");
+Route::post("/checkout/process", "CheckoutController@process");
 Route::post("/checkout/encrypt-price-currency", "CheckoutController@encryptPriceCurrency");
 
 Route::get('/paypal/pay', 'CheckoutController@payWithPayPal');
