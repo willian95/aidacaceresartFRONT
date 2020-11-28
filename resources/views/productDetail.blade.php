@@ -306,7 +306,7 @@
                       Authorization: "Bearer "+window.localStorage.getItem('aida_token')
                     }
                   }).then(res => {
-                      alert("producto agregado al carrito")
+                      alertify.success("producto agregado al carrito")
                     })
 
                   })
@@ -315,7 +315,7 @@
 
                 }else{
 
-                  alert("producto agregado al carrito")
+                  alertify.success("producto agregado al carrito")
 
                 }
 

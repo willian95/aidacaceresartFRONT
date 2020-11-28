@@ -4,6 +4,10 @@
 @include('partials.loader')
 
 <section class="container mt-5" id="cart-dev">
+    <div style="position: fixed; top: 0; bottom: 0; left:0; right: 0; width: 100%; background: rgba(0, 0, 0, 0.6); z-index: 999999; display:none;"
+        id="cover">
+
+    </div>
     <div class="row">
         <div class="col-sm-12 ">
             <div class="carrito">
@@ -13,161 +17,72 @@
                 </div>
                 <div class="row">
                     <div class="col-md-8">
-                        <div id="accordion">
-                            <!----------item------------>
-                            <div class="">
-                              <div  id="headingOne">
-                                  <button class="btn btn-link p-0"  data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    <div class="titulo-table">
-                                        <p v-if="selectedLanguage == 'english'">Items</p>
-                                        <p v-if="selectedLanguage == 'spanish'">Artículos</p>
-                                    </div>
-                                  </button>
-                              </div>
-                          
-                              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                                <div class="">
-                                    <table class="items-content">
-                           
-
-                                        <!-------producto-------->
-                                        <div class="main-producto">
-                                            <div class="producto-item" v-for="product in products">
-                                                <div class="row">
-                                                    <div class="col-md-6 item_product">
-                                                        <div class="item_img">
-                                                            <img :src="product.product.image" alt="">
-                                                        </div>
-                                                        <div class="item_texto">
-                                                            <p  class="title-bold" v-if="selectedLanguage == 'spanish'">@{{ product.name }}</p>
-                                                            <p  class="title-bold" v-if="selectedLanguage == 'english'">@{{ product.english_name }}</p>
-                                                            <span>@{{ product.size.width }}cm x @{{ product.size.height }}cm</span>
-                                                            <span v-if="selectedLanguage == 'spanish'">Formato: @{{ product.format.name }}</span>
-                                                            <span v-if="selectedLanguage == 'english'">Format: @{{ product.format.english_name }}</span>
-                                                        </div>
-            
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <p class="space"><span>$ @{{ number_format(product.price * exchangeRate, 2, ",", ".") }}</span> </p>
-                                                    </div>
-                                                </div>
-                                               
-                                            </div>
-                                            {{--<div class="producto-item">
-                                                <div class="row">
-                                                    <div class="col-md-6 item_product">
-                                                        <div class="item_img">
-                                                            <img src="http://imgfz.com/i/ywPrSJ8.jpeg" alt="">
-                                                        </div>
-                                                        <div class="item_texto">
-                                                            <p  class="title-bold">lorem opsum asmet</p>
-                                                            <span>130cm x 130cm</span>
-                                                            <span>Formato: Canvas</span>
-                                                        </div>
-            
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <p class="space"><span>$ 79.000</span> </p>
-                                                    </div>
-                                                </div>
-                                               
-                                            </div>
-                                            <div class="producto-item">
-                                                <div class="row">
-                                                    <div class="col-md-6 item_product">
-                                                        <div class="item_img">
-                                                            <img src="http://imgfz.com/i/S3XdEeA.jpeg" alt="">
-                                                        </div>
-                                                        <div class="item_texto">
-                                                            <p  class="title-bold">lorem opsum asmet</p>
-                                                            <span>130cm x 130cm</span>
-                                                            <span>Formato: Canvas</span>
-                                                        </div>
-            
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <p class="space"><span>$ 79.000</span> </p>
-                                                    </div>
-                                                </div>
-                                               
-                                            </div>--}}
-            
-                                        </div>
-                                        <div class="text-center mt-3 mb-3">
-                                            <a href=""><button class="btn-custom btn-custom2"><span v-if="selectedLanguage == 'english'">Continue</span> <span v-if="selectedLanguage == 'spanish'">Continuar</span> <i class="fa fa-angle-right" aria-hidden="true"></i></button></a>
-                                        </div>
-                                    </table>
-                                </div>
-                              </div>
+                        <table class="items-content">
+                            <div class="titulo-table">
+                                <p v-if="selectedLanguage == 'english'">Items</p>
+                                <p v-if="selectedLanguage == 'spanish'">Artículos</p>
                             </div>
-                            <!----------item------------>
-                            <div class="">
-                              <div  id="headingTwo">
-                                <h5 class="mb-0">
-                                  <button class="btn btn-link collapsed p-0" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+
+                            <!-------producto-------->
+                            <div class="main-producto">
+                                <div class="producto-item" v-for="product in products">
+                                    <div class="row">
+                                        <div class="col-md-6 item_product">
+                                            <div class="item_img">
+                                                <img :src="product.product_format_size.product.image" alt="">
+                                            </div>
+                                            <div class="item_texto">
+                                                <p  class="title-bold" v-if="selectedLanguage == 'spanish'">@{{ product.product_format_size.product.name }}</p>
+                                                <p  class="title-bold" v-if="selectedLanguage == 'english'">@{{ product.product_format_size.product.english_name }}</p>
+                                                <span>@{{ product.product_format_size.size.width }}cm x @{{ product.product_format_size.size.height }}cm</span>
+                                                <span v-if="selectedLanguage == 'spanish'">Formato: @{{ product.product_format_size.format.name }}</span>
+                                                <span v-if="selectedLanguage == 'english'">Format: @{{ product.product_format_size.format.english_name }}</span>
+                                                <button class="btn btn-secondary" @click="removeFromCart(product.id)">X</button>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p class="space"><span>$ @{{ number_format(product.product_format_size.price * exchangeRate, 2, ",", ".") }}</span> </p>
+                                        </div>
+                                    </div>
                                    
-                                    <div class="titulo-table">
-                                        <p v-if="selectedLanguage == 'english'">      Shipping & Billing</p>
-                                        <p v-if="selectedLanguage == 'spanish'">      Envío y Facturación</p>
-                                    </div>
-                              
-                                  </button>
-                                </h5>
-                              </div>
-                              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                                <div class="">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label for="name"><i class="fa fa-user icon_form"></i></i></label>
-                                                <input placeholder=" Nombre" type="text" class="form-control" v-model="name" id="name" :readonly="readonly">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                        
-                                            <div class="form-group">
-                                                <label for="email"><i class="fa fa-envelope icon_form"></i></label>
-                                                <input placeholder="Email" type="text" class="form-control" v-model="email" id="email" :readonly="readonly">
-                                            </div>
-                        
-                                        </div>
-                                    </div>
-                                    <div class="">
-                        
-                                        <div class="form-group">
-                                            <label for="dirección"><i class="fa fa-globe icon_form"></i></label>
-                                            <input placeholder="Dirección" type="text" class="form-control" v-model="address" id="dirección">
-                                        </div>
-                        
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                        
-                                            <div class="form-group">
-                                                <label for="phone"><i class="fa fa-phone icon_form"></i></label>
-                                                <input placeholder="Teléfono" type="text" class="form-control" v-model="phone" id="phone" @keypress="isNumber($event)">
-                                            </div>
-                        
-                                        </div>
-                                        <div class="col-md-6">
-                        
-                                            <div class="form-group">
-                                                <label for="identification"><i class="fa fa-id-card icon_form"></i></label>
-                                                <input placeholder="Cédula" type="text" class="form-control" v-model="identification" id="identification"
-                                                    @keypress="isNumber($event)">
-                                            </div>
-                        
-                                        </div>
-                                    </div>
-
-
-                            
                                 </div>
-                              </div>
+
+                                <div class="producto-item" v-for="product in productsGuest">
+                                    <div class="row">
+                                        <div class="col-md-6 item_product">
+                                            <div class="item_img">
+                                                <img :src="product.product.image" alt="">
+                                            </div>
+                                            <div class="item_texto">
+                                                <p  class="title-bold" v-if="selectedLanguage == 'spanish'">@{{ product.product.name }}</p>
+                                                <p  class="title-bold" v-if="selectedLanguage == 'english'">@{{ product.product.english_name }}</p>
+                                                <span>@{{ product.size.width }}cm x @{{ product.size.height }}cm</span>
+                                                <span v-if="selectedLanguage == 'spanish'">Formato: @{{ product.format.name }}</span>
+                                                <span v-if="selectedLanguage == 'english'">Format: @{{ product.format.english_name }}</span>
+                                                <button class="btn btn-secondary" @click="removeFromCart(product.id)">X</button>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p class="space"><span>$ @{{ number_format(product.price * exchangeRate, 2, ",", ".") }}</span> </p>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+                                
+
                             </div>
-                      
-                          </div>
-                      
+                            <div class="text-center mt-3">
+                                <a href="#" @click="checkout()"><button class="btn-custom btn-custom2"><span v-if="selectedLanguage == 'english'">Continue</span> <span v-if="selectedLanguage == 'spanish'">Continuar</span> <i class="fa fa-angle-right" aria-hidden="true"></i></button></a>
+                            </div>
+
+                            <div class="titulo-table mt-5">
+                                <p v-if="selectedLanguage == 'english'">      Shipping & Billing</p>
+                                <p v-if="selectedLanguage == 'spanish'">      Envío y Facturación</p>
+                            </div>
+
+                        </table>
 
                     </div>
                     <div class="col-md-4">
@@ -200,7 +115,7 @@
 @push('scripts')
 
     <script>
-        
+        var childWind
         const home = new Vue({
             el: '#cart-dev',
             data() {
@@ -209,126 +124,167 @@
                     products:[],
                     selectedLanguage:"",
                     selectedCurrency:"",
+                    productsGuest:[],
                     exchangeRate:1,
+                    intervalID:null
                 }
             },
             methods: {
-
                 fetch(){
-
+                    this.total = 0
                     axios.get("{{ url('/cart/fetch') }}",{ headers: {
                         Authorization: "Bearer "+window.localStorage.getItem('aida_token')
                     }}).then(res =>{
-
                         this.products = res.data.items
-
                         this.products.forEach(data => {
-                            this.total = this.total + data.price
+                            this.total = this.total + data.product_format_size.price
                         })
-
                     })
                     .catch(err => {
                         this.errors = err.response.data.errors
                     })
-
                 },
                 number_format(number, decimals, dec_point, thousands_point) {
-
                     if (number == null || !isFinite(number)) {
                         throw new TypeError("number is not valid");
                     }
-
                     if (!decimals) {
                         var len = number.toString().split('.').length;
                         decimals = len > 1 ? len : 0;
                     }
-
                     if (!dec_point) {
                         dec_point = '.';
                     }
-
                     if (!thousands_point) {
                         thousands_point = ',';
                     }
-
                     if(this.selectedCurrency == "COP"){
                         decimals = 0
                     }
-
                     number = parseFloat(number).toFixed(decimals);
-
                     number = number.replace(".", dec_point);
-
                     var splitNum = number.split(dec_point);
                     splitNum[0] = splitNum[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands_point);
                     number = splitNum.join(dec_point);
-
                     return number;
                 },
                 guestFetch(){
-
+                    this.total = 0
                     var cart = JSON.parse(window.localStorage.getItem('aida_cart'))
                     
-                    axios.post("{{ url('/cart/guest-fetch') }}", {item: cart},{ headers: {
+                    axios.post("{{ url('/checkout/process') }}", {item: cart},{ headers: {
                         Authorization: "Bearer "+window.localStorage.getItem('aida_token')
                     }}).then(res =>{
-
-                       this.products = res.data.items
-
-                       this.products.forEach(data => {
+                       this.productsGuest = res.data.items
+                       this.productsGuest.forEach(data => {
                            this.total = this.total + data.price
                        })
-
                     })
             
-
                 },
                 getFetchExchangeRate(){
-
                     if(this.selectedCurrency == "COP"){
                         axios.get("{{ url('dolar-price') }}").then(res => {
-
                             this.exchangeRate = res.data.dolar
-
                         })
                     }else{
                         this.exchageRate = 1
                     }
-
-
+                },
+                removeFromCart(productId){
+                    if(window.localStorage.getItem('aida_token') !=null){
+                        axios.post("{{ url('/cart/delete') }}",{id: productId},{ headers: {
+                            Authorization: "Bearer "+window.localStorage.getItem('aida_token')
+                        }}).then(res =>{
+                            if(res.data.success == true){
+                                alertify.success(res.data.msg)
+                                this.fetch()
+                            }else{
+                                alertify.error(res.data.msg)
+                            }
+                        })
+                        .catch(err => {
+                            alertify.error(res.data.msg)
+                        })
+                        
+                    }else{
+                        var cart = JSON.parse(window.localStorage.getItem('aida_cart'))
+                        cart.forEach((data, index) => {
+                            if(data.product.id == productId){
+                                cart.splice(index, 1)
+                            }
+                        })
+                        window.localStorage.setItem("aida_cart", JSON.stringify(cart))
+                    
+                        axios.post("{{ url('/cart/guest-fetch') }}", {item: cart},{ headers: {
+                            Authorization: "Bearer "+window.localStorage.getItem('aida_token')
+                        }}).then(res =>{
+                            this.products = res.data.items
+                            this.products.forEach(data => {
+                                this.total = this.total + data.product_format_size.price
+                            })
+                        })
+                    }
+                    
+                },
+                openChildWindow(price, currency, userId) {
+                    childWin = window.open("{{ url('paypal/pay') }}"+"?price="+price+"&currency="+currency+"&userId="+userId, 'print_popup', 'width=600,height=600');
+                    $("#cover").css("display", "block")
+                    this.intervalID = window.setInterval(this.checkWindow, 500);
+                },
+                checkout(){
+                    axios.post("{{ url('/checkout/encrypt-price-currency') }}", {price: this.total, currency: this.selectedCurrency}).then(res =>{
+                        var price = res.data.price
+                        var currency = res.data.currency
+                        if(window.localStorage.getItem('aida_token') !=null){
+                            
+                            axios.get("{{ url('/checkout/encrypt-user') }}", { headers: {
+                                Authorization: "Bearer "+window.localStorage.getItem('aida_token')
+                            }}).then(res => {
+                                var userId = res.data.userId
+                                this.openChildWindow(price, currency, userId)
+                            })
+                        }else{
+                            
+                        }
+                    })
+                },
+                checkWindow() {
+                    if (childWin && childWin.closed) {
+                        window.clearInterval(this.intervalID);
+                        $("#cover").css("display", "none")
+                        if (localStorage.getItem("paymentStatusAida") == 'aprobado') {
+                            localStorage.removeItem("paymentStatusAida")
+                            window.location.href = "{{ url('/') }}"
+                        } else if (localStorage.getItem("paymentStatusAida") == 'rechazado') {
+                            window.location.reload()
+                        }
+                    }
                 }
                 
-
             },
             mounted(){
-
                 if(window.localStorage.getItem("aida_user") && window.localStorage.getItem("aida_token")){
                     this.fetch()
                 }else{
                     this.guestFetch()
                 }
-
                 if(window.localStorage.getItem("aida_language") == null){
                     window.localStorage.setItem("aida_language", "spanish")
                     this.selectedLanguage = "spanish"
                 }else{
                     this.selectedLanguage = window.localStorage.getItem("aida_language")
                 }
-
                 if(window.localStorage.getItem("aida_currency") == null){
                     window.localStorage.setItem("aida_currency", "USD")
                     this.selectedCurrency = "USD"
                 }else{
                     this.selectedCurrency = window.localStorage.getItem("aida_currency")
                 }
-
                 this.getFetchExchangeRate()
-
             }
             
-
         })
-
          
     </script>
 

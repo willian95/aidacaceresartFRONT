@@ -11,6 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Pathway+Gothic+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/galeria.css') }}">
+
+    @laravelPWA
     
     <link rel="stylesheet" href="{{ asset('assets/css/slick.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/slick-theme.css') }}">
@@ -20,6 +22,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/detalle.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
+    <link href="{{ asset('alertify/css/alertify.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('alertify/css/themes/bootstrap.min.css') }}" rel="stylesheet" />
     <style>
         .swal-overlay{
             z-index: 100000000 !important;
@@ -417,7 +421,9 @@
         
         <script src="{{ asset('assets/js/slick.min.js') }}"></script>
         <script src="{{ asset('assets/js/main.js') }}"></script>
+        <script src="{{ asset('alertify/alertify.min.js') }}"></script>
         <script>
+            alertify.set('notifier', 'position', 'top-right');
             (function () {
     
                 var initPhotoSwipeFromDOM = function (gallerySelector) {

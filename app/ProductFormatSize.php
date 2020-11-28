@@ -20,4 +20,8 @@ class ProductFormatSize extends Model
         return $this->belongsTo(Format::class);
     }
 
+    public function cart(){
+        return $this->hasMany(Cart::class);
+    }
+
 }

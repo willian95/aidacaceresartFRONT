@@ -298,27 +298,5 @@
          
     </script>
 
-    <script>
-
-        const newsletterModal = new Vue({
-            el: '#newsletterModal',
-            data() {
-                return {
-                    test:""
-                }
-            },
-            created(){
-
-                
-
-                //if(localStorage.getItem("aidas_newsletter")==null){
-                    
-                //}
-
-            }
-
-        })
-
-    </script>
 
 @endpush
