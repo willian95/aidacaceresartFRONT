@@ -18,12 +18,23 @@
                 <div class="row">
                     <div class="col-md-8">
                         <table class="items-content">
-                            <div class="titulo-table">
-                                <p v-if="selectedLanguage == 'english'">Items</p>
-                                <p v-if="selectedLanguage == 'spanish'">Artículos</p>
-                            </div>
-
-                            <!-------producto-------->
+                            <div id="accordion">
+                              <!---1----->
+                                <div class="">
+                                  <div  id="headingOne">
+                                    <h5 class="mb-0">
+                                      <button class="btn btn-link p-0" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <div class="titulo-table">
+                                            <p v-if="selectedLanguage == 'english'">Items</p>
+                                            <p v-if="selectedLanguage == 'spanish'">Artículos</p>
+                                        </div>
+                                      </button>
+                                    </h5>
+                                  </div>
+                              
+                                  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div class="card-body">
+                                    <!-------producto-------->
                             <div class="main-producto">
                                 <div class="producto-item" v-for="product in products">
                                     <div class="row">
@@ -41,12 +52,13 @@
                                             </div>
 
                                         </div>
-                                        <div class="col-md-2 center-group">
-                                            <button class="btn" @click="removeFromCart(product.id)"><i class="fa fa-times"></i></button>
-                                        </div>
                                         <div class="col-md-4 center-group">
                                             <p class="space"><span>$ @{{ number_format(product.product_format_size.price * exchangeRate, 2, ",", ".") }}</span> </p>
                                         </div>
+                                        <div class="col-md-2 center-group">
+                                            <button class="btn" @click="removeFromCart(product.id)"><i class="fa fa-times"></i></button>
+                                        </div>
+                                      
                                     </div>
                                    
                                 </div>
@@ -67,13 +79,14 @@
                                             </div>
 
                                         </div>
+                                        <div class="col-md-4 center-group">
+                                            <p class="space "><span>$ @{{ number_format(product.price * exchangeRate, 2, ",", ".") }}</span> </p>
+                                        </div>
                                         <div class="col-md-2 center-group">
                                      
                                             <button class="btn" @click="removeFromCart(product.id)"><i class="fa fa-times"></i></button>
                                         </div>
-                                        <div class="col-md-4 ">
-                                            <p class="space center-group"><span>$ @{{ number_format(product.price * exchangeRate, 2, ",", ".") }}</span> </p>
-                                        </div>
+                                       
                                     </div>
                                    
                                 </div>
@@ -83,14 +96,79 @@
                             <div class="text-center mt-3">
                                 <a href="#" @click="checkout()"><button class="btn-custom btn-custom2"><span v-if="selectedLanguage == 'english'">Continue</span> <span v-if="selectedLanguage == 'spanish'">Continuar</span> <i class="fa fa-angle-right" aria-hidden="true"></i></button></a>
                             </div>
+                                    </div>
+                                  </div>
+                                </div>
 
-                            <div class="titulo-table mt-5">
-                                <p v-if="selectedLanguage == 'english'">      Shipping & Billing</p>
-                                <p v-if="selectedLanguage == 'spanish'">      Envío y Facturación</p>
-                            </div>
+                                <!---2----->
+                                <div class="">
+                                  <div  id="headingTwo">
+                                    <h5 class="mb-0">
+                                      <button class="btn btn-link collapsed p-0" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    
+                                          <!---2--->
 
+                                    <div class="titulo-table ">
+                                        <p v-if="selectedLanguage == 'english'">      Shipping & Billing</p>
+                                        <p v-if="selectedLanguage == 'spanish'">      Envío y Facturación</p>
+                                    </div>
+
+                                      </button>
+                                    </h5>
+                                  </div>
+                                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                    <div class="card-body">
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="name"><i class="fa fa-user icon_form"></i></i> </label>
+                                                    <input type="text" placeholder="Nombre" class="form-control" v-model="name" id="name" :readonly="readonly">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                            
+                                                <div class="form-group">
+                                                    <label for="email"><i class="fa fa-envelope icon_form"></i></label>
+                                                    <input type="text" placeholder="Email" class="form-control" v-model="email" id="email" :readonly="readonly">
+                                                </div>
+                            
+                                            </div>
+                                        </div>
+                                        <div class="">
+                            
+                                            <div class="form-group">
+                                                <label for="dirección"><i class="fa fa-globe icon_form"></i></label>
+                                                <input type="text" placeholder="Dirección" class="form-control" v-model="address" id="dirección">
+                                            </div>
+                            
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                            
+                                                <div class="form-group">
+                                                    <label for="phone"><i class="fa fa-phone icon_form"></i></label>
+                                                    <input type="text" placeholder="Teléfono" class="form-control" v-model="phone" id="phone" @keypress="isNumber($event)">
+                                                </div>
+                            
+                                            </div>
+                                            <div class="col-md-6">
+                            
+                                                <div class="form-group">
+                                                    <label for="identification"><i class="fa fa-id-card icon_form"></i></label>
+                                                    <input type="text" placeholder="Cédula" class="form-control" v-model="identification" id="identification"
+                                                        @keypress="isNumber($event)">
+                                                </div>
+                            
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              
+                              </div>
                         </table>
-
                     </div>
                     <div class="col-md-4">
                         <div class="pedido pt-0">
