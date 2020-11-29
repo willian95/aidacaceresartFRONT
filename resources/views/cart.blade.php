@@ -48,7 +48,7 @@
                                    
                                 </div>
 
-                                <div class="producto-item" v-for="product in productsGuest">
+                                <div class="producto-item" v-for="(product, index) in productsGuest">
                                     <div class="row">
                                         <div class="col-md-6 item_product">
                                             <div class="item_img">
@@ -60,7 +60,7 @@
                                                 <span>@{{ product.size.width }}cm x @{{ product.size.height }}cm</span>
                                                 <span v-if="selectedLanguage == 'spanish'">Formato: @{{ product.format.name }}</span>
                                                 <span v-if="selectedLanguage == 'english'">Format: @{{ product.format.english_name }}</span>
-                                                <button class="btn btn-secondary" @click="removeFromCart(product.id)">X</button>
+                                                <button class="btn btn-secondary" @click="removeFromCart(index)">X</button>
                                             </div>
 
                                         </div>
@@ -126,7 +126,11 @@
                     selectedCurrency:"",
                     productsGuest:[],
                     exchangeRate:1,
-                    intervalID:null
+                    intervalID:null,
+                    guestName:"Victor Alfonso",
+                    guestEmail:"victor@gmail.com",
+                    guestAddress:"algun loguar",
+                    guestPhone:"123123"
                 }
             },
             methods: {
@@ -239,37 +243,27 @@
                         })
                         
                     }else{
-
+                        
                         var cart = JSON.parse(window.localStorage.getItem('aida_cart'))
-
+                        
                         cart.forEach((data, index) => {
-
-                            if(data.product.id == productId){
+                            console.log("index", index, productId)
+                            if(index == productId){
                                 cart.splice(index, 1)
                             }
 
                         })
 
                         window.localStorage.setItem("aida_cart", JSON.stringify(cart))
-                    
-                        axios.post("{{ url('/cart/guest-fetch') }}", {item: cart},{ headers: {
-                            Authorization: "Bearer "+window.localStorage.getItem('aida_token')
-                        }}).then(res =>{
-
-                            this.products = res.data.items
-
-                            this.products.forEach(data => {
-                                this.total = this.total + data.product_format_size.price
-                            })
-
-                        })
+                        
+                        this.guestFetch()
 
                     }
                     
 
                 },
-                openChildWindow(price, currency, userId) {
-                    childWin = window.open("{{ url('paypal/pay') }}"+"?price="+price+"&currency="+currency+"&userId="+userId, 'print_popup', 'width=600,height=600');
+                openChildWindow(price, currency, userId, isGuest = 0) {
+                    childWin = window.open("{{ url('paypal/pay') }}"+"?price="+price+"&currency="+currency+"&userId="+userId+"&guest="+isGuest, 'print_popup', 'width=600,height=600');
                     $("#cover").css("display", "block")
                     this.intervalID = window.setInterval(this.checkWindow, 500);
                 },
@@ -293,7 +287,19 @@
                             })
 
                         }else{
-                            
+
+                            axios.post("{{ url('/guest/store') }}", {"name": this.guestName, "email": this.guestEmail, "phone": this.guestPhone, "address": this.guestAddress}).then(res => {
+
+                                axios.post("{{ url('/checkout/encrypt-guest-user') }}", {"user_id": res.data.guest.id}).then(res => {
+
+                                    var userId = res.data.user
+                                    
+                                    this.openChildWindow(price, currency, userId, 1)
+
+                                })
+
+                            })
+
                         }
 
                     })

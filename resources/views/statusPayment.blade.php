@@ -82,17 +82,18 @@
                     selectedCurrency:"",
                     exchangeRate:1,
                     products:[],
-                    productsGuest:[]
+                    productsGuest:[],
+                    guest:"{{ $guest }}"
                 }
             },
             methods: {
 
-               accept(){
+                accept(){
 
-                    window.close()
+                        window.close()
 
-               },
-               getFetchExchangeRate(){
+                },
+                getFetchExchangeRate(){
 
                     if(this.selectedCurrency == "COP"){
                         axios.get("{{ url('dolar-price') }}").then(res => {
@@ -141,11 +142,24 @@
                 },
                 deleteCart(){
 
-                    axios.post("{{ url('checkout/process') }}", {"paymentId": this.paymentId}, 
+                    $cart = JSON.parse(window.localStorag.getItem("aida_cart"))
+
+                    axios.post("{{ url('checkout/process') }}", {"paymentId": this.paymentId, "guest": this.guest, "cart": this.productsGuest}, 
                     { headers: {
                         Authorization: "Bearer "+window.localStorage.getItem('aida_token')
                     }}
                     ).then(res => {
+
+
+
+                    })
+
+                },
+                deleteGuestCart(){
+
+                    $cart = JSON.parse(window.localStorage.getItem("aida_cart"))
+        
+                    axios.post("{{ url('checkout/guest-process') }}", {"paymentId": this.paymentId, "cart": this.productsGuest}).then(res => {
 
 
 
@@ -214,9 +228,11 @@
                             this.total = this.total + data.price
                         })
 
+                        this.deleteGuestCart()
+                        //window.localStorage.removeItem("aida_cart")
                     })
 
-                    window.localStorage.removeItem("aida_cart")
+                    
 
                 }
 
