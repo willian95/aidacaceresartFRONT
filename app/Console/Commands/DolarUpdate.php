@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use App\DolarPrice;
+use Illuminate\Support\Facades\Log;
 
 class DolarUpdate extends Command
 {
@@ -51,5 +52,7 @@ class DolarUpdate extends Command
             }
             
         }
+
+        Log::info("Funciono");
     }
 }
