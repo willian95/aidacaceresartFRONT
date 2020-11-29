@@ -3,24 +3,26 @@
 @section("content")
 
     <div id="status-payment-dev">
-
-        <h3 class="text-center">{{ $msg }}</h3>
+        <a class='brand-xs text-center m-0 pb-5' >
+            <img alt='' src='{{ asset('assets/img/logo.png') }}'>
+        </a>
+        <h3 class="text-center pb-3 pt-4">{{ $msg }}</h3>
 
         <!-------producto-------->
         <div class="main-producto">
-            <div class="producto-item" v-for="product in products">
-                <div class="row">
+            <div class="producto-item mb-3" v-for="product in products">
+                <div class="center-group">
                     <div class="col-md-6 item_product">
                         <div class="item_img">
                             <img :src="product.product_format_size.product.image" alt="">
                         </div>
                         <div class="item_texto">
-                            <p  class="title-bold" v-if="selectedLanguage == 'spanish'">@{{ product.product_format_size.product.name }}</p>
-                            <p  class="title-bold" v-if="selectedLanguage == 'english'">@{{ product.product_format_size.product.english_name }}</p>
+                            <p  class="title-bold mb-0" v-if="selectedLanguage == 'spanish'">@{{ product.product_format_size.product.name }}</p>
+                            <p  class="title-bold mb-0"  v-if="selectedLanguage == 'english'">@{{ product.product_format_size.product.english_name }}</p>
                             <span>@{{ product.product_format_size.size.width }}cm x @{{ product.product_format_size.size.height }}cm</span>
                             <span v-if="selectedLanguage == 'spanish'">Formato: @{{ product.product_format_size.format.name }}</span>
                             <span v-if="selectedLanguage == 'english'">Format: @{{ product.product_format_size.format.english_name }}</span>
-                            <button class="btn btn-secondary" @click="removeFromCart(product.id)">X</button>
+                          
                         </div>
 
                     </div>
@@ -32,14 +34,14 @@
             </div>
 
             <div class="producto-item" v-for="product in productsGuest">
-                <div class="row">
+                <div class="center-group">
                     <div class="col-md-6 item_product">
                         <div class="item_img">
                             <img :src="product.product.image" alt="">
                         </div>
                         <div class="item_texto">
-                            <p  class="title-bold" v-if="selectedLanguage == 'spanish'">@{{ product.product.name }}</p>
-                            <p  class="title-bold" v-if="selectedLanguage == 'english'">@{{ product.product.english_name }}</p>
+                            <p  class="title-bold mb-0" v-if="selectedLanguage == 'spanish'">@{{ product.product.name }}</p>
+                            <p  class="title-bold mb-0" v-if="selectedLanguage == 'english'">@{{ product.product.english_name }}</p>
                             <span>@{{ product.size.width }}cm x @{{ product.size.height }}cm</span>
                             <span v-if="selectedLanguage == 'spanish'">Formato: @{{ product.format.name }}</span>
                             <span v-if="selectedLanguage == 'english'">Format: @{{ product.format.english_name }}</span>
@@ -58,7 +60,7 @@
         </div>
 
         <p class="text-center">
-            <button class="btn btn-primary" @click="accept()">
+            <button class="btn btn-primary btn-custom" @click="accept()">
                 Aceptar
             </button>
         </p>

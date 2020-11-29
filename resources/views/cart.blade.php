@@ -37,11 +37,14 @@
                                                 <span>@{{ product.product_format_size.size.width }}cm x @{{ product.product_format_size.size.height }}cm</span>
                                                 <span v-if="selectedLanguage == 'spanish'">Formato: @{{ product.product_format_size.format.name }}</span>
                                                 <span v-if="selectedLanguage == 'english'">Format: @{{ product.product_format_size.format.english_name }}</span>
-                                                <button class="btn btn-secondary" @click="removeFromCart(product.id)">X</button>
+                                                
                                             </div>
 
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-2 center-group">
+                                            <button class="btn" @click="removeFromCart(product.id)"><i class="fa fa-times"></i></button>
+                                        </div>
+                                        <div class="col-md-4 center-group">
                                             <p class="space"><span>$ @{{ number_format(product.product_format_size.price * exchangeRate, 2, ",", ".") }}</span> </p>
                                         </div>
                                     </div>
@@ -60,12 +63,16 @@
                                                 <span>@{{ product.size.width }}cm x @{{ product.size.height }}cm</span>
                                                 <span v-if="selectedLanguage == 'spanish'">Formato: @{{ product.format.name }}</span>
                                                 <span v-if="selectedLanguage == 'english'">Format: @{{ product.format.english_name }}</span>
-                                                <button class="btn btn-secondary" @click="removeFromCart(index)">X</button>
+                                              
                                             </div>
 
                                         </div>
-                                        <div class="col-md-6">
-                                            <p class="space"><span>$ @{{ number_format(product.price * exchangeRate, 2, ",", ".") }}</span> </p>
+                                        <div class="col-md-2 center-group">
+                                     
+                                            <button class="btn" @click="removeFromCart(product.id)"><i class="fa fa-times"></i></button>
+                                        </div>
+                                        <div class="col-md-4 ">
+                                            <p class="space center-group"><span>$ @{{ number_format(product.price * exchangeRate, 2, ",", ".") }}</span> </p>
                                         </div>
                                     </div>
                                    
@@ -134,109 +141,78 @@
                 }
             },
             methods: {
-
                 fetch(){
                     this.total = 0
                     axios.get("{{ url('/cart/fetch') }}",{ headers: {
                         Authorization: "Bearer "+window.localStorage.getItem('aida_token')
                     }}).then(res =>{
-
                         this.products = res.data.items
-
                         this.products.forEach(data => {
                             this.total = this.total + data.product_format_size.price
                         })
-
                     })
                     .catch(err => {
                         this.errors = err.response.data.errors
                     })
-
                 },
                 number_format(number, decimals, dec_point, thousands_point) {
-
                     if (number == null || !isFinite(number)) {
                         throw new TypeError("number is not valid");
                     }
-
                     if (!decimals) {
                         var len = number.toString().split('.').length;
                         decimals = len > 1 ? len : 0;
                     }
-
                     if (!dec_point) {
                         dec_point = '.';
                     }
-
                     if (!thousands_point) {
                         thousands_point = ',';
                     }
-
                     if(this.selectedCurrency == "COP"){
                         decimals = 0
                     }
-
                     number = parseFloat(number).toFixed(decimals);
-
                     number = number.replace(".", dec_point);
-
                     var splitNum = number.split(dec_point);
                     splitNum[0] = splitNum[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands_point);
                     number = splitNum.join(dec_point);
-
                     return number;
                 },
                 guestFetch(){
-
                     this.total = 0
                     var cart = JSON.parse(window.localStorage.getItem('aida_cart'))
                     
                     axios.post("{{ url('cart/guest-fetch') }}", {item: cart},{ headers: {
                         Authorization: "Bearer "+window.localStorage.getItem('aida_token')
                     }}).then(res =>{
-
                        this.productsGuest = res.data.items
-
                        this.productsGuest.forEach(data => {
                            this.total = this.total + data.price
                        })
-
                     })
             
-
                 },
                 getFetchExchangeRate(){
-
                     if(this.selectedCurrency == "COP"){
                         axios.get("{{ url('dolar-price') }}").then(res => {
-
                             this.exchangeRate = res.data.dolar
-
                         })
                     }else{
                         this.exchageRate = 1
                     }
-
-
                 },
                 removeFromCart(productId){
-
                     if(window.localStorage.getItem('aida_token') !=null){
                         axios.post("{{ url('/cart/delete') }}",{id: productId},{ headers: {
                             Authorization: "Bearer "+window.localStorage.getItem('aida_token')
                         }}).then(res =>{
-
                             if(res.data.success == true){
-
                                 alertify.success(res.data.msg)
                                 this.fetch()
-
                             }else{
-
                                 alertify.error(res.data.msg)
-
                             }
-
                         })
                         .catch(err => {
                             alertify.error(res.data.msg)
@@ -251,16 +227,13 @@
                             if(index == productId){
                                 cart.splice(index, 1)
                             }
-
                         })
-
                         window.localStorage.setItem("aida_cart", JSON.stringify(cart))
                         
                         this.guestFetch()
 
                     }
                     
-
                 },
                 openChildWindow(price, currency, userId, isGuest = 0) {
                     childWin = window.open("{{ url('paypal/pay') }}"+"?price="+price+"&currency="+currency+"&userId="+userId+"&guest="+isGuest, 'print_popup', 'width=600,height=600');
@@ -268,24 +241,17 @@
                     this.intervalID = window.setInterval(this.checkWindow, 500);
                 },
                 checkout(){
-
                     axios.post("{{ url('/checkout/encrypt-price-currency') }}", {price: this.total, currency: this.selectedCurrency}).then(res =>{
-
                         var price = res.data.price
                         var currency = res.data.currency
-
                         if(window.localStorage.getItem('aida_token') !=null){
                             
                             axios.get("{{ url('/checkout/encrypt-user') }}", { headers: {
                                 Authorization: "Bearer "+window.localStorage.getItem('aida_token')
                             }}).then(res => {
-
                                 var userId = res.data.userId
-
                                 this.openChildWindow(price, currency, userId)
-
                             })
-
                         }else{
 
                             axios.post("{{ url('/guest/store') }}", {"name": this.guestName, "email": this.guestEmail, "phone": this.guestPhone, "address": this.guestAddress}).then(res => {
@@ -301,9 +267,7 @@
                             })
 
                         }
-
                     })
-
                 },
                 checkWindow() {
                     if (childWin && childWin.closed) {
@@ -318,37 +282,29 @@
                     }
                 }
                 
-
             },
             mounted(){
-
                 if(window.localStorage.getItem("aida_user") && window.localStorage.getItem("aida_token")){
                     this.fetch()
                 }else{
                     this.guestFetch()
                 }
-
                 if(window.localStorage.getItem("aida_language") == null){
                     window.localStorage.setItem("aida_language", "spanish")
                     this.selectedLanguage = "spanish"
                 }else{
                     this.selectedLanguage = window.localStorage.getItem("aida_language")
                 }
-
                 if(window.localStorage.getItem("aida_currency") == null){
                     window.localStorage.setItem("aida_currency", "USD")
                     this.selectedCurrency = "USD"
                 }else{
                     this.selectedCurrency = window.localStorage.getItem("aida_currency")
                 }
-
                 this.getFetchExchangeRate()
-
             }
             
-
         })
-
          
     </script>
 
