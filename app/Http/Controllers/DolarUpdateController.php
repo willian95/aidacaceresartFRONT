@@ -14,7 +14,7 @@ class DolarUpdateController extends Controller
         $response = Http::get('https://www.freeforexapi.com/api/live?pairs=USDCOP');
 
         $data =json_decode($response->body());
-
+        
         if($data){
             $dolar = DolarPrice::find(1);
             $dolar->rate  = $data->rates->USDCOP->rate;
