@@ -37,11 +37,14 @@
                                                 <span>@{{ product.product_format_size.size.width }}cm x @{{ product.product_format_size.size.height }}cm</span>
                                                 <span v-if="selectedLanguage == 'spanish'">Formato: @{{ product.product_format_size.format.name }}</span>
                                                 <span v-if="selectedLanguage == 'english'">Format: @{{ product.product_format_size.format.english_name }}</span>
-                                                <button class="btn btn-secondary" @click="removeFromCart(product.id)">X</button>
+                                                
                                             </div>
 
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-2 center-group">
+                                            <button class="btn" @click="removeFromCart(product.id)"><i class="fa fa-times"></i></button>
+                                        </div>
+                                        <div class="col-md-4 center-group">
                                             <p class="space"><span>$ @{{ number_format(product.product_format_size.price * exchangeRate, 2, ",", ".") }}</span> </p>
                                         </div>
                                     </div>
@@ -60,12 +63,16 @@
                                                 <span>@{{ product.size.width }}cm x @{{ product.size.height }}cm</span>
                                                 <span v-if="selectedLanguage == 'spanish'">Formato: @{{ product.format.name }}</span>
                                                 <span v-if="selectedLanguage == 'english'">Format: @{{ product.format.english_name }}</span>
-                                                <button class="btn btn-secondary" @click="removeFromCart(product.id)">X</button>
+                                              
                                             </div>
 
                                         </div>
-                                        <div class="col-md-6">
-                                            <p class="space"><span>$ @{{ number_format(product.price * exchangeRate, 2, ",", ".") }}</span> </p>
+                                        <div class="col-md-2 center-group">
+                                     
+                                            <button class="btn" @click="removeFromCart(product.id)"><i class="fa fa-times"></i></button>
+                                        </div>
+                                        <div class="col-md-4 ">
+                                            <p class="space center-group"><span>$ @{{ number_format(product.price * exchangeRate, 2, ",", ".") }}</span> </p>
                                         </div>
                                     </div>
                                    

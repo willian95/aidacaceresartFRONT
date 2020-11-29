@@ -1177,3 +1177,27 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
     line-height: 1;
     margin: 0;
 }
+.center-group{
+    text-align: center;
+    justify-content: center;
+    display: flex;
+}
+#status-payment-dev{
+    height: 83vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px;
+    padding-top: 0;
+}
+#status-payment-dev .btn-custom{
+    padding: 12px 60px;
+    text-transform: uppercase;
+}
+#status-payment-dev h3{
+    font-weight: 600;
+}
+#status-payment-dev .center-group {
+    text-align: start;
+    
+}
