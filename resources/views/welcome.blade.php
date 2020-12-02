@@ -154,7 +154,7 @@
                     <div class="modal-content ">
             
                         <div class="modal-bod">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeNewsletter">
                                 <span aria-hidden="true">×</span>
                             </button>
                             <div class="row">
@@ -164,14 +164,23 @@
                                 <div class="col-md-6">
                                     <div class="news">
                                 
-                                        <p>Hi! Become an Art Collector or just get a  notified about my new art work</p>
+                                        <p v-if="selectedLanguage == 'english'">Hi! Become an Art Collector or just get a  notified about my new art work</p>
+                                        <p v-if="selectedLanguage == 'spanish'">Hola! Convierte en un Coleccionista de Arte o simplemente  mantente informado de mis nuevos trabajos</p>
                 
                                         <div class="form-group">
                                             <!--<label for="password">Contraseña</label>-->
-                                            <input placeholder="Email" type="text" class="form-control  ">
+                                            <input placeholder="Email" type="text" class="form-control  " v-model="newsletterEmail">
                                             <i  class="fa fa-envelope  icon_form"></i>
+                                            
                 
-                                            <a href="" class="btn btn-custom mt-4">Subscribe!</a>
+                                            <button type="button" href="#" class="btn btn-custom mt-4" @click="subscribe()">
+                                                <span v-if="selectedLanguage == 'english'">Subscribe!</span>
+                                                <span v-if="selectedLanguage == 'spanish'">Suscribete!</span>
+                                            </button>
+
+                                            <p class="text-center">
+                                                <small style="color:red" v-if="errors.hasOwnProperty('newsletterEmail')">@{{ errors['newsletterEmail'][0] }}</small>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -203,6 +212,8 @@
                     selectedLanguage:"",
                     selectedCurrency:"",
                     exchangeRate:1,
+                    errors:[],
+                    newsletterEmail:""
                 }
             },
             methods: {
@@ -229,34 +240,34 @@
                     }
                     
 
+                },
+                subscribe(){
+
+                    axios.post("{{ url('newsletter-subscribe') }}", {newsletterEmail: this.newsletterEmail}).then(res => {
+
+                        swal({
+                            title:"Genial",
+                            text:"Te has suscrito",
+                            icon: "success"
+                        }).then(res => {
+                            $("#closeNewsletter").click();
+                            $('body').removeClass('modal-open');
+                            $('body').css('padding-right', '0px');
+                            $('.modal-backdrop').remove();
+                        })
+
+                    })
+                    .catch(err => {
+                        this.loading = false
+                        this.errors = err.response.data.errors
+                    })
+
                 }
 
             },
             mounted(){
 
                 this.fetchProducts()
-                
-                if(localStorage.getItem("aida_newsletter") == null){
-                    window.setTimeout(function(){
-                        $('#mostrarModal').modal()
-                    }, 5000)
-
-                    let date = new Date
-                    date.setHours(date.getHours() + 1)
-                   // console.log("date", date)
-                    localStorage.setItem("aida_newsletter", date.getTime())
-
-                }else{
-                    let date = new Date
-                    let time = localStorage.getItem("aida_newsletter")
-                    if(time < date){
-                        $('#mostrarModal').modal()
-
-                        date.setHours(date.getHours() + 1)
-                        localStorage.setItem("aida_newsletter", date.getTime())
-                    }
-
-                }
 
                 if(window.localStorage.getItem("aida_language") == null){
                     window.localStorage.setItem("aida_language", "spanish")

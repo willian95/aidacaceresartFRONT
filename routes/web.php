@@ -92,3 +92,5 @@ Route::get('/paypal/pay', 'CheckoutController@payWithPayPal');
 Route::get('/paypal/status', 'CheckoutController@payPalStatus');
 
 Route::post("/guest/store", "GuestUserController@store");
+
+Route::post("/newsletter-subscribe", "SubcribeController@store");

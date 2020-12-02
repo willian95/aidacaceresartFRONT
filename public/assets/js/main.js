@@ -5,6 +5,29 @@ $(document).ready(function () {
 
     setTimeout(function () {
       $(".loader_video").fadeOut(100);
+      //window.setTimeout(function(){
+      if(localStorage.getItem("aida_newsletter") == null){
+          window.setTimeout(function(){
+              $('#mostrarModal').modal()
+          }, 5000)
+
+          let date = new Date
+          date.setHours(date.getHours() + 1)
+         // console.log("date", date)
+          localStorage.setItem("aida_newsletter", date.getTime())
+
+      }else{
+          let date = new Date
+          let time = localStorage.getItem("aida_newsletter")
+          if(time < date){
+              $('#mostrarModal').modal()
+
+              date.setHours(date.getHours() + 1)
+              localStorage.setItem("aida_newsletter", date.getTime())
+          }
+
+      }
+    //}, 5000)
   }, 3000);
 });
 
