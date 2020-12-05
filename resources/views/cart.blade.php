@@ -35,7 +35,7 @@
                                       </button>
                                     </h5>
                                   </div>
-                                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                                  <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
                                     <div class="card-body">
                                     <div>
                                         <div class="row">
@@ -98,7 +98,7 @@
                                         </h5>
                                     </div>
                               
-                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                                         <div class="card-body">
                                         <!-------producto-------->
                                             <div class="main-producto">
@@ -112,8 +112,8 @@
                                                                 <p  class="title-bold" v-if="selectedLanguage == 'spanish'">@{{ product.product_format_size.product.name }}</p>
                                                                 <p  class="title-bold" v-if="selectedLanguage == 'english'">@{{ product.product_format_size.product.english_name }}</p>
                                                                 <span>@{{ product.product_format_size.size.width }}cm x @{{ product.product_format_size.size.height }}cm</span>
-                                                                <span v-if="selectedLanguage == 'spanish'">Formato: @{{ product.product_format_size.format.name }}</span>
-                                                                <span v-if="selectedLanguage == 'english'">Format: @{{ product.product_format_size.format.english_name }}</span>
+                                                                {{--<span v-if="selectedLanguage == 'spanish'">Formato: @{{ product.product_format_size.format.name }}</span>
+                                                                <span v-if="selectedLanguage == 'english'">Format: @{{ product.product_format_size.format.english_name }}</span>--}}
                                                                 
                                                             </div>
 
@@ -304,13 +304,14 @@
                     }else{
                         
                         var cart = JSON.parse(window.localStorage.getItem('aida_cart'))
-                        
+                        console.log("before_cart", cart)
                         cart.forEach((data, index) => {
                             console.log("index", index, productId)
                             if(index == productId){
                                 cart.splice(index, 1)
                             }
                         })
+                        console.log("after_cart", cart)
                         window.localStorage.setItem("aida_cart", JSON.stringify(cart))
                         
                         this.guestFetch()
