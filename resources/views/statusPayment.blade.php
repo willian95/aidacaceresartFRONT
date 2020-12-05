@@ -45,7 +45,7 @@
                             <span>@{{ product.size.width }}cm x @{{ product.size.height }}cm</span>
                             <span v-if="selectedLanguage == 'spanish'">Formato: @{{ product.format.name }}</span>
                             <span v-if="selectedLanguage == 'english'">Format: @{{ product.format.english_name }}</span>
-                            <button class="btn btn-secondary" @click="removeFromCart(product.id)">X</button>
+                            
                         </div>
 
                     </div>
@@ -230,8 +230,8 @@
                             this.total = this.total + data.price
                         })
 
-                        this.deleteGuestCart()
-                        //window.localStorage.removeItem("aida_cart")
+                       
+                        window.localStorage.removeItem("aida_cart")
                     })
 
                     
