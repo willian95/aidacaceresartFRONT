@@ -304,14 +304,14 @@
                     }else{
                         
                         var cart = JSON.parse(window.localStorage.getItem('aida_cart'))
-                        console.log("before_cart", cart)
+                        
                         cart.forEach((data, index) => {
-                            console.log("index", index, productId)
-                            if(index == productId){
+                            
+                            if(data.id == productId){
                                 cart.splice(index, 1)
                             }
                         })
-                        console.log("after_cart", cart)
+                       
                         window.localStorage.setItem("aida_cart", JSON.stringify(cart))
                         
                         this.guestFetch()
