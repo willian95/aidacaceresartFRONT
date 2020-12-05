@@ -316,7 +316,7 @@
                         if(this.selectedLanguage == "spanish"){
                           alertify.success("producto agregado al carrito")
                         }else{
-                          alertify.error("Product added to cart")
+                          alertify.success("Product added to cart")
                         }
                       })
 
@@ -329,7 +329,7 @@
                     if(this.selectedLanguage == "spanish"){
                       alertify.success("producto agregado al carrito")
                     }else{
-                      alertify.error("Product added to cart")
+                      alertify.success("Product added to cart")
                     }
 
                   }
