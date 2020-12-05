@@ -273,50 +273,66 @@
               },
               addToCart(){
                 
-                var cart = []
-                var formatSizeIndex = null
+                if(this.price == 0){
+                  if(this.selectedLanguage == "spanish"){
+                    alertify.error("Debes seleccionar un tamaño")
+                  }else{
+                    alertify.error("You have to first add a size")
+                  }
+                }else{
+                  var cart = []
+                  var formatSizeIndex = null
 
-                if(window.localStorage.getItem("aida_cart")){
+                  if(window.localStorage.getItem("aida_cart")){
 
-                  cart = JSON.parse(window.localStorage.getItem("aida_cart"))
+                    cart = JSON.parse(window.localStorage.getItem("aida_cart"))
 
-                }
-
-                this.formatSizes.forEach((data, index) => {
-                  
-                  if(data.size_id == this.selectSize && data.format_id == this.format){
-                    formatSizeIndex = index
                   }
 
-                })
-
-                cart.push({id: this.formatSizes[formatSizeIndex].id})
-                window.localStorage.setItem("aida_cart", JSON.stringify(cart))
-
-                if(window.localStorage.getItem("aida_token") && window.localStorage.getItem("aida_user")){
-
-                  axios.post("{{ url('/get-user') }}", {}, {
-                    headers: {
-                      Authorization: "Bearer "+window.localStorage.getItem('aida_token')
+                  this.formatSizes.forEach((data, index) => {
+                    
+                    if(data.size_id == this.selectSize && data.format_id == this.format){
+                      formatSizeIndex = index
                     }
-                  }).then(res =>{
-
-                    axios.post("{{ url('/cart/store') }}", {formatSizeId: this.formatSizes[formatSizeIndex].id}, {
-                    headers: {
-                      Authorization: "Bearer "+window.localStorage.getItem('aida_token')
-                    }
-                  }).then(res => {
-                      alertify.success("producto agregado al carrito")
-                    })
 
                   })
 
-                  
+                  cart.push({id: this.formatSizes[formatSizeIndex].id})
+                  window.localStorage.setItem("aida_cart", JSON.stringify(cart))
 
-                }else{
+                  if(window.localStorage.getItem("aida_token") && window.localStorage.getItem("aida_user")){
 
-                  alertify.success("producto agregado al carrito")
+                    axios.post("{{ url('/get-user') }}", {}, {
+                      headers: {
+                        Authorization: "Bearer "+window.localStorage.getItem('aida_token')
+                      }
+                    }).then(res =>{
 
+                      axios.post("{{ url('/cart/store') }}", {formatSizeId: this.formatSizes[formatSizeIndex].id}, {
+                      headers: {
+                        Authorization: "Bearer "+window.localStorage.getItem('aida_token')
+                      }
+                    }).then(res => {
+                        if(this.selectedLanguage == "spanish"){
+                          alertify.success("producto agregado al carrito")
+                        }else{
+                          alertify.error("Product added to cart")
+                        }
+                      })
+
+                    })
+
+                    
+
+                  }else{
+
+                    if(this.selectedLanguage == "spanish"){
+                      alertify.success("producto agregado al carrito")
+                    }else{
+                      alertify.error("Product added to cart")
+                    }
+
+                  }
                 }
 
 
