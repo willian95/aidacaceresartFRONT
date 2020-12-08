@@ -100,6 +100,7 @@ body.offcanvas-expanded {
     border-radius: 2px;
     color: #fff !important;
     border: 0;
+    cursor: pointer;
 }
 
 .dropdown-toggle {
@@ -743,7 +744,7 @@ div#galeria:hover img:hover {
 }
 
 .login_main button {
-    background: transparent;
+
     color: #182934;
     border: 0;
 }
@@ -1203,4 +1204,15 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 #status-payment-dev .center-group {
     text-align: start;
     
+}
+
+#escala .modal-dialog {
+    max-width: 950px;
+   
+}
+.img-escala{
+    position: absolute;
+    width: 300px;
+    left: 30%;
+    top: 20%;
 }
