@@ -17,7 +17,7 @@
               </div>
 
               <div class="iconos_detalle text-center">
-                <i class="flaticon-eye-variant-with-enlarged-pupil" id="scaleText">Scale View</i>
+                <i class="flaticon-eye-variant-with-enlarged-pupil" id="scaleText" data-toggle="modal" data-target="#escala">Scale View</i>
                 <i class="flaticon-zoom-in-1" id="zoomText">Zoom/Better
                   View</i>
               </div>
@@ -169,7 +169,20 @@
       </div>
 
       
-  
+  <!-- Modal -->
+<div class="modal fade" id="escala" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+       <!-- fondo 1 -->
+      <div class="modal-bodys position-relative">
+        <img class="img-escala" src="{{ $product->image }}" alt="">
+        <img alt='' src='{{ asset('assets/img/fondos/Fondo Cuadros Grandes.jpg') }}'>
+      </div>
+      <!-- fondo 1 -->
+     
+    </div>
+  </div>
+</div>
   </div>
 
 
