@@ -85,7 +85,10 @@
                             <p v-if="selectedLanguage == 'english'">@{{ product.english_name }}</p>
                         </div>
                         <div class="galeria_dimension">
-                            <p v-for="size in product.product_format_sizes">@{{ size.size.width }}cm x @{{ size.size.height }}cm</p>
+                            <p v-for="size in product.product_format_sizes">
+                                <span v-if="selectedLanguage == 'spanish'">@{{ size.size.width }}cm x @{{ size.size.height }}cm</span>
+                                <span v-if="selectedLanguage == 'english'">@{{ (size.size.width/2.54).toFixed(2) }}in x @{{ (size.size.height/2.54).toFixed(2) }}in</span>
+                            </p>
                         </div>
                         <img :src="product.image" class="galeria-img" alt="galeria aidaart">
                     

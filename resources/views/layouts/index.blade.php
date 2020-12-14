@@ -111,7 +111,7 @@
                                 <a class='nav-link nav-link-black ' href="{{url('gallery') }}"><span v-if="selectedLanguage == 'english'">Gallery</span> <span v-if="selectedLanguage == 'spanish'">Gallería</span></a>
                             </li>
                             <li class='nav-item'>
-                                <a class='brand' href='#'>
+                                <a class='brand' href="{{ url('/') }}">
                                     <img alt='' src='{{ asset('assets/img/logo.png') }}'>
                                 </a>
                             </li>

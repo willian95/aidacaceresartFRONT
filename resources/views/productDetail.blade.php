@@ -79,7 +79,8 @@
                             <input type="radio" name="o3" :value="size.id" v-model="selectSize" @click="setPrice()">
                             <span class="cr"><i class="cr-icon fa fa-check" aria-hidden="true"></i>
                             </span>
-                            @{{ size.width }}cm x @{{ size.height }}cm
+                            <span v-if="selectedLanguage == 'spanish'">@{{ size.width }}cm x @{{ size.height }}cm</span>
+                            <span v-if="selectedLanguage == 'english'">@{{ (size.width / 2.54).toFixed(2) }}in x @{{ (size.height/2.54).toFixed(2) }}in</span>
 
                           </label>
                         </div>
@@ -119,24 +120,94 @@
 
                         
       <div id="otherInfo">
+
+      <div class="modal fade" id="shippingInfo" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="triangle"></div>
+              <div class="modal-dialog modal-dialog-centered new-w" role="document">
+                  <div class="modal-content ">
+          
+                      <div class="modal-bod">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeNewsletter">
+                              <span aria-hidden="true">×</span>
+                          </button>
+                          <div class="row">
+                            <div class="col-md-12">
+                                <div class="news">
+
+                                    <p v-if="selectedLanguage == 'spanish'">
+                                      Cada obra es cuidadosamente empacada por la artista, garantizando que cada cuadro llegue intacto a su destino. El trabajo se confía a un proveedor de servicios especializado reconocido y dé alcance internacional. Se organizará un tiempo de entrega entre usted y el operador logístico, el trabajo se entregará a la dirección indicada en el momento del pedido. Actualmente, la artista paga los costos de embalaje y entrega del trabajo. Los costos de envío solo se facturarán si el cliente solicitó expresamente que se enmarque la obra (debido a un peso adicional), o si el destino de la entrega no está cubierto por nuestro aliado de envío y el uso de un proveedor diferente, no preferencial las tasas son obligatorias. Si el trabajo llegara roto o dañado, la artista pagará los costes de devolución y gestionará cualquier compensación entre la artista y el comprador. Si el trabajo no puede ser reparado o restaurado, el cliente será reembolsado inmediatamente.
+                                    </p>
+                                    <p v-if="selectedLanguage == 'english'">
+                                      Each artwork is carefully packed by the artist, she guarantees that each painting will be delivered in perfect condition to its destination. The art work will be shipped through a reputable international shipping company. The company will be reaching out to you to set up a time of delivery convenient for you. The artist will cover the cost of shipping and handling. Framing is available upon request; additional charges will apply depending on frame size and weight. If the painting is broken or damaged returns will be covered. An effort will be made to fix the painting but if unable to do so a full reimbursement will be made.
+                                    </p>
+                                
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+          
+                  
+          
+                  </div>
+              </div>
+        </div>
+        
+
+        <div class="modal fade" id="returnInfo" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="triangle"></div>
+              <div class="modal-dialog modal-dialog-centered new-w" role="document">
+                  <div class="modal-content ">
+          
+                      <div class="modal-bod">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="closeNewsletter">
+                              <span aria-hidden="true">×</span>
+                          </button>
+                          <div class="row">
+                            <div class="col-md-12">
+                                <div class="news">
+
+                                    <p v-if="selectedLanguage == 'spanish'">
+                                      La artista tiene un período de devolución de 14 días, a partir del día en que recibe el trabajo. Si la pintura se devuelve en perfectas condiciones, el artista cubrirá el envío y le dará un reembolso completo.
+                                    </p>
+                                    <p v-if="selectedLanguage == 'spanish'">
+                                      ¡Contáctenos para más información!
+                                    </p>
+                                    <p v-if="selectedLanguage == 'english'">
+                                    The Artist will accept returns in a 14 days period starting the day you received the painting. If the painting is returned in perfect condition the artist will cover shipping and give you a full refund
+                                    </p>
+                                    <p v-if="selectedLanguage == 'english'">
+                                    Contact us for additional information.
+                                    </p>
+
+                                    <a href="mailto:aida@aidacaceresart.com">aida@aidacaceresart.com</a>
+                                
+                                </div>
+                            </div>
+                          </div>
+                      </div>
+          
+                  
+          
+                  </div>
+              </div>
+        </div>
+        
+
         <section class="container">
           <div class="atention">
-            <div class="atention-item">
-              <p v-if="selectedLanguage == 'english'">Fast Shipping via DHL or FEDEX (Ground and
-                International)
+            <div class="atention-item" @mouseover="showShippingInfo()">
+              <p v-if="selectedLanguage == 'english'">All national and international shipping will be handled by DHL, time varies depending on destination.
               </p>
-              <p v-if="selectedLanguage == 'spanish'">Envíos rápidos por DHL o FEDex (por tierra o internacionales)
+              <p v-if="selectedLanguage == 'spanish'">Envíos dentro y fuera de Colombia se envían mediante mensajería DHL. Los tiempos de entrega varían según el destino.
               </p>
             </div>
             <div class="atention-item">
-              <p v-if="selectedLanguage == 'english'">Each item includes an oficial certificate of
-                authenticity, date of creation and a personal </p>
-              <p v-if="selectedLanguage == 'spanish'">Cada artículos incluye un certificado de autenticidad, fecha de creación y un personal </p>
+              <p v-if="selectedLanguage == 'english'">Each artwork is original and unique. All paintings will be sent with a certification of authenticity.</p>
+              <p v-if="selectedLanguage == 'spanish'">Cada obra desarrollada por la artista es original y pieza única. Cualquiera que sea el medio, el trabajo se envía al comprador con un certificado de autenticidad. </p>
             </div>
-            <div class="atention-item">
-              <p v-if="selectedLanguage == 'english'">There are no returns, for additional information send an email to sales@aidart.co
-                and we’ll get back to you in less than 4 hours</p>
-              <p v-if="selectedLanguage == 'spanish'">No hay devoluciones, para información adicional envía un correo a sales@aidart.co y nos contactaremos contigo en menos de 4 horas</p>
+            <div class="atention-item" @mouseover="showReturnInfo()">
+              <p v-if="selectedLanguage == 'english'">Returns?</p>
+              <p v-if="selectedLanguage == 'spanish'">Devoluciones?</p>
             </div>
           </div>
         </section>
@@ -154,7 +225,10 @@
                                 <p v-if="selectedLanguage == 'english'">@{{ product.english_name }}</p>
                             </div>
                             <div class="galeria_dimension">
-                                <p v-for="size in product.product_format_sizes">@{{ size.size.width }}cm x @{{ size.size.height }}cm</p>
+                                <p v-for="size in product.product_format_sizes">
+                                  <span v-if="selectedLanguage == 'spanish'">@{{ size.size.width }}cm x @{{ size.size.height }}cm</span>
+                                  <span v-if="selectedLanguage == 'english'">@{{ (size.size.width/2.54).toFixed(2) }}in x @{{ (size.size.height/2.54).toFixed(2) }}in</span>
+                                </p>
                             </div>
                             <img :src="product.image" class="galeria-img" alt="galeria aidaart">
                         
@@ -442,8 +516,13 @@
                 }
             },
             methods: {  
-
-              fetchProducts(){
+              showShippingInfo(){
+                $("#shippingInfo").modal("show");
+              },
+              showReturnInfo(){
+                $("#returnInfo").modal("show");
+              },
+              fetchProducts(){  
 
                 axios.get("{{ url('/home/products') }}").then(res => {
 
