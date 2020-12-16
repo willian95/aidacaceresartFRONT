@@ -146,9 +146,8 @@
                 },
                 deleteCart(){
 
-                    $cart = JSON.parse(window.localStorag.getItem("aida_cart"))
-
-                    axios.post("{{ url('checkout/process') }}", {"paymentId": this.paymentId, "guest": this.guest, "cart": this.productsGuest}, 
+                  
+                    axios.post("{{ url('checkout/process') }}", {"paymentId": this.paymentId}, 
                     { headers: {
                         Authorization: "Bearer "+window.localStorage.getItem('aida_token')
                     }}
