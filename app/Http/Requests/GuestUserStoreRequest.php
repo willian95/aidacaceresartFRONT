@@ -27,7 +27,8 @@ class GuestUserStoreRequest extends FormRequest
             "name" => "required",
             "email" => "required",
             "phone" => "required",
-            "address" => "required"
+            "address" => "required",
+            "country" => "required"
         ];
     }
 
@@ -37,7 +38,8 @@ class GuestUserStoreRequest extends FormRequest
             "name.required" => "Nombre es requerido",
             "email.required" => "Email es requerido",
             "phone.required" => "Teléfono es requerido",
-            "address.required" => "Dirección es requerida"
+            "address.required" => "Dirección es requerida",
+            "country.required" => "País es requerido"
         ];
     }
 }

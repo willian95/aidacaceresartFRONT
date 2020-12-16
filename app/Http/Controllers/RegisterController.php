@@ -23,6 +23,7 @@ class RegisterController extends Controller
             $user->telephone = $request->phone;
             $user->address = $request->address;
             $user->password = bcrypt($request->password);
+            $user->country_id = $request->country;
             $user->role_id = 2;
             $user->register_code = $hash;
             $user->save();

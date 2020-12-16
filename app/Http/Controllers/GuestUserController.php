@@ -15,7 +15,7 @@ class GuestUserController extends Controller
 
             $guest = GuestUser::updateOrCreate(
                 ["email" => $request->email],
-                ["name" => $request->name, "address" => $request->address, "phone" => $request->phone]
+                ["name" => $request->name, "address" => $request->address, "phone" => $request->phone, "country_id" => $request->country]
             );
 
             return response()->json(["success" => true, "guest" => $guest]);

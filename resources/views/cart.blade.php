@@ -20,7 +20,7 @@
                         <table class="items-content">
                             <div id="accordion">
                                 <!---2----->
-                                <div class="" v-if="isAuth != ''">
+                                <div class="">
                                   <div  id="headingTwo">
                                     <h5 class="mb-0">
                                       <button class="btn btn-link collapsed p-0" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -42,23 +42,42 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="name"><i class="fa fa-user icon_form"></i></i> </label>
-                                                    <input type="text" placeholder="Nombre" class="form-control" v-model="guestName" id="name">
+                                                    <input type="text" v-if="selectedLanguage == 'spanish'" placeholder="Nombre" class="form-control" v-model="guestName" id="name" :readonly="isAuth.length > 0">
+                                                    <input type="text" v-if="selectedLanguage == 'english'" placeholder="Name" class="form-control" v-model="guestName" id="name" :readonly="isAuth.length > 0">
+                                                    <small v-if="errors.hasOwnProperty('name')">@{{ errors['name'][0] }}</small>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                             
                                                 <div class="form-group">
                                                     <label for="email"><i class="fa fa-envelope icon_form"></i></label>
-                                                    <input type="text" placeholder="Email" class="form-control" v-model="guestEmail" id="email">
+                                                    <input type="text" placeholder="Email" class="form-control" v-model="guestEmail" id="email" :readonly="isAuth.length > 0">
+                                                    <small v-if="errors.hasOwnProperty('email')">@{{ errors['email'][0] }}</small>
                                                 </div>
                             
                                             </div>
                                         </div>
-                                        <div class="">
+                                        <div class="row">
                             
-                                            <div class="form-group">
-                                                <label for="dirección"><i class="fa fa-globe icon_form"></i></label>
-                                                <input type="text" placeholder="Dirección" class="form-control" v-model="guestAddress" id="dirección">
+                                            <div class="col-md-8">
+                                                <div class="form-group">
+                                                    <label for="dirección"><i class="fa fa-globe icon_form"></i></label>
+                                                    <input type="text" v-if="selectedLanguage == 'spanish'" placeholder="Dirección" class="form-control" v-model="guestAddress" id="dirección" :readonly="isAuth.length > 0">
+                                                    <input type="text" v-if="selectedLanguage == 'english'" placeholder="Address" class="form-control" v-model="guestAddress" id="dirección" :readonly="isAuth.length > 0">
+                                                    <small v-if="errors.hasOwnProperty('address')">@{{ errors['address'][0] }}</small>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label for="dirección"><i class="fa fa-globe icon_form"></i></label>
+                                                    <select class="form-control" v-model="guestCountry" :disabled="isAuth.length > 0">
+                                                        <option value="" v-if="selectedLanguage == 'spanish'">País</option>
+                                                        <option value="" v-if="selectedLanguage == 'english'">Country</option>
+                                                        <option :value="country.id" v-for="country in countries">@{{ country.name }}</option>
+                                                    </select>
+                                                    <small v-if="errors.hasOwnProperty('country')">@{{ errors['country'][0] }}</small>
+                                                </div>
                                             </div>
                             
                                         </div>
@@ -67,7 +86,9 @@
                             
                                                 <div class="form-group">
                                                     <label for="phone"><i class="fa fa-phone icon_form"></i></label>
-                                                    <input type="text" placeholder="Teléfono" class="form-control" v-model="guestPhone" id="phone" @keypress="isNumber($event)">
+                                                    <input type="text" v-if="selectedLanguage == 'spanish'" placeholder="Teléfono" class="form-control" v-model="guestPhone" id="phone" @keypress="isNumber($event)" :readonly="isAuth.length > 0">
+                                                    <input type="text" v-if="selectedLanguage == 'english'" placeholder="Phone" class="form-control" v-model="guestPhone" id="phone" @keypress="isNumber($event)" :readonly="isAuth.length > 0">
+                                                    <small v-if="errors.hasOwnProperty('phone')">@{{ errors['phone'][0] }}</small>
                                                 </div>
                             
                                             </div>
@@ -216,10 +237,13 @@
                     productsGuest:[],
                     exchangeRate:1,
                     intervalID:null,
+                    guestCountry:"",
+                    countries:[],
                     guestName:"",
                     guestEmail:"",
                     guestAddress:"",
-                    guestPhone:""
+                    guestPhone:"",
+                    errors:[]
                 }
             },
             methods: {
@@ -335,20 +359,51 @@
                         }
                         
                     }else{
+
                         axios.post("{{ url('/checkout/encrypt-price-currency') }}", {price: this.total, currency: this.selectedCurrency}).then(res =>{
                             var price = res.data.price
                             var currency = res.data.currency
                             if(window.localStorage.getItem('aida_token') !=null){
                                 
-                                axios.get("{{ url('/checkout/encrypt-user') }}", { headers: {
-                                    Authorization: "Bearer "+window.localStorage.getItem('aida_token')
-                                }}).then(res => {
-                                    var userId = res.data.userId
-                                    this.openChildWindow(price, currency, userId)
-                                })
+                                if(this.guestCountry == ""){
+
+                                    if(this.selectedLanguage == "english"){
+                                        alertify.error("You have to select a country in your profile")
+                                    }else{
+                                        alertify.error("Debes seleccionar un país en tu perfil")
+                                    }
+
+                                }else if(this.guestTelephone == ""){
+
+                                    if(this.selectedLanguage == "english"){
+                                        alertify.error("You have to set a telephone number in your profile")
+                                    }else{
+                                        alertify.error("Debes agregar un número de teléfono en tu perfil")
+                                    }
+
+                                }else if(this.guestAddress == ""){
+
+                                    if(this.selectedLanguage == "english"){
+                                        alertify.error("You have to set an address in your profile")
+                                    }else{
+                                        alertify.error("Debes agregar una dirección en tu perfil")
+                                    }
+
+                                }else{
+
+                                    axios.get("{{ url('/checkout/encrypt-user') }}", { headers: {
+                                        Authorization: "Bearer "+window.localStorage.getItem('aida_token')
+                                    }}).then(res => {
+                                        var userId = res.data.userId
+                                        this.openChildWindow(price, currency, userId)
+                                    })
+
+                                }
+
+                                
                             }else{
 
-                                axios.post("{{ url('/guest/store') }}", {"name": this.guestName, "email": this.guestEmail, "phone": this.guestPhone, "address": this.guestAddress}).then(res => {
+                                axios.post("{{ url('/guest/store') }}", {"name": this.guestName, "email": this.guestEmail, "phone": this.guestPhone, "address": this.guestAddress, "country": this.guestCountry}).then(res => {
 
                                     axios.post("{{ url('/checkout/encrypt-guest-user') }}", {"user_id": res.data.guest.id}).then(res => {
 
@@ -358,6 +413,16 @@
 
                                     })
 
+                                })
+                                .catch(err => {
+
+                                    if(this.selectedLanguage == "english"){
+                                        alertify.error("You have some fields that you should check")
+                                    }else{
+                                        alertify.error("Tienes unos campos que deberías verificar")
+                                    }
+
+                                    this.errors = err.response.data.errors
                                 })
 
                             }
@@ -375,6 +440,19 @@
                             window.location.reload()
                         }
                     }
+                },
+                fetchCountries(){
+
+                    axios.get("{{ url('/countries/fetch') }}").then(res => {
+
+                        this.countries = res.data.countries
+                        if(this.isAuth.length > 0){
+                            let user = JSON.parse(window.localStorage.getItem("aida_user"))
+                            this.guestCountry = user.country_id
+                        }
+                        
+                    })
+
                 }
                 
             },
@@ -396,9 +474,27 @@
                 }else{
                     this.selectedCurrency = window.localStorage.getItem("aida_currency")
                 }
+                this.fetchCountries()
                 this.isAuth = window.localStorage.getItem("aida_token")
+
+                if(this.isAuth == null){
+                    this.isAuth = ""
+                }
+
+                if(this.isAuth.length > 0){
+                    let user = JSON.parse(window.localStorage.getItem("aida_user"))
+                
+                    this.guestName = user.name
+                    this.guestEmail = user.email
+                    this.guestAddress = user.address
+                    //this.guestCountry = user.country_id
+                    this.guestPhone = user.telephone
+            
+                }
                 this.getFetchExchangeRate()
-            }
+                
+            },
+            
             
         })
          

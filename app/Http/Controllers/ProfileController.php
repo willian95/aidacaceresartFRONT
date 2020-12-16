@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Request\ProfileRequest;
+use App\Http\Requests\ProfileRequest;
 use App\User;
 use JWTAuth;
 
@@ -26,9 +26,10 @@ class ProfileController extends Controller
 
             $profile = User::find($user->id);
             $profile->name = $request->name;
-            $profile->phone = $request->phone;
+            $profile->telephone = $request->phone;
             $profile->email = $request->email;
             $profile->address = $request->address;
+            $profile->country_id = $request->country;
             $profile->update();
 
             return response()->json(["success" => true, "msg" => "Perfil actualizado"]);

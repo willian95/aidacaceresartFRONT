@@ -12,5 +12,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(DolarPriceSeeder::class);
+        $this->call(CountriesSeeder::class);
     }
 }

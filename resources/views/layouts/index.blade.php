@@ -141,7 +141,7 @@
                                 </a>
                                 <div aria-labelledby='dropdownMenuButton' class='dropdown-menu' id="userMenu">
                                     <div class='content-drop'>
-                                        <a class='dropdown-item' href='#'>
+                                        <a class='dropdown-item' href="{{ url('/profile') }}">
                                             <p v-if="selectedLanguage == 'english'">Profile</p>
                                             <p v-if="selectedLanguage == 'spanish'">Perfil</p>
                                         </a>
@@ -215,7 +215,15 @@
                                                 </div>
                                               </div>
                                               <div class="row">
-                                                  <div class="col-md-12 form-group">
+                                                <div class="col-md-4 form-group">
+                                                    <select class="form-control" v-model="country">
+                                                        <option value="" v-if="selectedLanguage == 'spanish'">País</option>
+                                                        <option value="" v-if="selectedLanguage == 'english'">Country</option>
+                                                        <option :value="country.id" v-for="country in countries">@{{ country.name }}</option>
+                                                    </select>
+                                                    <small v-if="errors.hasOwnProperty('country')">@{{ errors['country'][0] }}</small>
+                                                </div>
+                                                  <div class="col-md-8 form-group">
                                                     <input placeholder="Dirección" type="text" class="form-control" v-model="address" v-if="selectedLanguage == 'spanish'">
                                                     <input placeholder="Address" type="text" class="form-control" v-model="address" v-if="selectedLanguage == 'english'">
                                                     <i class="fa fa-globe icon_form"></i>
@@ -749,6 +757,8 @@
                         phone: "",
                         dni: "",
                         address: "",
+                        countries:[],
+                        country:"",
                         errors:"",
                         errorsLogin:"",
                         emailLogin: "",
@@ -772,6 +782,15 @@
                             return true;
                         }
                     },
+                    fetchCountries(){
+
+                        axios.get("{{ url('/countries/fetch') }}").then(res => {
+
+                            this.countries = res.data.countries
+
+                        })
+
+                    },
                     register() {
 
                         axios.post("{{ url('/register') }}", {
@@ -781,7 +800,8 @@
                             password_confirmation: this.password_confirmation,
                             phone: this.phone,
                             dni: this.dni,
-                            address: this.address
+                            address: this.address,
+                            country: this.country
                         }).then(res => {
 
                             if (res.data.success == true) {
@@ -797,6 +817,7 @@
                                 this.password_confirmation = ""
                                 this.phone = ""
                                 this.dni = ""
+                                this.country = ""
                                 this.address = ""
 
                                 $("#registerModalClose").click();
@@ -891,6 +912,8 @@
                     }else{
                         this.selectedLanguage = window.localStorage.getItem("aida_language")
                     }
+
+                    this.fetchCountries()
                     
 
                 }
@@ -918,6 +941,7 @@
                         window.localStorage.removeItem("aida_token")
                         window.localStorage.removeItem("aida_cart")
                         this.authCheck = false
+                        window.location.reload()
                     },
                     toggleUserMenu(){
 

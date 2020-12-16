@@ -232,7 +232,8 @@
                             this.total = this.total + data.price
                         })
 
-                       
+                        this.deleteGuestCart()
+
                         window.localStorage.removeItem("aida_cart")
                     })
 
