@@ -448,7 +448,12 @@
                         this.countries = res.data.countries
                         if(this.isAuth.length > 0){
                             let user = JSON.parse(window.localStorage.getItem("aida_user"))
-                            this.guestCountry = user.country_id
+                            if(user.hasOwnProperty('country_id')){
+                                this.guestCountry = user.country_id
+                            }else{
+                                this.guestCountry = ""
+                            }
+                            
                         }
                         
                     })
