@@ -116,7 +116,7 @@
                             })
 
 
-                            window.localStorage.setItem("aida_user", JSON.stringify({name: this.name, email: this.email, address: this.address, telephone: this.phone, country_id: this.country, dni: this.dni, role_id: }))
+                            window.localStorage.setItem("aida_user", JSON.stringify({name: this.name, email: this.email, address: this.address, telephone: this.phone, country_id: this.country, dni: this.dni, role_id: this.role_id}))
 
                         }else{
 
