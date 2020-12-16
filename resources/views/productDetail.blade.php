@@ -279,9 +279,9 @@
         @endphp
 
         @if($size->width > 80 || $size->height > 80)
-        <img class="img-escala" src="{{ $product->image }}" alt="" style="width: 75px;
-    margin-top: -18px;
-    margin-left: 32%;">
+        <img class="img-escala" src="{{ $product->image }}" alt="" style="width: 140px;
+    margin-top: 0px;
+    margin-left: 13%;">
         <img alt='' src='{{ asset('assets/img/fondos/fondo-grande.png') }}'>
         @elseif($size->width > 36 && $size->height > 40)
         <img class="img-escala" src="{{ $product->image }}" alt="" style="width: 75px;
