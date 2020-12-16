@@ -277,11 +277,11 @@
         @endphp
 
         @if($size->width > 80 || $size->height > 80)
-        <img alt='' src='{{ asset('assets/img/fondos/fondo-grande.jpg') }}'>
+        <img alt='' src='{{ asset('assets/img/fondos/fondo-grande.png') }}'>
         @elseif($size->width > 36 && $size->height > 40)
-        <img alt='' src='{{ asset('assets/img/fondos/fondo-mediano.jpg') }}'>
+        <img alt='' src='{{ asset('assets/img/fondos/fondo-mediano.png') }}'>
         @else
-        <img alt='' src='{{ asset('assets/img/fondos/fondo-pequeno.jpg') }}'>
+        <img alt='' src='{{ asset('assets/img/fondos/fondo-pequeno.png') }}'>
         @endif
       </div>
       <!-- fondo 1 -->
