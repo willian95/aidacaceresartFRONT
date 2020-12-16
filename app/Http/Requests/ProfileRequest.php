@@ -25,9 +25,22 @@ class ProfileRequest extends FormRequest
     {
         return [
             "name" => "required",
-            "email" => "required",
+            "email" => "required|email",
             "phone" => "required",
-            "address" => "required"
+            "address" => "required",
+            "country" => "required"
+        ];
+    }
+
+    public function message()
+    {
+        return [
+            "country.required" => "País es requerido",
+            "name.required" => "Nombre es requerido",
+            "email.required" => "Email es requerido",
+            "email.email" => "Email no es válido",
+            "phone.required" => "Teléfono es requerido",
+            "address.required" => "Dirección es requerido"
         ];
     }
 }

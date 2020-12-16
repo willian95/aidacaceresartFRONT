@@ -24,10 +24,12 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
+            "country" => "required",
             "name" => "required",
             "email" => "required|email|unique:users",
             "phone" => "required",
             "address" => "required",
+            "dni" => "required",
             "password" => "required|confirmed|min:8"
         ];
     }
@@ -35,6 +37,8 @@ class RegisterRequest extends FormRequest
     public function messages(){
 
         return[
+            "country.required" => "País es requerido",
+            "dni.required" => "DNI es requerido",
             "name.required" => "Nombre es requerido",
             "email.required" => "Email es requerido",
             "email.email" => "Email no es válido",

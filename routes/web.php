@@ -94,3 +94,5 @@ Route::get('/paypal/status', 'CheckoutController@payPalStatus');
 Route::post("/guest/store", "GuestUserController@store");
 
 Route::post("/newsletter-subscribe", "SubcribeController@store");
+
+Route::get("/countries/fetch", "CountryController@fetchCountries");
