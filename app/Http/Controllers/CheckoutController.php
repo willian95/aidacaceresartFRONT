@@ -198,6 +198,16 @@ class CheckoutController extends Controller
 
                 });
 
+                foreach(App\AdminMail::all() as $adminMail){
+                    $to_email = $adminMail->email;
+                    \Mail::send("emails.purchaseEmail", $data, function($message) use ($to_name, $to_email) {
+
+                        $message->to($to_email, $to_name)->subject("¡Un cliente realizó una compra en Aidacaceresart.com!");
+                        $message->from(env("MAIL_FROM_ADDRESS"), env("MAIL_FROM_NAME"));
+    
+                    });
+                }
+
                 Cart::where("user_id", $user->id)->delete();
             }
 
@@ -241,6 +251,17 @@ class CheckoutController extends Controller
                     $message->from(env("MAIL_FROM_ADDRESS"), env("MAIL_FROM_NAME"));
 
                 });
+
+                foreach(App\AdminMail::all() as $adminMail){
+                    $to_email = $adminMail->email;
+                    \Mail::send("emails.purchaseEmail", $data, function($message) use ($to_name, $to_email) {
+
+                        $message->to($to_email, $to_name)->subject("¡Un cliente realizó una compra en Aidacaceresart.com!");
+                        $message->from(env("MAIL_FROM_ADDRESS"), env("MAIL_FROM_NAME"));
+    
+                    });
+                }
+
             }
 
         }catch(\Exception $e){
