@@ -268,7 +268,21 @@
        <!-- fondo 1 -->
       <div class="modal-bodys position-relative">
         <img class="img-escala" src="{{ $product->image }}" alt="">
-        <img alt='' src='{{ asset('assets/img/fondos/Fondo Cuadros Grandes.jpg') }}'>
+
+        @php
+            
+          $sizeId = App\ProductFormatSize::where("product_id", $product->id)->first()->size_id;
+          $size = App\Size::where("id", $sizeId)->first();
+
+        @endphp
+
+        @if($size->width > 80 || $size->height > 80)
+        <img alt='' src='{{ asset('assets/img/fondos/fondo-grande.jpg') }}'>
+        @elseif($size->width > 36 && $size->height > 40)
+        <img alt='' src='{{ asset('assets/img/fondos/fondo-mediano.jpg') }}'>
+        @else
+        <img alt='' src='{{ asset('assets/img/fondos/fondo-pequeño.jpg') }}'>
+        @endif
       </div>
       <!-- fondo 1 -->
      
