@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Crypt;
 use App\GuestUser;
 use JWTAuth;
 use Config;
+use App\AdminMail;
 
 class CheckoutController extends Controller
 {
