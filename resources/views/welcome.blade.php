@@ -103,16 +103,68 @@
         <section>
             <div class="main_pagos">
                 <ul>
-                    <li v-if="selectedLanguage == 'spanish'">Pago Seguros! Via </li>
+                    
+                    <li v-if="selectedLanguage == 'spanish'"  @mouseover="modalpago()"> Pagos seguros y garantizados  </li>
                     <li v-if="selectedLanguage == 'english'">Safety payments by!</li>
-                    <li class=" mr-5"><img src="assets/img/iconos/stripe.png" alt=""> <img
-                            src="assets/img/iconos/enviado.svg" alt=""></li>
-                    <li class="w-200" v-if="selectedLanguage == 'spanish'"> Envios Nacionales e
-                        Internacionales Rápidos! </li>
-                    <li class="w-200" v-if="selectedLanguage == 'english'">Fast National & International Shippings!</li>
+<li>
+    <img class="img-pago" src="https://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c530.png" alt=""> 
+    <img class="img-pago"  src="http://imgfz.com/i/mufyBjh.png" alt="">
+</li>
+                   
+                    <li class="w-200" v-if="selectedLanguage == 'spanish'" @mouseover="modaldhl()"> Envíos nacionales e internacionales por DHL! </li>
+                    <li class="w-200" v-if="selectedLanguage == 'english'">National & International Shipping via DHL!</li>
                 </ul>
             </div>
         </section>
+
+
+
+
+
+<!-- Modalpago -->
+<div class="modal fade" id="modalpago" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+       
+        <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              Puede pagar con<strong>  PayPal, tarjeta de crédito o transferencia bancaria.</strong>
+            Para todas las transacciones más allá de su límite de crédito, contáctenos en <a href="mailto:aida@aidacaceresart.com"><strong>aida@aidacaceresart.com</strong></a> <br>
+            Estamos para resolver cualquier duda que se presente.
+
+
+        </div>
+      
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="modaldhl" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+       
+        <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            <p v-if="selectedLanguage == 'english'"><strong>All national and international shipping will be handled by DHL, time varies depending on destination.</strong>
+            </p>
+            <p v-if="selectedLanguage == 'spanish'"><strong>Envíos dentro y fuera de Colombia se envían mediante mensajería DHL. Los tiempos de entrega varían según el destino.</strong>
+            </p>
+
+   
+            <p>Cada obra es cuidadosamente empacada por la artista, garantizando que cada cuadro llegue intacto a su destino. El trabajo se confía a un proveedor de servicios especializado reconocido y dé alcance internacional. Se organizará un tiempo de entrega entre usted y el operador logístico, el trabajo se entregará a la dirección indicada en el momento del pedido. Actualmente, la artista paga los costos de embalaje y entrega del trabajo. Los costos de envío solo se facturarán si el cliente solicitó expresamente que se enmarque la obra (debido a un peso adicional), o si el destino de la entrega no está cubierto por nuestro aliado de envío y el uso de un proveedor diferente, no preferencial las tasas son obligatorias. Si el trabajo llegara roto o dañado, la artista pagará los costes de devolución y gestionará cualquier compensación entre la artista y el comprador. Si el trabajo no puede ser reparado o restaurado, el cliente será reembolsado inmediatamente.</p>
+
+        </div>
+      
+      </div>
+    </div>
+  </div>
+
+
+
+
         <!----PAGO SEGURP----->
 
         {{--<div class="modal fade" id="mostrarmodal"  style="padding-right: 8px; display: block;" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -152,7 +204,7 @@
             </div>--}}
 
             <div class="modal fade" id="mostrarModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="triangle"></div>
+              <!---  <div class="triangle"></div>-->
                 <div class="modal-dialog modal-dialog-centered new-w" role="document">
                     <div class="modal-content ">
             
@@ -220,6 +272,12 @@
                 }
             },
             methods: {
+                modalpago(){
+                $("#modalpago").modal("show");
+              },
+              modaldhl(){
+                $("#modaldhl").modal("show");
+              },
 
                 fetchProducts(){
 

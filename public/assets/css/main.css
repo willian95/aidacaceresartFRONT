@@ -601,7 +601,7 @@ div#galeria:hover img:hover {
 }
 
 .main_pagos img {
-    width: 75px;
+    width: 138px;
     margin-left: 50px;
 }
 
@@ -1094,7 +1094,7 @@ a:hover .fa-angle-right {
     max-width: 600px !important;
 }
 
-.triangle {
+/*.triangle {
     position: absolute;
     width: 50px;
     height: 50px;
@@ -1103,7 +1103,7 @@ a:hover .fa-angle-right {
     top: 23%;
     transform: rotate(45deg);
     z-index: 1;
-}
+}*/
 
 .footer {
     display: flex;
@@ -1216,3 +1216,63 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
     left: 30%;
     top: 20%;
 }
+#otherInfo .news {
+
+    padding:15px;
+    height: auto;
+    text-align: start;
+}
+.img-height{
+    height: 50vh;
+}
+.modal-content {
+  
+    border: 0;
+}
+.pswp__ui--fit .pswp__top-bar, .pswp__ui--fit .pswp__caption {
+    background-color: transparent!important;
+}
+
+
+
+
+
+#img-zoomer-box {
+    width: 500px;
+    height: auto;
+    position: relative;
+    margin-top: 10px;
+  }
+  
+  #img1 {
+    width: 100%;
+    height: auto;
+  }
+  
+  #img-zoomer-box:hover, #img-zoomer-box:active {
+    cursor: zoom-in;
+    display: block;
+  }
+  
+  #img-zoomer-box:hover #img2, #img-zoomer-box:active #img2 {
+    opacity: 1;
+  }
+  #img2 {
+    width: 340px;
+    height: 340px;
+  
+   
+    pointer-events: none;
+    position: absolute;
+    opacity: 0;
+    border: 4px solid whitesmoke;
+    z-index: 99;
+    border-radius: 100%;
+    display: block;
+    transition: opacity .2s;
+  }
+  .img-pago{
+    width: 150px;
+    height: 50px;
+    object-fit: cover;
+  }

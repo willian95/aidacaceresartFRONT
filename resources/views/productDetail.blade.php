@@ -11,15 +11,21 @@
                 <div class="main-banner_item main-detalle_item">
                   <a href="{{ $product->image }}" data-size="1600x1068" data-author=""
                     data-med="{{ $product->image }}" data-med-size="1024x683">
-                    <img src="{{ $product->image }}" alt="">
+                  
+                    <div id="img-zoomer-box">
+                      <img class="img-height" src="{{ $product->image }}" alt="" id="img1" >
+                      <div id="img2" style="  background: url('{{ $product->image }}') no-repeat #FFF;"></div>
+                    </div>
+                      
                   </a>
                 </div>
               </div>
 
               <div class="iconos_detalle text-center">
                 <i class="flaticon-eye-variant-with-enlarged-pupil" id="scaleText" data-toggle="modal" data-target="#escala">Scale View</i>
-                <i class="flaticon-zoom-in-1" id="zoomText">Zoom/Better
+                <i class="flaticon-zoom-in-1" id="zoomText">Zoom/Better 
                   View</i>
+
               </div>
             </div>
             <!---col-md-6---->
@@ -32,11 +38,11 @@
                       <div class="main-top__title">
                         <p v-if="selectedLanguage == 'spanish'">{{ $product->name }} </p>
                         <p v-if="selectedLanguage == 'english'">{{ $product->english_name }} </p>
-                        <span v-if="selectedLanguage == 'english'"> by Aida</span>
-                        <span v-if="selectedLanguage == 'spanish'"> por Aida</span>
+                        <span v-if="selectedLanguage == 'english'"> By Aida</span>
+                        <span v-if="selectedLanguage == 'spanish'"> Por Aida</span>
                       </div>
                       <div class="row">
-                        <div class="col-md-6 p-0 flex-center">
+                        <div class="col-md-6 p-0 ">
                           <div class="main-top__description">
                             <p v-if="selectedLanguage == 'spanish'">{{ $product->description }}</p>
                             <p v-if="selectedLanguage == 'english'">{{ $product->english_description }}</p>
@@ -60,11 +66,7 @@
                           <div class="main-top__price">
                             <p>$ @{{ number_format(price * exchangeRate, 2, ",", ".") }} </p>
                           </div>
-                          <div class="text-center main-top__btn ">
-                            <a class="btn-custom mr-4"  @click="addToCart()">
-                              <span v-if="selectedLanguage == 'english'">Buy</span> <span v-if="selectedLanguage == 'spanish'">Comprar</span> <i class="fa fa-angle-right" aria-hidden="true"></i>
-                            </a>
-                          </div>
+                        
                         </div>
                       </div>
 
@@ -104,7 +106,11 @@
                             50 x 70
                           </label>
                         </div>--}}
-
+                        <div class="text-center main-top__btn ml-auto mr-4">
+                          <a class="btn-custom mr-4"  @click="addToCart()">
+                            <span v-if="selectedLanguage == 'english'">Buy</span> <span v-if="selectedLanguage == 'spanish'">Comprar</span> <i class="fa fa-angle-right" aria-hidden="true"></i>
+                          </a>
+                        </div>
                       </div>
 
                     </div>
@@ -122,7 +128,7 @@
       <div id="otherInfo">
 
       <div class="modal fade" id="shippingInfo" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="triangle"></div>
+          <!--- <div class="triangle"></div>--->
               <div class="modal-dialog modal-dialog-centered new-w" role="document">
                   <div class="modal-content ">
           
@@ -196,18 +202,30 @@
         <section class="container">
           <div class="atention">
             <div class="atention-item" @mouseover="showShippingInfo()">
-              <p v-if="selectedLanguage == 'english'">All national and international shipping will be handled by DHL, time varies depending on destination.
+              <p v-if="selectedLanguage == 'english'">
+              
+                <img class="img-pago"  src="http://imgfz.com/i/mufyBjh.png" alt=""><br>
+                All national and international shipping will be handled by DHL, time varies depending on destination.
               </p>
-              <p v-if="selectedLanguage == 'spanish'">Envíos dentro y fuera de Colombia se envían mediante mensajería DHL. Los tiempos de entrega varían según el destino.
+              <p v-if="selectedLanguage == 'spanish'">
+                <img class="img-pago"  src="http://imgfz.com/i/mufyBjh.png" alt=""> <br>
+                Envíos dentro y fuera de Colombia se envían mediante mensajería DHL. Los tiempos de entrega varían según el destino.
               </p>
             </div>
             <div class="atention-item">
               <p v-if="selectedLanguage == 'english'">Each artwork is original and unique. All paintings will be sent with a certification of authenticity.</p>
-              <p v-if="selectedLanguage == 'spanish'">Cada obra desarrollada por la artista es original y pieza única. Cualquiera que sea el medio, el trabajo se envía al comprador con un certificado de autenticidad. </p>
+              <p v-if="selectedLanguage == 'spanish'">
+                <img class="img-pago" style="object-fit: contain;"  src="http://imgfz.com/i/EOhGH12.png" alt=""> <br>
+                Cada obra desarrollada por la artista es original y pieza única. Cualquiera que sea el medio, el trabajo se envía al comprador con un certificado de autenticidad. </p>
             </div>
             <div class="atention-item" @mouseover="showReturnInfo()">
-              <p v-if="selectedLanguage == 'english'">Returns?</p>
-              <p v-if="selectedLanguage == 'spanish'">Devoluciones?</p>
+              <p v-if="selectedLanguage == 'english'">
+                <img class="img-pago" src="http://imgfz.com/i/9dtPeXp.png" alt=""> <br>
+                Returns?</p>
+              <p v-if="selectedLanguage == 'spanish'">
+                <img class="img-pago" style="    height: 68px;
+                object-fit: contain;" src="http://imgfz.com/i/9dtPeXp.png" alt=""> <br>
+                Devoluciones?</p>
             </div>
           </div>
         </section>
