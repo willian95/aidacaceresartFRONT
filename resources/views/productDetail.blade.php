@@ -281,7 +281,7 @@
         @elseif($size->width > 36 && $size->height > 40)
         <img alt='' src='{{ asset('assets/img/fondos/fondo-mediano.jpg') }}'>
         @else
-        <img alt='' src='{{ asset('assets/img/fondos/fondo-pequeño.jpg') }}'>
+        <img alt='' src='{{ asset('assets/img/fondos/fondo-pequeno.jpg') }}'>
         @endif
       </div>
       <!-- fondo 1 -->
