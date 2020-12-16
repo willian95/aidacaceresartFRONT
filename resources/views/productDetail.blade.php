@@ -267,7 +267,9 @@
     <div class="modal-content">
        <!-- fondo 1 -->
       <div class="modal-bodys position-relative">
-        <img class="img-escala" src="{{ $product->image }}" alt="">
+        
+
+        
 
         @php
             
@@ -281,6 +283,9 @@
         @elseif($size->width > 36 && $size->height > 40)
         <img alt='' src='{{ asset('assets/img/fondos/fondo-mediano.png') }}'>
         @else
+        <img class="img-escala" src="{{ $product->image }}" alt="" style="width: 50px;
+    margin-top: -35px;
+    margin-left: 15%;">
         <img alt='' src='{{ asset('assets/img/fondos/fondo-pequeno.png') }}'>
         @endif
       </div>
