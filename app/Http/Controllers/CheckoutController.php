@@ -199,7 +199,7 @@ class CheckoutController extends Controller
 
                 });
 
-                foreach(App\AdminMail::all() as $adminMail){
+                foreach(AdminMail::all() as $adminMail){
                     $to_email = $adminMail->email;
                     \Mail::send("emails.purchaseEmail", $data, function($message) use ($to_name, $to_email) {
 
@@ -253,7 +253,7 @@ class CheckoutController extends Controller
 
                 });
 
-                foreach(App\AdminMail::all() as $adminMail){
+                foreach(AdminMail::all() as $adminMail){
                     $to_email = $adminMail->email;
                     \Mail::send("emails.purchaseEmail", $data, function($message) use ($to_name, $to_email) {
 
