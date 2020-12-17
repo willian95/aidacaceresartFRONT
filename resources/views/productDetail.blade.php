@@ -370,7 +370,8 @@
 
                 })
 
-                this.selectSize = this.sizes[0]
+                this.formatSize = this.formatSizes[0].id
+                this.selectSize = this.sizes[0].id
                 this.setPrice()
 
               },
