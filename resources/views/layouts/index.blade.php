@@ -67,11 +67,11 @@
                                 </a>
                                 <div aria-labelledby='dropdownMenuButton' class='dropdown-menu' id="currencyMenu">
                                     <div class='content-drop'>
-                                        <a class='dropdown-item' href='#' v-if="selectedCurrency == 'COP'" @click="setCurrency('USD')">
+                                        <a class='dropdown-item' href='#' v-if="selectedCurrency == 'COP'" @click="setCurrency('USD')" style="margin-top: 24px;">
                                             <p> USD</p>
                                         </a>
 
-                                        <a class='dropdown-item' href='#' v-else @click="setCurrency('COP')">
+                                        <a class='dropdown-item' href='#' v-else @click="setCurrency('COP')" style="margin-top: 24px;">
                                             <p> COP</p>
                                         </a>
                                     </div>
@@ -79,7 +79,7 @@
                             </li>
                             <li class='nav-item dropdown dowms' >
                                 <a href='#' aria-expanded='false' aria-haspopup='true'
-                                    class='nav-link dropdown-toggle nav-link-black ' data-toggle='dropdown' @click="toggleLanguageMenu()">
+                                    class='nav-link dropdown-toggle nav-link-black ' data-toggle='dropdown' @click="toggleLanguageMenu()" style="margin-top: 24px;">
                                     <span v-if="selectedLanguage == 'spanish'">
                                         ES
                                     </span>
