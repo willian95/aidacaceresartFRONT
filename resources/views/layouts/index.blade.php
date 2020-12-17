@@ -65,7 +65,7 @@
                                         COP
                                     </span>
                                 </a>
-                                <div aria-labelledby='dropdownMenuButton' class='dropdown-menu' id="currencyMenu">
+                                <div aria-labelledby='dropdownMenuButton' class='dropdown-menu' id="currencyMenu" style="margin-top: 24px;">
                                     <div class='content-drop'>
                                         <a class='dropdown-item' href='#' v-if="selectedCurrency == 'COP'" @click="setCurrency('USD')">
                                             <p> USD</p>
@@ -90,7 +90,7 @@
                                     <!---<i class="flaticon-translation"></i>--->
 
                                 </a>
-                                <div aria-labelledby='dropdownMenuButton' class='dropdown-menu' id="languageMenu">
+                                <div aria-labelledby='dropdownMenuButton' class='dropdown-menu' id="languageMenu" style="margin-top: 24px;">
                                     <div class='content-drop'>
                                         <a class='dropdown-item' href='#' v-if="selectedLanguage == 'spanish'" @click="setLanguage('english')">
                                             <p> EN</p>
