@@ -190,11 +190,16 @@ class CheckoutController extends Controller
                 
                 $to_name = $user->name;
                 $to_email = $user->email;
-                $data = ["user" => $user, "products" => $products];
+                $data = ["user" => $user, "products" => $products, "language" => $language];
+                $language = $request->language;
 
-                \Mail::send("emails.purchaseEmail", $data, function($message) use ($to_name, $to_email) {
+                \Mail::send("emails.purchaseEmail", $data, function($message) use ($to_name, $to_email, $language) {
 
-                    $message->to($to_email, $to_name)->subject("¡Haz realizado una compra en Aidacaceresart.com!");
+                    if($language == "spanish"){
+                        $message->to($to_email, $to_name)->subject("¡Haz realizado una compra en Aidacaceresart.com!");
+                    }else{
+                        $message->to($to_email, $to_name)->subject("Purchase confirmation at Aida E-Gallery!");
+                    }
                     $message->from(env("MAIL_FROM_ADDRESS"), env("MAIL_FROM_NAME"));
 
                 });
@@ -247,7 +252,7 @@ class CheckoutController extends Controller
                 $language = $request->language;
                 $data = ["user" => $user, "products" => $products, "language" => $language, "payment" => $payment];
 
-                dump([$products]);
+                //dump([$products]);
 
                 \Mail::send("emails.guestPurchaseEmail", $data, function($message) use ($to_name, $to_email, $language) {
 
