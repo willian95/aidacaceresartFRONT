@@ -959,7 +959,9 @@
 
                         if($("#languageMenu").hasClass("show")){
                             $("#languageMenu").removeClass("show")
+                           
                         }else{
+                            $("#currencyMenu").removeClass("show")
                             $("#languageMenu").addClass("show")
                         }
 
@@ -968,7 +970,9 @@
 
                         if($("#currencyMenu").hasClass("show")){
                             $("#currencyMenu").removeClass("show")
+                            
                         }else{
+                            $("#languageMenu").removeClass("show")
                             $("#currencyMenu").addClass("show")
                         }
 
