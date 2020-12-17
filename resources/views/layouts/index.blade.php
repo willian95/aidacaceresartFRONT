@@ -926,9 +926,9 @@
           
         </script>
 
-        @if(isset($token))
+        @if(Session::get('token'))
             <script>
-                alert("{{ $token }}")
+                alert("{{ Session::get('token') }}")
             </script>
         @endif
 
