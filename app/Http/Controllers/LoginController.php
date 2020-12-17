@@ -27,7 +27,7 @@ class LoginController extends Controller
             return response()->json(["success" => false, "msg" => "Aún no has validado tu cuenta"]);
         }
 
-        return response()->json(["success" => true, "msg" => "Has ingresado","token" => $token, "user" => $user]);
+        return response()->json(["success" => true, "msg" => "Haz ingresado","token" => $token, "user" => $user]);
     }
     public function getAuthenticatedUser()
     {
