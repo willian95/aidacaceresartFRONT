@@ -28,6 +28,7 @@ class GoogleLoginController extends Controller
                 $token = JWTAuth::fromUser($finduser);
                 
                 if(env('APP_ENV') == "local"){
+                    dd($token);
                     return redirect()->to('/front-test')->with("token", $token);
                 }else{
                     return redirect()->to('/')->with("token", $token);
