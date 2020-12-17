@@ -65,7 +65,7 @@
                                         COP
                                     </span>
                                 </a>
-                                <div aria-labelledby='dropdownMenuButton' class='dropdown-menu' id="currencyMenu">
+                                <div aria-labelledby='dropdownMenuButton' class='dropdown-menu' id="currencyMenu" style="margin-top: 24px;">
                                     <div class='content-drop'>
                                         <a class='dropdown-item' href='#' v-if="selectedCurrency == 'COP'" @click="setCurrency('USD')">
                                             <p> USD</p>
@@ -90,7 +90,7 @@
                                     <!---<i class="flaticon-translation"></i>--->
 
                                 </a>
-                                <div aria-labelledby='dropdownMenuButton' class='dropdown-menu' id="languageMenu">
+                                <div aria-labelledby='dropdownMenuButton' class='dropdown-menu' id="languageMenu" style="margin-top: 24px;">
                                     <div class='content-drop'>
                                         <a class='dropdown-item' href='#' v-if="selectedLanguage == 'spanish'" @click="setLanguage('english')">
                                             <p> EN</p>
@@ -108,7 +108,7 @@
                         </div>
                         <div class="flex-content m-155">
                             <li class='nav-item mr-5'>
-                                <a class='nav-link nav-link-black ' href="{{url('gallery') }}"><span v-if="selectedLanguage == 'english'">Gallery</span> <span v-if="selectedLanguage == 'spanish'">Gallería</span></a>
+                                <a class='nav-link nav-link-black ' href="{{url('gallery') }}"><span v-if="selectedLanguage == 'english'">Gallery</span> <span v-if="selectedLanguage == 'spanish'">Galería</span></a>
                             </li>
                             <li class='nav-item'>
                                 <a class='brand' href="{{ url('/') }}">
@@ -1038,7 +1038,9 @@ En aplicación del artículo 47 de la ley 1480 de 2011, los consumidores que adq
 
                         if($("#languageMenu").hasClass("show")){
                             $("#languageMenu").removeClass("show")
+                           
                         }else{
+                            $("#currencyMenu").removeClass("show")
                             $("#languageMenu").addClass("show")
                         }
 
@@ -1047,7 +1049,9 @@ En aplicación del artículo 47 de la ley 1480 de 2011, los consumidores que adq
 
                         if($("#currencyMenu").hasClass("show")){
                             $("#currencyMenu").removeClass("show")
+                            
                         }else{
+                            $("#languageMenu").removeClass("show")
                             $("#currencyMenu").addClass("show")
                         }
 
@@ -1070,7 +1074,20 @@ En aplicación del artículo 47 de la ley 1480 de 2011, los consumidores que adq
 
                     if(!this.authCheck){
 
-                        var interval = window.setInterval(() => {
+                        if(this.token != ""){
+
+                            axios.post("{{ url('get-user') }}", {
+                                token: this.token
+                            }).then(res => {
+                                this.user = res.data.user
+                                window.localStorage.setItem("aida_user", JSON.stringify(res.data.user))
+                                window.localStorage.setItem("aida_token", this.token)
+                                window.location.reload()
+                            })
+
+                        }else{
+
+                            var interval = window.setInterval(() => {
                             
                             if(window.localStorage.getItem("aida_user")){
                                 this.authCheck = true

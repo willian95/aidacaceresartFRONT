@@ -35,11 +35,10 @@
                         <label for="country" v-if="selectedLanguage == 'english'">Country</label>
 
                         <select class="form-control" v-model="country">
-                            <option value="" v-if="selectedLanguage == 'spanish'">País</option>
-                            <option value="" v-if="selectedLanguage == 'spanish'">Country</option>
+                        
                             <option :value="country.id" v-for="country in countries">@{{ country.name }}</option>
                         </select>
-                        <small v-if="errors.hasOwnProperty('address')">@{{ errors['country'][0] }}</small>
+                        <small v-if="errors.hasOwnProperty('country')">@{{ errors['country'][0] }}</small>
                     </div>
 
                 </div>

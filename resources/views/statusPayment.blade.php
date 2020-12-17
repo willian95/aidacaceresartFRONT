@@ -21,8 +21,6 @@
                             <p  class="title-bold mb-0"  v-if="selectedLanguage == 'english'">@{{ product.product_format_size.product.english_name }}</p>
                             <span v-if="selectedLanguage == 'spanish'">@{{ product.product_format_size.size.width }}cm x @{{ product.product_format_size.size.height }}cm</span>
                             <span v-if="selectedLanguage == 'english'">@{{ (product.product_format_size.size.width/2.54).toFixed(2) }}cm x @{{ (product.product_format_size.size.height/2.54).toFixed(2) }}cm</span>
-                            <span v-if="selectedLanguage == 'spanish'">Formato: @{{ product.product_format_size.format.name }}</span>
-                            <span v-if="selectedLanguage == 'english'">Format: @{{ product.product_format_size.format.english_name }}</span>
                           
                         </div>
 

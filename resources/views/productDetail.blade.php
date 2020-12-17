@@ -361,8 +361,6 @@
                 this.selectSize = ""
                 this.sizes = []
                 this.formatSizes.forEach((data) => {
-                  
-                  console.log("format", this.format)
 
                   if(data.format_id == this.format){
 
@@ -371,6 +369,10 @@
                   }
 
                 })
+
+                this.formatSize = this.formatSizes[0].id
+                this.selectSize = this.sizes[0].id
+                this.setPrice()
 
               },
 
@@ -381,8 +383,7 @@
                 this.formatSizes.forEach((data) => {
                   
                   if(data.format_id == this.format && data.size_id == this.selectSize){
-                    console.log(this.format, this.selectSize)
-                    console.log("price", data.price)
+                    
                     this.price = data.price
 
                   }
