@@ -998,6 +998,7 @@
                             }).then(res => {
                                 this.user = res.data.user
                                 window.localStorage.setItem("aida_user", JSON.stringify(res.data.user))
+                                window.localStorage.setItem("aida_token", this.token)
                                 window.location.reload()
                             })
 
