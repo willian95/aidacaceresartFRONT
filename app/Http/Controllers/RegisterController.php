@@ -30,11 +30,18 @@ class RegisterController extends Controller
 
             $to_name = $user->name;
             $to_email = $user->email;
-            $data = ["user" => $user, "hash" => $hash];
+            $language = $request->selectedLanguage;
+            $data = ["user" => $user, "hash" => $hash, "language" => $language];
 
-            \Mail::send("emails.register", $data, function($message) use ($to_name, $to_email) {
 
-                $message->to($to_email, $to_name)->subject("Bienvenido/a! Solo falta un paso para tu registro en AidacaceresART!");
+            \Mail::send("emails.register", $data, function($message) use ($to_name, $to_email, $language) {
+
+                if($language == "spanish"){
+                    $message->to($to_email, $to_name)->subject("Bienvenido/a! Solo falta un paso para tu registro en Aidaca E-Store!");
+                }else{
+                    $message->to($to_email, $to_name)->subject("Welcome to Aida E-Gallery, just one more step!");
+                }
+                
                 $message->from(env("MAIL_FROM_ADDRESS"), env("MAIL_FROM_NAME"));
 
             });

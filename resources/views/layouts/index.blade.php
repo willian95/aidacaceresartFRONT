@@ -883,7 +883,8 @@ En aplicación del artículo 47 de la ley 1480 de 2011, los consumidores que adq
                             phone: this.phone,
                             dni: this.dni,
                             address: this.address,
-                            country: this.country
+                            country: this.country,
+                            language: this.selectedLanguage
                         }).then(res => {
 
                             if (res.data.success == true) {
