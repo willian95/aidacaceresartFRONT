@@ -246,7 +246,7 @@ class CheckoutController extends Controller
                 $to_email = $user->email;
                 $data = ["user" => $user, "products" => $products];
 
-                return response()->json([$products]);
+                //return response()->json([$products]);
 
                 \Mail::send("emails.guestPurchaseEmail", $data, function($message) use ($to_name, $to_email) {
 
