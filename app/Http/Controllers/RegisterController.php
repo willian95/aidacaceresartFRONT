@@ -30,7 +30,7 @@ class RegisterController extends Controller
 
             $to_name = $user->name;
             $to_email = $user->email;
-            $language = $request->selectedLanguage;
+            $language = $request->language;
             $data = ["user" => $user, "hash" => $hash, "language" => $language];
 
 
