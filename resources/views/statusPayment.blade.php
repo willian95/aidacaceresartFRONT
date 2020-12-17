@@ -158,7 +158,7 @@
 
                     $cart = JSON.parse(window.localStorage.getItem("aida_cart"))
         
-                    axios.post("{{ url('checkout/guest-process') }}", {"paymentId": this.paymentId, "cart": this.productsGuest, , "language": this.selectedLanguage}).then(res => {
+                    axios.post("{{ url('checkout/guest-process') }}", {"paymentId": this.paymentId, "cart": this.productsGuest, "language": this.selectedLanguage}).then(res => {
 
 
 
