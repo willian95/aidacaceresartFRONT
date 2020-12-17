@@ -933,7 +933,7 @@
                 data() {
                     return {
                         user:"",
-                        token:"Session::get('token')",
+                        token:"{{ Session::get('token') }}",
                         authCheck:false,
                     }
                 },
