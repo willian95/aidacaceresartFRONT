@@ -933,7 +933,7 @@
                 data() {
                     return {
                         user:"",
-                        token:"{{ $token ? $token : '' }}",
+                        token:"@if(isset($token)) {{ $token }} @endif",
                         authCheck:false,
                     }
                 },
