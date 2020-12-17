@@ -191,7 +191,7 @@ class CheckoutController extends Controller
                 $to_name = $user->name;
                 $to_email = $user->email;
                 $language = $request->language;
-                $payment = Payment::where("id", $request->paymentId)->first();
+                $payment = PaymentInfo::where("id", $request->paymentId)->first();
                 $data = ["user" => $user, "products" => $products, "language" => $language, "payment" => $payment];
                 
 
