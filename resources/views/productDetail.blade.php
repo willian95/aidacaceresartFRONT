@@ -371,6 +371,7 @@
                 })
 
                 this.selectSize = this.sizes[0]
+                this.setPrice()
 
               },
 
@@ -381,8 +382,7 @@
                 this.formatSizes.forEach((data) => {
                   
                   if(data.format_id == this.format && data.size_id == this.selectSize){
-                    console.log(this.format, this.selectSize)
-                    console.log("price", data.price)
+                    
                     this.price = data.price
 
                   }
