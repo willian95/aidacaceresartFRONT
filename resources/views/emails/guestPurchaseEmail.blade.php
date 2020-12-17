@@ -167,7 +167,7 @@ td .es-button-border-2:hover {
                             @else
                             <td style="border: 1px solid black; border-collapse:collapse; text-align:center">{{ $product["product"]["english_name"] }} {{ $product["size"]["width"] / 2.54 }}in / {{ $product["size"]["height"] / 2.54 }}in </td>
                             @endif
-                            <td>{{ $product->amount }}</td>
+                            <td>1</td>
                             <td style="border: 1px solid black; border-collapse:collapse; text-align:center">$ {{ number_format($product["price"], 0, ",", ".") }}</td>
                         </tr>
                       @endforeach
