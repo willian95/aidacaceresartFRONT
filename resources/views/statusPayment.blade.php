@@ -143,7 +143,7 @@
                 deleteCart(){
 
                   
-                    axios.post("{{ url('checkout/process') }}", {"paymentId": this.paymentId}, 
+                    axios.post("{{ url('checkout/process') }}", {"paymentId": this.paymentId, "language": this.selectedLanguage}, 
                     { headers: {
                         Authorization: "Bearer "+window.localStorage.getItem('aida_token')
                     }}
@@ -158,7 +158,7 @@
 
                     $cart = JSON.parse(window.localStorage.getItem("aida_cart"))
         
-                    axios.post("{{ url('checkout/guest-process') }}", {"paymentId": this.paymentId, "cart": this.productsGuest}).then(res => {
+                    axios.post("{{ url('checkout/guest-process') }}", {"paymentId": this.paymentId, "cart": this.productsGuest, , "language": this.selectedLanguage}).then(res => {
 
 
 

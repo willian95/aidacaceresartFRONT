@@ -100,15 +100,61 @@ td .es-button-border-2:hover {
                       <td align="center" style="padding:0;Margin:0;font-size:0px;"><img class="adapt-img" src="https://www.aidacaceresart.com/assets/img/logo-blue.png" alt style="display:block;border:0;outline:none;text-decoration:none;-ms-interpolation-mode:bicubic;object-fit: contain;" width="200" height="133"></td> 
                      </tr> 
                      <tr style="border-collapse:collapse;"> 
+                     @if($language == 'spanish')
                       <td align="center" style="padding:0;Margin:0;"><h1 style="Margin:0;line-height:24px;mso-line-height-rule:exactly;font-family:tahoma, verdana, segoe, sans-serif;font-size:20px;font-style:normal;font-weight:bold;color:#0c4572;">¡Compra realizada! </h1></td> 
+                    @else
+                      <td align="center" style="padding:0;Margin:0;"><h1 style="Margin:0;line-height:24px;mso-line-height-rule:exactly;font-family:tahoma, verdana, segoe, sans-serif;font-size:20px;font-style:normal;font-weight:bold;color:#0c4572;">Purchase confirmed! </h1></td> 
+                    @endif
                      </tr> 
+
+                    @if($language == 'spanish')
+
+                      <tr>
+                        <td>Nombre: {{ $user->name }}</td><td>Total: {{ $payment->total_products }}</td>
+                        <td>Email: {{ $user->email }}</td><td>Dirección: {{ $user->address }}</td>
+                        <td>Paypal #: {{ $payment->order_id }}</td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                        Hola {{ $user->name }}, gracias por tu compra en Aida E - Store, esta pendiente de tu email cuando iniciemos el proceso de envío para que sigas tu orden.
+                        </td>
+                      </tr>
+
+                    @else
+
+                      <tr>
+                        <td>Name: {{ $user->name }}</td><td>Total: {{ $payment->total_products }}</td>
+                        <td>Email: {{ $user->email }}</td><td>Address: {{ $user->address }}</td>
+                        <td>Paypal #: {{ $payment->order_id }}</td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                        Hi {{ $user->name }}, thanks for your purchase at Aida E - Gallery, please stand by for a new email coming soon once we start the shipping process so you can track your order.
+                        </td>
+                      </tr>
+
+                    @endif
+
+                    <tr></tr>
+
                      <td align="left" style="Margin:0;padding-bottom:15px;padding-top:30px;padding-left:30px;padding-right:30px;border-radius:10px 10px 0px 0px;background-color:#FFFFFF;" bgcolor="#ffffff">
                       <table ellpadding="0" cellspacing="0" width="100%" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
                       <tr style="border: 1px solid black; border-collapse:collapse">
-                        <th style="border: 1px solid black;border-collapse:collapse">#</th>
-                        <th style="border: 1px solid black;border-collapse:collapse">Imagen</th>
-                        <th style="border: 1px solid black;border-collapse:collapse">Producto</th>
-                        <th style="border: 1px solid black;border-collapse:collapse">Precio</th>
+                        @if($language == 'spanish')
+                          <th style="border: 1px solid black;border-collapse:collapse">#</th>
+                          <th style="border: 1px solid black;border-collapse:collapse">Imagen</th>
+                          <th style="border: 1px solid black;border-collapse:collapse">Producto</th>
+                          <th style="border: 1px solid black;border-collapse:collapse">Cantidad</th>
+                          <th style="border: 1px solid black;border-collapse:collapse">Precio</th>
+                        @else
+                          <th style="border: 1px solid black;border-collapse:collapse">#</th>
+                          <th style="border: 1px solid black;border-collapse:collapse">Image</th>
+                          <th style="border: 1px solid black;border-collapse:collapse">Product</th>
+                          <th style="border: 1px solid black;border-collapse:collapse">Qty</th>
+                          <th style="border: 1px solid black;border-collapse:collapse">Price</th>
+                        @endif
                       </tr>
 
                       @foreach($products as $product)
@@ -116,7 +162,12 @@ td .es-button-border-2:hover {
                         <tr style="border: 1px solid black; border-collapse:collapse">
                             <td style="border: 1px solid black; border-collapse:collapse; text-align:center">{{ $loop->index + 1 }}</td>
                             <td style="border: 1px solid black; border-collapse:collapse; text-align:center"><img src="{{ $product['product']['image'] }}" style="width: 60px;"></td>
-                            <td style="border: 1px solid black; border-collapse:collapse; text-align:center">{{ $product["product"]["name"] }} {{ $product["format"]["name"] }} {{ $product["size"]["width"] }}cm / {{ $product["size"]["height"] }}cm </td>
+                            @if($language == "spanish")
+                            <td style="border: 1px solid black; border-collapse:collapse; text-align:center">{{ $product["product"]["name"] }} {{ $product["size"]["width"] }}cm / {{ $product["size"]["height"] }}cm </td>
+                            @else
+                            <td style="border: 1px solid black; border-collapse:collapse; text-align:center">{{ $product["product"]["english_name"] }} {{ $product["size"]["width"] / 2.54 }}in / {{ $product["size"]["height"] / 2.54 }}in </td>
+                            @endif
+                            <td>{{ $product->amount }}</td>
                             <td style="border: 1px solid black; border-collapse:collapse; text-align:center">$ {{ number_format($product["price"], 0, ",", ".") }}</td>
                         </tr>
                       @endforeach
