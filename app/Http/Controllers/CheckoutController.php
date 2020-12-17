@@ -257,7 +257,7 @@ class CheckoutController extends Controller
 
                 foreach(AdminMail::all() as $adminMail){
                     $to_email = $adminMail->email;
-                    \Mail::send("emails.purchaseEmail", $data, function($message) use ($to_name, $to_email) {
+                    \Mail::send("emails.guestPurchaseEmail", $data, function($message) use ($to_name, $to_email) {
 
                         $message->to($to_email, $to_name)->subject("¡Un cliente realizó una compra en Aidacaceresart.com!");
                         $message->from(env("MAIL_FROM_ADDRESS"), env("MAIL_FROM_NAME"));
