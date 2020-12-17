@@ -3,9 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ProductFormatSize extends Model
 {
+
+    use SoftDeletes;
+
     protected $table = "product_format_sizes";
 
     public function product(){

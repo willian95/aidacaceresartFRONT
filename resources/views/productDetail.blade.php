@@ -267,8 +267,33 @@
     <div class="modal-content">
        <!-- fondo 1 -->
       <div class="modal-bodys position-relative">
-        <img class="img-escala" src="{{ $product->image }}" alt="">
-        <img alt='' src='{{ asset('assets/img/fondos/Fondo Cuadros Grandes.jpg') }}'>
+        
+
+        
+
+        @php
+            
+          $sizeId = App\ProductFormatSize::where("product_id", $product->id)->first()->size_id;
+          $size = App\Size::where("id", $sizeId)->first();
+
+        @endphp
+
+        @if($size->width > 80 || $size->height > 80)
+        <img class="img-escala" src="{{ $product->image }}" alt="" style="width: 140px;
+    margin-top: 0px;
+    margin-left: 13%;">
+        <img alt='' src='{{ asset('assets/img/fondos/fondo-grande.png') }}'>
+        @elseif($size->width > 36 && $size->height > 40)
+        <img class="img-escala" src="{{ $product->image }}" alt="" style="width: 75px;
+    margin-top: -18px;
+    margin-left: 32%;">
+        <img alt='' src='{{ asset('assets/img/fondos/fondo-mediano.png') }}'>
+        @else
+        <img class="img-escala" src="{{ $product->image }}" alt="" style="width: 50px;
+    margin-top: -35px;
+    margin-left: 15%;">
+        <img alt='' src='{{ asset('assets/img/fondos/fondo-pequeno.png') }}'>
+        @endif
       </div>
       <!-- fondo 1 -->
      
