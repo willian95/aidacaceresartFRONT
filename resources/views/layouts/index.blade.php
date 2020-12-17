@@ -117,7 +117,7 @@
                             </li>
 
                             <li class='nav-item ml-5'>
-                                <a class='nav-link ' href="{{ url('about') }}"> <span v-if="selectedLanguage == 'english'">About me</span> <span v-if="selectedLanguage == 'spanish'">Acerca de mí @if(isset($token)) {{ $token }} @else not sended @endif</span></a>
+                                <a class='nav-link ' href="{{ url('about') }}"> <span v-if="selectedLanguage == 'english'">About me</span> <span v-if="selectedLanguage == 'spanish'">Acerca de mí</span></a>
                             </li>
                         </div>
                         <div class="flex-content ">
@@ -137,7 +137,7 @@
                             <li class='nav-item dropdown dowms' v-if="authCheck == true">
                                 <a href='#' aria-expanded='false' aria-haspopup='true'
                                     class='nav-link dropdown-toggle nav-link-black d-flex' data-toggle='dropdown' @click="toggleUserMenu()">                               
-                                    @{{ user.name }}
+                                    @{{ user.name }} 
                                 </a>
                                 <div aria-labelledby='dropdownMenuButton' class='dropdown-menu' id="userMenu">
                                     <div class='content-drop'>
@@ -417,7 +417,6 @@
             </div>
         </footer>
 
-        
      
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js">
         </script>
@@ -432,6 +431,87 @@
         <script src="{{ asset('assets/js/slick.min.js') }}"></script>
         <script src="{{ asset('assets/js/main.js') }}"></script>
         <script src="{{ asset('alertify/alertify.min.js') }}"></script>
+        
+        <!-- Modal -->
+<div class="modal fade" id="terminos" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        
+        <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+
+                <br>
+                <strong>TÉRMINOS Y CONDICIONES - POLÍTICA DE PRIVACIDAD. </strong>
+                <br><br>
+
+                La presente Política de Privacidad establece los términos en que Aida Cáceres Art y Bulgar S.A.S. usan y protegen la información que es proporcionada por sus usuarios al momento de utilizar su sitio web. Estamos comprometidos con la seguridad de los datos de sus usuarios. Cuando le pedimos llenar los campos de información personal con la cual usted pueda ser identificado, lo hacemos asegurando que sólo se empleará de acuerdo con los términos de este documento. Sin embargo esta Política de Privacidad puede cambiar con el tiempo o ser actualizada por lo que le recomendamos y enfatizamos revisar continuamente esta página para asegurarse que está de acuerdo con dichos cambios.
+                <br><br>
+
+                <strong>Información que es recogida </strong>
+                <br><br>
+                Nuestro sitio web podrá recoger información personal por ejemplo: Nombre, información de contacto como su dirección de correo electrónica e información demográfica. Así mismo cuando sea necesario podrá ser requerida información específica para procesar algún pedido o realizar una entrega o facturación.
+                <br><br>
+                <strong>Uso de la información recogida </strong>
+                <br><br>
+                Nuestro sitio web emplea la información con el fin de proporcionar el mejor servicio posible, particularmente para mantener un registro de usuarios, de pedidos en caso que aplique, y mejorar nuestros productos y servicios. Es posible que sean enviados correos electrónicos periódicamente a través de nuestro sitio con ofertas especiales, nuevos productos y otra información publicitaria que consideremos relevante para usted o que pueda brindarle algún beneficio, estos correos electrónicosserán enviados a la dirección que usted proporcione y podrán ser cancelados en cualquier momento. Aida Cáceres Art - Bulgar S.A.S. están altamente comprometidos para cumplir con el compromiso de mantener su información segura. Usamos los sistemas más avanzados y los actualizamos constantemente para asegurarnos que no exista ningún acceso no autorizado.
+                <br><br>
+                <strong>Cookies (solo si aplica)</strong> Una cookie se refiere a un fichero que es enviado con la finalidad de solicitar permiso para almacenarse en su ordenador, al aceptar dicho fichero se crea y la cookie sirve entonces para tener información respecto al tráfico web, y también facilita las futuras recurrente. Otra función que tienen las cookies es que con ellas las web pueden reconocerte individualmente y por tanto brindarte el mejor servicio personalizado de su web. Nuestro sitio web emplea las cookies para poder identificar las páginas que son visitadas y su frecuencia. Esta información es empleada únicamente para análisis estadístico y después la información se elimina de forma permanente. Usted puede eliminar las cookies en cualquier momento desde su ordenador. Sin embargo las cookies ayudan a proporcionar un mejor servicio de los sitios web, estás no dan acceso a información de su ordenador ni de usted, a menos de que usted así lo quiera y la proporcione directamente. Usted puede aceptar o negar el uso de cookies, sin embargo la mayoría de navegadores aceptan cookies automáticamente pues sirve para tener un mejor servicio web. También usted puede cambiar la configuración de su ordenador para declinar las cookies. Si se declinan es posible que no pueda utilizar algunos de nuestros servicios.
+                <br><br>
+                <strong>Enlaces a Terceros</strong>
+                <br><br>
+                Este sitio web pudiera contener en laces a otros sitios que pudieran ser de su interés. Una vez que usted de clic en estos enlaces y abandone nuestra página, ya no tenemos control sobre al sitio al que es redirigido y por lo tanto no somos responsables de los términos o privacidad ni de la protección de sus datos en esos otros sitios terceros. Dichos sitios están sujetos a sus propias políticas de privacidad por lo cual es recomendable que los consulte para confirmar que usted está de acuerdo con estas. En este caso, los terceros como DHL y PAYPAL tienen sus propias políticas y garantizan todo lo relacionado a servicios de shipping y pagos seguros.
+                <br><br>
+<strong>Control de su información personal</strong>
+<br><br>
+
+En cualquier momento usted puede restringir la recopilación o el uso de la información personal que es proporcionada a nuestro sitio web. Cada vez que se le solicite rellenar un formulario, como el de alta de usuario, puede marcar o desmarcar la opción de recibir información por correo electrónico. En caso de que haya marcado la opción de recibir nuestro boletín o publicidad usted puede cancelarla en cualquier momento. Para hacer efectivo estos cambios, por favor envíenos un email a aida@aidacaceresart.com No venderemos, cederemos, ni distribuiremos la información personal que es recopilada sin su consentimiento, salvo que sea requerido por un juez con un orden judicial. 
+
+<strong>Aida Cáceres Art - Bulgar S.A.S.</strong> Se reservan el derecho de cambiar los términos y demás puntos del presente documento en cualquier momento.
+<br><br>
+<strong>PROMOCIONES DE OBRAS</strong>
+
+Las promociones que se ofrezcan en nuestro sitio web NO son necesariamente las mismas que se ofrezcan en venta telefónica u otros, a menos que se señale expresamente en este sitio o en la publicidad de cada promoción. Además de los Términos y Condiciones generales, cuando Aida Cáceres Art – Bulgar S.A.S. realice promociones en vallas publicitarias, redes sociales u otros medios publicitarios, aplican adicionalmente los siguientes Términos y Condiciones específicos:
+• Cuando se ofrezcan descuentos, se señalará en la publicidad, el porcentaje o valor del descuento, el canal de venta por el cual se puede obtener, así como la suma mínima de compra para adquirir ese descuento y y las fechas válidas.
+• Las promociones no son acumulables
+• La promoción sólo podrá ser usado una vez por cada cliente.
+• Al hacer una compra durante una promoción vigente, se entiende que el consumidor ha aceptado íntegramente los Términos y Condiciones generales y específicos de Aida Cáceres Art – Bulgar S.A.S. 
+<br><br>
+<strong>DESPACHO DE LOS PRODUCTOS</strong>
+<br><br>
+Los productos adquiridos a través de nuestro sitio web serán despachados y entregados de acuerdo a las opciones elegidas por el usuario. DHL es la plataforma de envíos integrada con la cual trabajamos conjuntamente para ofrecer el mejor servicio. Sin embargo, para la recolección y entrega de los envíos se aplicarán estrictamente los términos y condiciones de servicios de las agencias de mensajería y paquetería (transportistas) que el usuario haya elegido durante el proceso de compra. De modo que Aida Cáceres Art – Bulgar S.A.S. queda exento de cualquier anomalía presentada en los servicios del transportista. La información del lugar de envío es de exclusiva responsabilidad del usuario. Los plazos elegidos para el despacho y entrega, se cuentan desde que se haya validado la orden de compra y el medio de pago utilizado, y se consideraran días hábiles para el cumplimiento de dicho plazo. El usuario antes de finalizar su compra podrá hacer seguimiento a la entrega estimada de su producto.
+
+Aida Cáceres Art – Bulgar S.A.S. comunicará por e-mail a los usuarios los datos para que se pueda realizar el seguimiento del estado del envío por Internet. Si el usuario o la persona autorizada para recibir, se encontrara ausente cuando se le visita y se le notifica vía telefónica para dejar el pedido y nadie lo recibe en el lugar de residencia, con previo aviso de nuestra plataforma de envíos, se efectuará la entrega en la puerta del domicilio o en su caso en la agencia de paquetería más cercana al domicilio del destino con su respectiva notificación. Con el fin de facilitar el seguimiento de los pedidos realizados por los usuarios en nuestro sitio web, Aida Cáceres Art – Bulgar S.A.S. podrá enviar información vía mensajes de texto (SMS y/o MMS) o vía «WhatsApp» acerca de la entrega y estado de los pedidos realizados en el sitio web.
+<br><br>
+<strong>POLÍTICA DE CAMBIOS, DEVOLUCIONES Y GARANTÍA DE CUADROS.</strong>
+<br><br>
+Cada obra es cuidadosamente empaquetada por la artista, garantizando que cada cuadro llegue intacto a su destino. El trabajo se confía a un proveedor de servicios especializado reconocido y dé alcance internacional. Se organizará un tiempo de entrega entre usted y el operador logístico, el trabajo se entregará a la dirección indicada en el momento del pedido. Actualmente, la artista paga los costos de embalaje y entrega del trabajo. Los costos de envío solo se facturarán si el cliente solicitó expresamente que se enmarque la obra (debido a un peso adicional), o si el destino de la entrega no está cubierto por nuestro aliado de envío y el uso de un proveedor diferente, no preferencial las tasas son obligatorias. Si el trabajo llegara roto o dañado, la artista pagará los costes de devolución y gestionará cualquier compensación entre la artista y el comprador. Si el trabajo no puede ser reparado o restaurado, el cliente será reembolsado inmediatamente.
+
+-	Los pedidos dentro y fuera de Colombia se envían mediante mensajería DHL.
+
+-	Los tiempos de entrega varían según el destino.
+<br><br>
+<strong>Garantía. </strong>
+<br><br>
+Cada obra desarrollada por la artista es original y pieza única. Cualquiera que sea el medio, el trabajo se envía al comprador con un certificado de autenticidad.
+<br><br>
+<strong>Devolución. </strong>
+<br><br>
+En aplicación del artículo 47 de la ley 1480 de 2011, los consumidores que adquieran cualquier producto a través de nuestra página web https://aidacaceresart.com tienen derecho al retracto, dentro de los CINCO (5) días hábiles siguientes a la fecha de recibo del producto. Para ejercer el derecho de retracto, el cliente podrá solicitar en el término previamente indicado, su solicitud de devolución del dinero, mediante envío por correo electrónico a la dirección aida@aidacaceresart.com, un escrito con el asunto “DERECHO DE RETRACTO” identificando en el cuerpo del correo, sus datos, el producto adquirido, la fecha de su recepción. El dinero será reembolsado en un plazo no mayor a TREINTA (30) días calendario desde la fecha en que se presentó la solicitud. La devolución del dinero se realizará de la siguiente manera: En caso de compras realizadas con tarjeta de crédito o en caso de pagos por medio de PSE se realizará el reembolso a la misma tarjeta de crédito o débito con la que se realizó la compra. El cliente deberá devolver a Aida Cáceres Art – Bulgar S.A.S. el cuadro adquirido el cual debe estar en las mismas condiciones en que lo recibió, en perfecto estado, con su empaque completo con todos sus sellos y en estado original.
+
+
+
+
+
+
+
+
+        </div>
+       
+      </div>
+    </div>
+  </div>
         <script>
             alertify.set('notifier', 'position', 'top-right');
             (function () {
@@ -933,7 +1013,6 @@
                 data() {
                     return {
                         user:"",
-                        token:"{{ Session::get('token') }}",
                         authCheck:false,
                     }
                 },
@@ -991,30 +1070,15 @@
 
                     if(!this.authCheck){
 
-                        if(this.token != ""){
-
-                            axios.post("{{ url('get-user') }}", {
-                                token: this.token
-                            }).then(res => {
-                                this.user = res.data.user
-                                window.localStorage.setItem("aida_user", JSON.stringify(res.data.user))
-                            })
-
-                        }else{
-
-                            var interval = window.setInterval(() => {
+                        var interval = window.setInterval(() => {
                             
-                                if(window.localStorage.getItem("aida_user")){
-                                    this.authCheck = true
-                                    this.user = JSON.parse(window.localStorage.getItem("aida_user"))
-                                    window.clearInterval(interval)
-                                }
+                            if(window.localStorage.getItem("aida_user")){
+                                this.authCheck = true
+                                this.user = JSON.parse(window.localStorage.getItem("aida_user"))
+                                window.clearInterval(interval)
+                            }
 
-                            }, 1000)
-
-                        }
-
-                        
+                        }, 1000)
 
                     }
 
