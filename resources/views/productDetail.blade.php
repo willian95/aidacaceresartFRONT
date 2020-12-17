@@ -361,8 +361,6 @@
                 this.selectSize = ""
                 this.sizes = []
                 this.formatSizes.forEach((data) => {
-                  
-                  console.log("format", this.format)
 
                   if(data.format_id == this.format){
 
@@ -371,6 +369,8 @@
                   }
 
                 })
+
+                this.selectSize = this.sizes[0]
 
               },
 
