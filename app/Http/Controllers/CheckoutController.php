@@ -190,8 +190,9 @@ class CheckoutController extends Controller
                 
                 $to_name = $user->name;
                 $to_email = $user->email;
-                $data = ["user" => $user, "products" => $products, "language" => $language];
                 $language = $request->language;
+                $data = ["user" => $user, "products" => $products, "language" => $language];
+                
 
                 \Mail::send("emails.purchaseEmail", $data, function($message) use ($to_name, $to_email, $language) {
 
