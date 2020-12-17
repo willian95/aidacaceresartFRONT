@@ -247,7 +247,7 @@ class CheckoutController extends Controller
                 $language = $request->language;
                 $data = ["user" => $user, "products" => $products, "language" => $language, "payment" => $payment];
 
-                //dump([$products]);
+                dump([$products]);
 
                 \Mail::send("emails.guestPurchaseEmail", $data, function($message) use ($to_name, $to_email, $language) {
 
