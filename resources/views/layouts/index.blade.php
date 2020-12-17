@@ -117,7 +117,7 @@
                             </li>
 
                             <li class='nav-item ml-5'>
-                                <a class='nav-link ' href="{{ url('about') }}"> <span v-if="selectedLanguage == 'english'">About me</span> <span v-if="selectedLanguage == 'spanish'">Acerca de mí</span></a>
+                                <a class='nav-link ' href="{{ url('about') }}"> <span v-if="selectedLanguage == 'english'">About me</span> <span v-if="selectedLanguage == 'spanish'">Acerca de mí @if(isset($token)) {{ $token }} @endif</span></a>
                             </li>
                         </div>
                         <div class="flex-content ">
@@ -137,7 +137,7 @@
                             <li class='nav-item dropdown dowms' v-if="authCheck == true">
                                 <a href='#' aria-expanded='false' aria-haspopup='true'
                                     class='nav-link dropdown-toggle nav-link-black d-flex' data-toggle='dropdown' @click="toggleUserMenu()">                               
-                                    @{{ user.name }} 
+                                    @{{ user.name }}
                                 </a>
                                 <div aria-labelledby='dropdownMenuButton' class='dropdown-menu' id="userMenu">
                                     <div class='content-drop'>
