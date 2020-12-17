@@ -117,7 +117,7 @@
                             </li>
 
                             <li class='nav-item ml-5'>
-                                <a class='nav-link ' href="{{ url('about') }}"> <span v-if="selectedLanguage == 'english'">About me</span> <span v-if="selectedLanguage == 'spanish'">Acerca de mí @if(isset($token)) {{ $token }} @else not sended @endif</span></a>
+                                <a class='nav-link ' href="{{ url('about') }}"> <span v-if="selectedLanguage == 'english'">About me</span> <span v-if="selectedLanguage == 'spanish'">Acerca de mí</span></a>
                             </li>
                         </div>
                         <div class="flex-content ">
@@ -998,6 +998,7 @@
                             }).then(res => {
                                 this.user = res.data.user
                                 window.localStorage.setItem("aida_user", JSON.stringify(res.data.user))
+                                window.location.reload()
                             })
 
                         }else{
