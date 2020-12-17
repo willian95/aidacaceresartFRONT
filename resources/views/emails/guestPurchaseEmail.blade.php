@@ -185,7 +185,7 @@ td .es-button-border-2:hover {
                             @if($language == "spanish")
                             <td style="border: 1px solid black; border-collapse:collapse; text-align:center">{{ $product["product"]["name"] }} {{ $product["size"]["width"] }}cm / {{ $product["size"]["height"] }}cm </td>
                             @else
-                            <td style="border: 1px solid black; border-collapse:collapse; text-align:center">{{ $product["product"]["english_name"] }} {{ $product["size"]["width"] / 2.54 }}in / {{ $product["size"]["height"] / 2.54 }}in </td>
+                            <td style="border: 1px solid black; border-collapse:collapse; text-align:center">{{ $product["product"]["english_name"] }} {{ number_format($product["size"]["width"] / 2.54, 2, ".", ",") }}in / {{ number_format($product["size"]["height"] / 2.54, 2, ".", ",") }}in </td>
                             @endif
                             <td>1</td>
                             <td style="border: 1px solid black; border-collapse:collapse; text-align:center">$ {{ number_format($product["price"], 0, ",", ".") }}</td>
