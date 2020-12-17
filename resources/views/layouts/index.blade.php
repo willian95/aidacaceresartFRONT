@@ -995,6 +995,7 @@
 
                             axios.post("{{ url('get-user') }}", {token: this.token}).then(res => {
                                 this.user = res.data.user
+                                window.localStorage.setItem("aida_user", JSON.stringify(res.data.user))
                             })
 
                         }else{
