@@ -1089,30 +1089,31 @@ En aplicación del artículo 47 de la ley 1480 de 2011, los consumidores que adq
 
                             var interval = window.setInterval(() => {
                             
-                            if(window.localStorage.getItem("aida_user")){
-                                this.authCheck = true
-                                this.user = JSON.parse(window.localStorage.getItem("aida_user"))
-                                window.clearInterval(interval)
-                            }
+                                if(window.localStorage.getItem("aida_user")){
+                                    this.authCheck = true
+                                    this.user = JSON.parse(window.localStorage.getItem("aida_user"))
+                                    window.clearInterval(interval)
+                                }
 
-                        }, 1000)
+                            }, 1000)
+
+                        }
+
+                        if(window.localStorage.getItem("aida_language") == null){
+                            window.localStorage.setItem("aida_language", "spanish")
+                            this.selectedLanguage = "spanish"
+                        }else{
+                            this.selectedLanguage = window.localStorage.getItem("aida_language")
+                        }
+
+                        if(window.localStorage.getItem("aida_currency") == null){
+                            window.localStorage.setItem("aida_currency", "USD")
+                            this.selectedCurrency = "USD"
+                        }else{
+                            this.selectedCurrency = window.localStorage.getItem("aida_currency")
+                        }
 
                     }
-
-                    if(window.localStorage.getItem("aida_language") == null){
-                        window.localStorage.setItem("aida_language", "spanish")
-                        this.selectedLanguage = "spanish"
-                    }else{
-                        this.selectedLanguage = window.localStorage.getItem("aida_language")
-                    }
-
-                    if(window.localStorage.getItem("aida_currency") == null){
-                        window.localStorage.setItem("aida_currency", "USD")
-                        this.selectedCurrency = "USD"
-                    }else{
-                        this.selectedCurrency = window.localStorage.getItem("aida_currency")
-                    }
-
                 }
             })
             
