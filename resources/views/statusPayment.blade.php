@@ -45,8 +45,6 @@
                             <p  class="title-bold mb-0" v-if="selectedLanguage == 'english'">@{{ product.product.english_name }}</p>
                             <span v-if="selectedLanguage == 'spanish'">@{{ product.size.width }}cm x @{{ product.size.height }}cm</span>
                             <span v-if="selectedLanguage == 'english'">@{{ (product.size.width/2.54).toFixed(2) }}in x @{{ (product.size.height/2.54).toFixed(2) }}in</span>
-                            <span v-if="selectedLanguage == 'spanish'">Formato: @{{ product.format.name }}</span>
-                            <span v-if="selectedLanguage == 'english'">Format: @{{ product.format.english_name }}</span>
                             
                         </div>
 
