@@ -926,12 +926,6 @@
           
         </script>
 
-        @if(Session::get('token'))
-            <script>
-                alert("{{ Session::get('token') }}")
-            </script>
-        @endif
-
         <script>
 
             const navbar = new Vue({
@@ -939,7 +933,7 @@
                 data() {
                     return {
                         user:"",
-                        token:"@if(isset($token)) {{ $token }} @endif",
+                        token:"Session::get('token')",
                         authCheck:false,
                     }
                 },
