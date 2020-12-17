@@ -933,6 +933,7 @@
                 data() {
                     return {
                         user:"",
+                        token:"{{ $token ? $token : '' }}",
                         authCheck:false,
                     }
                 },
@@ -990,15 +991,27 @@
 
                     if(!this.authCheck){
 
-                        var interval = window.setInterval(() => {
-                            
-                            if(window.localStorage.getItem("aida_user")){
-                                this.authCheck = true
-                                this.user = JSON.parse(window.localStorage.getItem("aida_user"))
-                                window.clearInterval(interval)
-                            }
+                        if(this.token != ""){
 
-                        }, 1000)
+                            axios.post("{{ url('get-user') }}", {token: this.token}).then(res => {
+                                this.user = res.data.user
+                            })
+
+                        }else{
+
+                            var interval = window.setInterval(() => {
+                            
+                                if(window.localStorage.getItem("aida_user")){
+                                    this.authCheck = true
+                                    this.user = JSON.parse(window.localStorage.getItem("aida_user"))
+                                    window.clearInterval(interval)
+                                }
+
+                            }, 1000)
+
+                        }
+
+                        
 
                     }
 
