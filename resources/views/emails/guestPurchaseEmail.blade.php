@@ -111,8 +111,12 @@ td .es-button-border-2:hover {
 
                       <tr>
                         <td>Nombre: {{ $user->name }}</td><td>Total: {{ $payment->total_products }}</td>
+                      </tr>
+                      <tr>
                         <td>Email: {{ $user->email }}</td><td>Dirección: {{ $user->address }}</td>
-                        <td>Paypal #: {{ $payment->order_id }}</td>
+                      </tr>
+                      <tr>
+                      <td>Paypal #: {{ $payment->order_id }}</td>
                       </tr>
 
                       <tr>
@@ -141,7 +145,7 @@ td .es-button-border-2:hover {
 
                     @endif
 
-                    <tr></tr>
+                   
 
                      <td align="left" style="Margin:0;padding-bottom:15px;padding-top:30px;padding-left:30px;padding-right:30px;border-radius:10px 10px 0px 0px;background-color:#FFFFFF;" bgcolor="#ffffff">
                       <table ellpadding="0" cellspacing="0" width="100%" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
