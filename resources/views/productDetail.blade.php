@@ -458,6 +458,15 @@
 
                     }
 
+                    var formatSizeIndex = null
+                    this.formatSizes.forEach((data, index) => {
+                      
+                      if(data.size_id == this.selectSize && data.format_id == this.format){
+                        formatSizeIndex = index
+                      }
+
+                    })
+
                     cart.push({id: this.formatSizes[formatSizeIndex].id})
                     window.localStorage.setItem("aida_cart", JSON.stringify(cart))
 
