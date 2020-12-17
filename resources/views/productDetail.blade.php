@@ -411,15 +411,8 @@
                     alertify.error("You have to first add a size")
                   }
                 }else{
-                  var cart = []
+                  
                   var formatSizeIndex = null
-
-                  if(window.localStorage.getItem("aida_cart")){
-
-                    cart = JSON.parse(window.localStorage.getItem("aida_cart"))
-
-                  }
-
                   this.formatSizes.forEach((data, index) => {
                     
                     if(data.size_id == this.selectSize && data.format_id == this.format){
@@ -428,8 +421,7 @@
 
                   })
 
-                  cart.push({id: this.formatSizes[formatSizeIndex].id})
-                  window.localStorage.setItem("aida_cart", JSON.stringify(cart))
+                  
 
                   if(window.localStorage.getItem("aida_token") && window.localStorage.getItem("aida_user")){
 
@@ -456,6 +448,18 @@
                     
 
                   }else{
+
+                    var cart = []
+                    var formatSizeIndex = null
+
+                    if(window.localStorage.getItem("aida_cart")){
+
+                      cart = JSON.parse(window.localStorage.getItem("aida_cart"))
+
+                    }
+
+                    cart.push({id: this.formatSizes[formatSizeIndex].id})
+                    window.localStorage.setItem("aida_cart", JSON.stringify(cart))
 
                     if(this.selectedLanguage == "spanish"){
                       alertify.success("producto agregado al carrito")

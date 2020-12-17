@@ -19,6 +19,88 @@
                     <div class="col-md-8">
                         <table class="items-content">
                             <div id="accordion">
+                                
+                              <!---1----->
+                                <div class="">
+                                    <div  id="headingOne">
+                                        <h5 class="mb-0">
+                                        <button class="btn btn-link p-0" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                            <div class="titulo-table">
+                                                <p v-if="selectedLanguage == 'english'">Items</p>
+                                                <p v-if="selectedLanguage == 'spanish'">Artículos</p>
+                                            </div>
+                                        </button>
+                                        </h5>
+                                    </div>
+                              
+                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                        <div class="card-body">
+                                        <!-------producto-------->
+                                            <div class="main-producto">
+                                                <div class="producto-item" v-for="product in products">
+                                                    <div class="row">
+                                                        <div class="col-md-6 item_product">
+                                                            <div class="item_img">
+                                                                <img :src="product.product_format_size.product.image" alt="">
+                                                            </div>
+                                                            <div class="item_texto">
+                                                                <p  class="title-bold" v-if="selectedLanguage == 'spanish'">@{{ product.product_format_size.product.name }}</p>
+                                                                <p  class="title-bold" v-if="selectedLanguage == 'english'">@{{ product.product_format_size.product.english_name }}</p>
+                                                                <span v-if="selectedLanguage == 'spanish'">@{{ product.product_format_size.size.width }}cm x @{{ product.product_format_size.size.height }}cm</span>
+                                                                <span v-if="selectedLanguage == 'english'">@{{ (product.product_format_size.size.width / 2.54).toFixed(2) }}in x @{{ (product.product_format_size.size.height/2.54).toFixed(2) }}in</span>
+                                                                {{--<span v-if="selectedLanguage == 'spanish'">Formato: @{{ product.product_format_size.format.name }}</span>
+                                                                <span v-if="selectedLanguage == 'english'">Format: @{{ product.product_format_size.format.english_name }}</span>--}}
+                                                                
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-md-4 center-group">
+                                                            <p class="space"><span>$ @{{ number_format(product.product_format_size.price * exchangeRate, 2, ",", ".") }}</span> </p>
+                                                        </div>
+                                                        <div class="col-md-2 center-group">
+                                                            <button class="btn" @click="removeFromCart(product.id)"><i class="fa fa-times"></i></button>
+                                                        </div>
+                                                    
+                                                    </div>
+                                                
+                                                </div>
+
+                                                <div class="producto-item" v-for="(product, index) in productsGuest">
+                                                    <div class="row">
+                                                        <div class="col-md-6 item_product">
+                                                            <div class="item_img">
+                                                                <img :src="product.product.image" alt="">
+                                                            </div>
+                                                            <div class="item_texto">
+                                                                <p  class="title-bold" v-if="selectedLanguage == 'spanish'">@{{ product.product.name }}</p>
+                                                                <p  class="title-bold" v-if="selectedLanguage == 'english'">@{{ product.product.english_name }}</p>
+                                                                <span v-if="selectedLanguage == 'spanish'">@{{ product.size.width }}cm x @{{ product.size.height }}cm</span>
+                                                                <span v-if="selectedLanguage == 'english'">@{{ (product.size.width/2.54).toFixed(2) }}in x @{{ (product.size.height/2.54).toFixed(2) }}in</span>
+                                                                <span v-if="selectedLanguage == 'spanish'">Formato: @{{ product.format.name }}</span>
+                                                                <span v-if="selectedLanguage == 'english'">Format: @{{ product.format.english_name }}</span>
+                                                            
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="col-md-4 center-group">
+                                                            <p class="space "><span>$ @{{ number_format(product.price * exchangeRate, 2, ",", ".") }}</span> </p>
+                                                        </div>
+                                                        <div class="col-md-2 center-group">
+                                                    
+                                                            <button class="btn" @click="removeFromCart(product.id)"><i class="fa fa-times"></i></button>
+                                                        </div>
+                                                    
+                                                    </div>
+                                                
+                                                </div>
+                                                
+
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <!---2----->
                                 <div class="">
                                   <div  id="headingTwo">
@@ -35,7 +117,7 @@
                                       </button>
                                     </h5>
                                   </div>
-                                  <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+                                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                                     <div class="card-body">
                                     <div>
                                         <div class="row">
@@ -102,91 +184,12 @@
                             
                                             </div>--}}
                                         </div>
+                                        <div class="text-center mt-3">
+                                            <a href="#" @click="checkout()"><button class="btn-custom btn-custom2"><span v-if="selectedLanguage == 'english'">Continue</span> <span v-if="selectedLanguage == 'spanish'">Continuar</span> <i class="fa fa-angle-right" aria-hidden="true"></i></button></a>
+                                        </div>
                                     </div>
                                     </div>
                                   </div>
-                                </div>
-                              <!---1----->
-                                <div class="">
-                                    <div  id="headingOne">
-                                        <h5 class="mb-0">
-                                        <button class="btn btn-link p-0" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                            <div class="titulo-table">
-                                                <p v-if="selectedLanguage == 'english'">Items</p>
-                                                <p v-if="selectedLanguage == 'spanish'">Artículos</p>
-                                            </div>
-                                        </button>
-                                        </h5>
-                                    </div>
-                              
-                                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                                        <div class="card-body">
-                                        <!-------producto-------->
-                                            <div class="main-producto">
-                                                <div class="producto-item" v-for="product in products">
-                                                    <div class="row">
-                                                        <div class="col-md-6 item_product">
-                                                            <div class="item_img">
-                                                                <img :src="product.product_format_size.product.image" alt="">
-                                                            </div>
-                                                            <div class="item_texto">
-                                                                <p  class="title-bold" v-if="selectedLanguage == 'spanish'">@{{ product.product_format_size.product.name }}</p>
-                                                                <p  class="title-bold" v-if="selectedLanguage == 'english'">@{{ product.product_format_size.product.english_name }}</p>
-                                                                <span v-if="selectedLanguage == 'spanish'">@{{ product.product_format_size.size.width }}cm x @{{ product.product_format_size.size.height }}cm</span>
-                                                                <span v-if="selectedLanguage == 'english'">@{{ (product.product_format_size.size.width / 2.54).toFixed(2) }}in x @{{ (product.product_format_size.size.height/2.54).toFixed(2) }}in</span>
-                                                                {{--<span v-if="selectedLanguage == 'spanish'">Formato: @{{ product.product_format_size.format.name }}</span>
-                                                                <span v-if="selectedLanguage == 'english'">Format: @{{ product.product_format_size.format.english_name }}</span>--}}
-                                                                
-                                                            </div>
-
-                                                        </div>
-                                                        <div class="col-md-4 center-group">
-                                                            <p class="space"><span>$ @{{ number_format(product.product_format_size.price * exchangeRate, 2, ",", ".") }}</span> </p>
-                                                        </div>
-                                                        <div class="col-md-2 center-group">
-                                                            <button class="btn" @click="removeFromCart(product.id)"><i class="fa fa-times"></i></button>
-                                                        </div>
-                                                    
-                                                    </div>
-                                                
-                                                </div>
-
-                                                <div class="producto-item" v-for="(product, index) in productsGuest">
-                                                    <div class="row">
-                                                        <div class="col-md-6 item_product">
-                                                            <div class="item_img">
-                                                                <img :src="product.product.image" alt="">
-                                                            </div>
-                                                            <div class="item_texto">
-                                                                <p  class="title-bold" v-if="selectedLanguage == 'spanish'">@{{ product.product.name }}</p>
-                                                                <p  class="title-bold" v-if="selectedLanguage == 'english'">@{{ product.product.english_name }}</p>
-                                                                <span v-if="selectedLanguage == 'spanish'">@{{ product.size.width }}cm x @{{ product.size.height }}cm</span>
-                                                                <span v-if="selectedLanguage == 'english'">@{{ (product.size.width/2.54).toFixed(2) }}in x @{{ (product.size.height/2.54).toFixed(2) }}in</span>
-                                                                <span v-if="selectedLanguage == 'spanish'">Formato: @{{ product.format.name }}</span>
-                                                                <span v-if="selectedLanguage == 'english'">Format: @{{ product.format.english_name }}</span>
-                                                            
-                                                            </div>
-
-                                                        </div>
-                                                        <div class="col-md-4 center-group">
-                                                            <p class="space "><span>$ @{{ number_format(product.price * exchangeRate, 2, ",", ".") }}</span> </p>
-                                                        </div>
-                                                        <div class="col-md-2 center-group">
-                                                    
-                                                            <button class="btn" @click="removeFromCart(product.id)"><i class="fa fa-times"></i></button>
-                                                        </div>
-                                                    
-                                                    </div>
-                                                
-                                                </div>
-                                                
-
-                                            </div>
-                                            <div class="text-center mt-3">
-                                                <a href="#" @click="checkout()"><button class="btn-custom btn-custom2"><span v-if="selectedLanguage == 'english'">Continue</span> <span v-if="selectedLanguage == 'spanish'">Continuar</span> <i class="fa fa-angle-right" aria-hidden="true"></i></button></a>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
 
                                 

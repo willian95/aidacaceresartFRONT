@@ -1013,6 +1013,7 @@ En aplicación del artículo 47 de la ley 1480 de 2011, los consumidores que adq
                 data() {
                     return {
                         user:"",
+                        token:"{{ Session::get('token') }}",
                         authCheck:false,
                     }
                 },

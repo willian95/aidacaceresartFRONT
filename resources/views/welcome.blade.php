@@ -5,7 +5,7 @@
         <!----banner------>
         <section class="main-banner pb-0 pt-0">
             <div id="demo-test-gallery" class="demo-gallery" data-pswp-uid="1">
-                <div class=" main-banner__content ">
+                <div class=" main-banner__content " >
                     @foreach(App\Product::where("show_on_carousel", 1)->get() as $carousel)
                         <div>
                             <div class="main-banner_item">
@@ -43,7 +43,7 @@
                                             $ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "desc")->first()->price * App\DolarPrice::first()->rate, 2, ",", ".") }}
                                         @endif 
                                      </li>
-                                    <li><a class="btn-add " href=""><i class="flaticon-shopping-bag
+                                    <li><a class="btn-add" onclick="addToCart('{{ App\ProductFormatSize::where('product_id', $carousel->id)->first()->id }}')"><i class="flaticon-shopping-bag
                                         "><span>+</span></i></a> </li>
                                 </ul>
                             </div>
@@ -258,6 +258,14 @@
 @push('scripts')
 
     <script>
+        function addToCart(id){
+            
+            window.localStorage.setItem("aida_header_id", id)
+
+        }
+    </script>
+
+    <script>
         
         const home = new Vue({
             el: '#home',
@@ -362,10 +370,67 @@
                     $(".show-english").css("display", "block")
                 }
 
+                window.setInterval(() => {
+
+                    
+                    if(window.localStorage.getItem("aida_header_id")){
+
+                        var header_id = window.localStorage.getItem("aida_header_id")
+                        window.localStorage.removeItem("aida_header_id")
+
+                        if(window.localStorage.getItem("aida_token") && window.localStorage.getItem("aida_user")){
+
+                            axios.post("{{ url('/get-user') }}", {}, {
+                                headers: {
+                                    Authorization: "Bearer "+window.localStorage.getItem('aida_token')
+                                } 
+                            }).then(res =>{
+
+                                axios.post("{{ url('/cart/store') }}", {formatSizeId: header_id}, {
+                                    headers: {
+                                        Authorization: "Bearer "+window.localStorage.getItem('aida_token')
+                                    }
+                                }).then(res => {
+                                    if(this.selectedLanguage == "spanish"){
+                                        alertify.success("producto agregado al carrito")
+                                    }else{
+                                        alertify.success("Product added to cart")
+                                    }
+                                })
+
+                            })
+
+                        }else{
+
+                            var cart = []
+
+                            if(window.localStorage.getItem("aida_cart")){
+
+                                cart = JSON.parse(window.localStorage.getItem("aida_cart"))
+
+                            }
+
+                            cart.push({id: header_id})
+                            window.localStorage.setItem("aida_cart", JSON.stringify(cart))
+
+                            if(this.selectedLanguage == "spanish"){
+                                alertify.success("producto agregado al carrito")
+                            }else{
+                                alertify.success("Product added to cart")
+                            }
+
+                        }
+                        
+                    }
+
+                }, 1000)
+
+
             }
             
 
         })
+
 
          
     </script>
