@@ -926,6 +926,12 @@
           
         </script>
 
+        @if(isset($token))
+            <script>
+                alert("{{ $token }}")
+            </script>
+        @endif
+
         <script>
 
             const navbar = new Vue({
