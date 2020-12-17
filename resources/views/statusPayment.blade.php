@@ -13,7 +13,7 @@
             <div class="producto-item mb-3" v-for="product in products">
                 <div class="center-group">
                     <div class="col-md-6 item_product">
-                        <div class="item_img">
+                        <div class="item_img" style="margin-top: 3rem;">
                             <img :src="product.product_format_size.product.image" alt="">
                         </div>
                         <div class="item_texto">
