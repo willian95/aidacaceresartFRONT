@@ -110,10 +110,16 @@ td .es-button-border-2:hover {
                     @if($language == 'spanish')
 
                       <tr>
-                        <td>Nombre: {{ $user->name }}</td><td>Total: {{ $payment->total_products }}</td>
+                        <td>Nombre: {{ $user->name }}</td>
                       </tr>
                       <tr>
-                        <td>Email: {{ $user->email }}</td><td>Dirección: {{ $user->address }}</td>
+                      <td>Total: $ {{ $payment->total_products }}</td>
+                      </tr>
+                      <tr>
+                        <td>Email: {{ $user->email }}</td>
+                      </tr>
+                      <tr>
+                      <td>Dirección: {{ $user->address }}</td>
                       </tr>
                       <tr>
                       <td>Paypal #: {{ $payment->order_id }}</td>
@@ -128,10 +134,16 @@ td .es-button-border-2:hover {
                     @else
 
                       <tr>
-                        <td>Name: {{ $user->name }}</td><td>Total: {{ $payment->total_products }}</td>
+                        <td>Name: {{ $user->name }}</td>
                       </tr>
                       <tr>
-                        <td>Email: {{ $user->email }}</td><td>Address: {{ $user->address }}</td>
+                      <td>Total: {{ $payment->total_products }}</td>
+                      </tr>
+                      <tr>
+                        <td>Email: {{ $user->email }}</td>
+                      </tr>
+                      <tr>
+                      <td>Address: {{ $user->address }}</td>
                       </tr>
                       <tr>
                         <td>Paypal #: {{ $payment->order_id }}</td>
