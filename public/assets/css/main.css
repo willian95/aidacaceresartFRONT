@@ -1223,7 +1223,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
     text-align: start;
 }
 .img-height{
-    height: 50vh;
+    height: 50vh!important;
 }
 .modal-content {
   
