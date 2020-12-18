@@ -71,19 +71,27 @@
         <p class="main_title-general"></p>
 
         <div class="timeline-container" id="timeline-1">
+            @if(App\Blog::count() > 0)
             <div class="timeline-header">
-                <h2 class="timeline-header__title">More about Aida - Collaborations</h2>
+                <h2 class="timeline-header__title show-spanish">Más acerca de Aida - Colaboraciones</h2>
+                <h2 class="timeline-header__title show-english">More about Aida - Collaborations</h2>
 
             </div>
+            @endif
             <div class="timeline">
-                <div class="timeline-item" data-text="01/10/2020">
-                    <div class="timeline__content"><img class="timeline__img" src="http://imgfz.com/i/sLGAmZN.jpeg" />
-                        <h2 class="timeline__content-title">Title event</h2>
-                        <p class="timeline__content-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                            do eiusmod tempor incididunt ut labore et dolore magna aliqua..</p>
+                @foreach(App\Blog::all() as $blog)
+
+                    <div class="timeline-item" data-text="{{ $blog->date }}">
+                        <div class="timeline__content"><img class="timeline__img" src="{{ $blog->image }}" />
+                            <h2 class="timeline__content-title show-spanish">{{ $blog->title }}</h2>
+                            <p class="timeline__content-desc show-spanish">{{ $blog->description }}</p>
+                            <h2 class="timeline__content-title show-english">{{ $blog->english_title }}</h2>
+                            <p class="timeline__content-desc show-english">{{ $blog->english_description }}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="timeline-item" data-text="01/10/2020">
+
+                @endforeach
+                {{--<div class="timeline-item" data-text="01/10/2020">
                     <div class="timeline__content"><img class="timeline__img" src="http://imgfz.com/i/ywPrSJ8.jpeg" />
                         <h2 class="timeline__content-title">Title event</h2>
                         <p class="timeline__content-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -114,7 +122,7 @@
                             consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
                             aliqua.</p>
                     </div>
-                </div>
+                </div>--}}
 
             </div>
         </div>
