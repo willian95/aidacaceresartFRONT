@@ -96,3 +96,5 @@ Route::post("/guest/store", "GuestUserController@store");
 Route::post("/newsletter-subscribe", "SubcribeController@store");
 
 Route::get("/countries/fetch", "CountryController@fetchCountries");
+
+Route::get("/sales/fetch/{page}", "ProfileController@fetchSales");
