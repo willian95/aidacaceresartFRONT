@@ -54,7 +54,7 @@
             </div>
         </div>
     </section>
-
+</div>
     <!----VIDEO----->
     <section class="">
         <div class="main_video">
