@@ -63,6 +63,7 @@
 
     .main-banner_text li {
         margin-bottom: 10px;
+        display: block;
     }
 
     .main_pagos ul {
@@ -137,7 +138,7 @@
         bottom: -90%;
     }
     .main_pagos li {
-        display: block;
+        flex-direction: column;
       
     }
     .img-non{
