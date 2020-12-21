@@ -26,12 +26,12 @@
                                         <a class="show-english" href="{{ url('/product/'.$carousel->slug) }}">See more <i class="fa fa-angle-right" aria-hidden="true"></i>
                                         </a>
                                     </li>
-                                    <li class="show-usd">
+                                    {{--<li class="show-usd">
                                         $ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "desc")->first()->price, 2, ",", ".") }}
                                     </li>
                                     <li class="show-cop">
                                         $ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "desc")->first()->price * App\DolarPrice::first()->rate, 2, ",", ".") }}
-                                    </li>
+                                    </li>--}}
                                     {{--<li>Available on Canvas & Super HD Print <br> --}}
                                     <li class="show-usd">$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price, 2, ",", ".") }} 
                                         @if(App\ProductFormatSize::where("product_id", $carousel->id)->count() > 1) - 
@@ -378,7 +378,7 @@
 
                         var header_id = window.localStorage.getItem("aida_header_id")
                         window.localStorage.removeItem("aida_header_id")
-
+                        window.localStorage.setItem("updateCart", "1")
                         if(window.localStorage.getItem("aida_token") && window.localStorage.getItem("aida_user")){
 
                             axios.post("{{ url('/get-user') }}", {}, {

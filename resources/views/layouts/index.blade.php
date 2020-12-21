@@ -69,7 +69,7 @@
                                         COP
                                     </span>
                                 </a>
-                                <div aria-labelledby='dropdownMenuButton' class='dropdown-menu' id="currencyMenu" style="margin-top: 24px;">
+                                <div aria-labelledby='dropdownMenuButton' class='dropdown-menu' id="currencyMenu">
                                     <div class='content-drop'>
                                         <a class='dropdown-item' href='#' v-if="selectedCurrency == 'COP'" @click="setCurrency('USD')">
                                             <p> USD</p>
@@ -94,7 +94,7 @@
                                     <!---<i class="flaticon-translation"></i>--->
 
                                 </a>
-                                <div aria-labelledby='dropdownMenuButton' class='dropdown-menu' id="languageMenu" style="margin-top: 24px;">
+                                <div aria-labelledby='dropdownMenuButton' class='dropdown-menu' id="languageMenu">
                                     <div class='content-drop'>
                                         <a class='dropdown-item' href='#' v-if="selectedLanguage == 'spanish'" @click="setLanguage('english')">
                                             <p> EN</p>
@@ -131,11 +131,11 @@
                                     <i class="flaticon-shopping-bag"></i>
                                     <button style="    display: none!important;" class="btn btn-default dropdown-toggle d-flex p-0 " type="button" data-toggle="dropdown" data-hover="dropdown">
                                         <span class="add_btn" id="cart-notification"></span>
-                                        <a class="nav-link" href="{{ url('/cart/index') }}"><i class="flaticon-shopping-cart"></i></a>
+                                        <a class="nav-link" href="{{ url('/cart') }}"><i class="flaticon-shopping-cart"></i></a>
                                     </button>
                                     <ul class="dropdown-menu carrito-nav">
         
-                                        <li v-for="product in products">
+                                        {{--<li v-for="product in products">
                                             <div>
                                                 <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.product_type_size.product.image" alt="">
                                             </div>
@@ -160,14 +160,12 @@
                                                     <span v-else>$@{{ parseInt(product.product.price - (product.product.price * (product.product.discount_percentage/100))).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
                                                 </p>
                                             </div>
-                                        </li>
+                                        </li>--}}
                                         <div class="sub">
-                                            <span>Subtotal:
-                                                $@{{ parseInt(total).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
+                                            <span>Total:
+                                                $@{{ number_format(total * exchangeRate, 2, ",", ".") }}</span>
                                             <ul>
-                                                <li><a class="btn-custom sub-h" href="{{ url('/cart/index') }}">Ver carrito</a></li>
-                                                <li><a class="btn-custom sub-h btn-w" href="{{ url('/checkout') }}">Finalizar
-                                                        compra</a></li>
+                                                <li><a class="btn-custom sub-h" href="{{ url('/cart') }}" v-if="selectedLanguage == 'spanish'">Ver carrito</a><a class="btn-custom sub-h" href="{{ url('/cart') }}" v-if="selectedLanguage == 'english'">See cart</a></li>
                                             </ul>
                                         </div>
                                     </ul>
@@ -1065,13 +1063,72 @@ En aplicación del artículo 47 de la ley 1480 de 2011, los consumidores que adq
                 el: '#navbarNav',
                 data() {
                     return {
+                        total:0,
                         user:"",
                         token:"{{ Session::get('token') }}",
+                        exchangeRate:1,
                         authCheck:false,
+                        productsGuest:[],
+                        products:[]
                     }
                 },
                 methods: {
 
+                    fetch(){
+                        this.total = 0
+                        axios.get("{{ url('/cart/fetch') }}",{ headers: {
+                            Authorization: "Bearer "+window.localStorage.getItem('aida_token')
+                        }}).then(res =>{
+                            this.products = res.data.items
+                            this.products.forEach(data => {
+                                this.total = this.total + data.product_format_size.price
+                            })
+                        })
+                        .catch(err => {
+                            this.errors = err.response.data.errors
+                        })
+                    },
+                    guestFetch(){
+                        this.total = 0
+                        var cart = JSON.parse(window.localStorage.getItem('aida_cart'))
+                        
+                        if(cart){
+                            axios.post("{{ url('cart/guest-fetch') }}", {item: cart},{ headers: {
+                                Authorization: "Bearer "+window.localStorage.getItem('aida_token')
+                            }}).then(res =>{
+                            this.productsGuest = res.data.items
+                            this.productsGuest.forEach(data => {
+                                this.total = this.total + data.price
+                            })
+                            })
+                        }
+                        
+                
+                    },
+                    number_format(number, decimals, dec_point, thousands_point) {
+                        if (number == null || !isFinite(number)) {
+                            throw new TypeError("number is not valid");
+                        }
+                        if (!decimals) {
+                            var len = number.toString().split('.').length;
+                            decimals = len > 1 ? len : 0;
+                        }
+                        if (!dec_point) {
+                            dec_point = '.';
+                        }
+                        if (!thousands_point) {
+                            thousands_point = ',';
+                        }
+                        if(this.selectedCurrency == "COP"){
+                            decimals = 0
+                        }
+                        number = parseFloat(number).toFixed(decimals);
+                        number = number.replace(".", dec_point);
+                        var splitNum = number.split(dec_point);
+                        splitNum[0] = splitNum[0].replace(/\B(?=(\d{3})+(?!\d))/g, thousands_point);
+                        number = splitNum.join(dec_point);
+                        return number;
+                    },
                     logout(){
                         window.localStorage.removeItem("aida_user")
                         window.localStorage.removeItem("aida_token")
@@ -1121,10 +1178,38 @@ En aplicación del artículo 47 de la ley 1480 de 2011, los consumidores que adq
                         this.selectedCurrency = currency
                         window.localStorage.setItem("aida_currency", currency)
                         window.location.reload()
-                    }
+                    },
+                    getFetchExchangeRate(){
+                        if(this.selectedCurrency == "COP"){
+                            axios.get("{{ url('dolar-price') }}").then(res => {
+                                this.exchangeRate = res.data.dolar
+                            })
+                        }else{
+                            this.exchageRate = 1
+                        }
+                    },
 
                 },
                 created(){
+
+                    if(window.localStorage.getItem("aida_user") && window.localStorage.getItem("aida_token")){
+                        this.fetch()
+                    }else{
+                        this.guestFetch()
+                    }
+
+                    window.setInterval(() => {
+
+                        if(window.localStorage.getItem("updateCart") == "1"){
+                            if(window.localStorage.getItem("aida_user") && window.localStorage.getItem("aida_token")){
+                                this.fetch()
+                            }else{
+                                this.guestFetch()
+                            }
+                            window.localStorage.removeItem("updateCart")
+                        }
+
+                    }, 1000)
 
                     if(!this.authCheck){
 
@@ -1168,6 +1253,16 @@ En aplicación del artículo 47 de la ley 1480 de 2011, los consumidores que adq
                         }
 
                     }
+
+                    if(window.localStorage.getItem("aida_currency") == null){
+                        window.localStorage.setItem("aida_currency", "USD")
+                        this.selectedCurrency = "USD"
+                    }else{
+                        this.selectedCurrency = window.localStorage.getItem("aida_currency")
+                    }
+
+                    this.getFetchExchangeRate()
+
                 }
             })
             

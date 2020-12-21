@@ -315,6 +315,7 @@
                     }
                 },
                 removeFromCart(productId){
+                    window.localStorage.setItem("updateCart", "1")
                     if(window.localStorage.getItem('aida_token') !=null){
                         axios.post("{{ url('/cart/delete') }}",{id: productId},{ headers: {
                             Authorization: "Bearer "+window.localStorage.getItem('aida_token')

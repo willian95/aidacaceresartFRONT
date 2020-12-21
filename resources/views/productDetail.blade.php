@@ -421,7 +421,7 @@
 
                   })
 
-                  
+                  window.localStorage.setItem("updateCart", "1")
 
                   if(window.localStorage.getItem("aida_token") && window.localStorage.getItem("aida_user")){
 
