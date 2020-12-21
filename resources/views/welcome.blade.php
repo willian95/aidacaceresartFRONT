@@ -220,8 +220,8 @@
                                 <div class="col-md-6">
                                     <div class="news">
                                 
-                                        <p v-if="selectedLanguage == 'english'">Hi! Become an Art Collector or just get a  notified about my new art work</p>
-                                        <p v-if="selectedLanguage == 'spanish'">Hola! Convierte en un Coleccionista de Arte o simplemente  mantente informado de mis nuevos trabajos</p>
+                                        <p v-if="selectedLanguage == 'english'">Hi! Sign in if you want to get up to date with my new art work</p>
+                                        <p v-if="selectedLanguage == 'spanish'">¡Hola! Suscríbete si quieres estar informado de mis nuevos trabajos.</p>
                 
                                         <div class="form-group">
                                             <!--<label for="password">Contraseña</label>-->
