@@ -215,7 +215,7 @@
                             </button>
                             <div class="row">
                                 <div class="col-md-6 p-0">
-                                    <img class="img-new" src="https://images.unsplash.com/photo-1522878308970-972ec5eedc0d?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=375&amp;q=80" alt="">
+                                    <img class="img-new" src="{{ asset('assets/img/new.jpg') }}" alt="">
                                 </div>
                                 <div class="col-md-6">
                                     <div class="news">

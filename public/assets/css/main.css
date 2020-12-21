@@ -506,7 +506,9 @@ height: 500px;
         /*width: 250px;*/
         width: 630px;
     }
-
+    .galeria-page .galeria-brick--h:nth-child(4n+1) {
+        width: auto;
+    }
     .galeria-brick--h:nth-child(4n+2) {
         /*width: 325px;*/
         width: auto;
@@ -515,11 +517,15 @@ height: 500px;
     .galeria-brick--h:nth-child(4n+3) {
         width: 180px;
     }
-
+    .galeria-page .galeria-brick--h:nth-child(4n+3) {
+        width: auto!important;
+    }
     .galeria-brick--h:nth-child(4n+4) {
         width: 380px;
     }
-
+    .galeria-page .galeria-brick--h:nth-child(4n+4)  {
+        width: auto!important;
+    }
     /* Adjusting vertical galeria height on desktop-sized screen */
     .galeria--v {
         max-height: 1600px;
