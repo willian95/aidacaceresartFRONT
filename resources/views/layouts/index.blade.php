@@ -162,8 +162,8 @@
                                             </div>
                                         </li>--}}
                                         <div class="sub">
-                                            <span>Total:
-                                                $@{{ number_format(total * exchangeRate, 2, ",", ".") }}</span>
+                                            <span>Total:$ @{{ number_format(total * exchangeRate, 2, ",", ".") }}</span>
+                                            <span>Items:@{{ amount }}</span>
                                             <ul>
                                                 <li><a class="btn-custom sub-h" href="{{ url('/cart') }}" v-if="selectedLanguage == 'spanish'">Ver carrito</a><a class="btn-custom sub-h" href="{{ url('/cart') }}" v-if="selectedLanguage == 'english'">See cart</a></li>
                                             </ul>
@@ -898,7 +898,8 @@ En aplicación del artículo 47 de la ley 1480 de 2011, los consumidores que adq
                         products: [],
                         selectedLanguage:"",
                         selectedCurrency:"",
-                        guesProducts: [],            
+                        guesProducts: [],
+
                         url:"{{ url('/') }}",
                         auth:""
                     }
@@ -1069,6 +1070,7 @@ En aplicación del artículo 47 de la ley 1480 de 2011, los consumidores que adq
                         exchangeRate:1,
                         authCheck:false,
                         productsGuest:[],
+                        amount:0
                         products:[]
                     }
                 },
@@ -1080,6 +1082,7 @@ En aplicación del artículo 47 de la ley 1480 de 2011, los consumidores que adq
                             Authorization: "Bearer "+window.localStorage.getItem('aida_token')
                         }}).then(res =>{
                             this.products = res.data.items
+                            this.amount = this.products.length
                             this.products.forEach(data => {
                                 this.total = this.total + data.product_format_size.price
                             })
@@ -1097,6 +1100,7 @@ En aplicación del artículo 47 de la ley 1480 de 2011, los consumidores que adq
                                 Authorization: "Bearer "+window.localStorage.getItem('aida_token')
                             }}).then(res =>{
                             this.productsGuest = res.data.items
+                            this.amount = this.productsGuest.length
                             this.productsGuest.forEach(data => {
                                 this.total = this.total + data.price
                             })
