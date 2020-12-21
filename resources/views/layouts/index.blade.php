@@ -122,10 +122,58 @@
                         </div>
                         <div class="flex-content ">
                             <li class='nav-item active'>
-                                <a  href="{{ url('/cart') }}">
+                            
+                                <div class="dropdown" id="cartPreview">
+                                    <i class="flaticon-shopping-bag"></i>
+                                    <button style="    display: none!important;" class="btn btn-default dropdown-toggle d-flex p-0 " type="button" data-toggle="dropdown" data-hover="dropdown">
+                                        <span class="add_btn" id="cart-notification"></span>
+                                        <a class="nav-link" href="{{ url('/cart/index') }}"><i class="flaticon-shopping-cart"></i></a>
+                                    </button>
+                                    <ul class="dropdown-menu carrito-nav">
+        
+                                        <li v-for="product in products">
+                                            <div>
+                                                <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.product_type_size.product.image" alt="">
+                                            </div>
+        
+                                            <div>
+                                                <p>@{{ product.product_type_size.product.name }}</p>
+                                                <p>@{{ product.amount }} x
+                                                    <span v-if="product.product_type_size.discount_percentage == 0">$@{{ parseInt(product.product_type_size.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
+                                                    <span v-else>$@{{ parseInt(product.product_type_size.price - (product.product_type_size.price * (product.product_type_size.discount_percentage/100))).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <li v-for="product in guestProducts">
+                                            <div>
+                                                <img :src="'{{ env('CMS_URL') }}'+'/images/products/'+product.product.product.image" alt="">
+                                            </div>
+        
+                                            <div>
+                                                <p>@{{ product.product.product.name }}</p>
+                                                <p>@{{ product.amount }} x
+                                                    <span v-if="product.product.discount_percentage == 0">$@{{ parseInt(product.product.price).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
+                                                    <span v-else>$@{{ parseInt(product.product.price - (product.product.price * (product.product.discount_percentage/100))).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
+                                                </p>
+                                            </div>
+                                        </li>
+                                        <div class="sub">
+                                            <span>Subtotal:
+                                                $@{{ parseInt(total).toString().replace(/\B(?=(\d{3})+\b)/g, ".") }}</span>
+                                            <ul>
+                                                <li><a class="btn-custom sub-h" href="{{ url('/cart/index') }}">Ver carrito</a></li>
+                                                <li><a class="btn-custom sub-h btn-w" href="{{ url('/checkout') }}">Finalizar
+                                                        compra</a></li>
+                                            </ul>
+                                        </div>
+                                    </ul>
+        
+        
+                                </div>
+                              <!--  <a  href="{{ url('/cart') }}">
                                     <i class="flaticon-shopping-bag"></i>
 
-                                </a>
+                                </a>-->
                             </li>
 
                            

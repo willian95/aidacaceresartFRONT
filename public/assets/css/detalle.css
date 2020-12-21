@@ -123,6 +123,7 @@
     display: flex;
     justify-content: center;
     margin-top: 10px;
+    cursor: pointer;
 }
 .atention{
     display: flex;
