@@ -7,11 +7,9 @@
         <!----VIDEO----->
         <section class="">
             <div class="main_video">
-                <video loop autoplay="true" muted="muted">
-                    <!--<source src="ejemplo.webm" type="video/webm">
-                    <source src="ejemplo.ogg" type="video/ogg">-->
-                    <source src="{{ App\HomeVideo::first()->video }}" type="video/mp4">
-                </video>
+                <video id="video"  class=" d-sm-block video" autoplay muted loop  preload playsinline   src="{{ App\HomeVideo::first()->video }}"></video>
+
+             
             </div>
         </section>
         <!----VIDEO----->

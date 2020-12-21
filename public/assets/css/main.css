@@ -1357,3 +1357,12 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 .img-non{
     display: none!important;
 }
+.modal-bod .close {
+    margin-right: 14px;
+    margin-top: 10px;
+}
+.close {
+   
+    margin-right: 14px;
+    margin-top: 4px;
+}
