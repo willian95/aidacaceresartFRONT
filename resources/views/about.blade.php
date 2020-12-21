@@ -55,17 +55,7 @@
         </div>
     </section>
 </div>
-    <!----VIDEO----->
-    <section class="">
-        <div class="main_video">
-            <video autoplay>
-                <source src="ejemplo.webm" type="video/webm">
-                <source src="ejemplo.ogg" type="video/ogg">
-                <source src="assets/img/nrw6.mp4" type="video/mp4">
-            </video>
-        </div>
-    </section>
-    <!----VIDEO----->
+ 
 
     <section>
         <p class="main_title-general"></p>
