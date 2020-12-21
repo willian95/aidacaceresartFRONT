@@ -30,7 +30,7 @@
     <section>
         <p class="main_title-general" v-if="selectedLanguage == 'spanish'">Gallería</p>
         <p class="main_title-general" v-if="selectedLanguage == 'english'">Gallery</p>
-        <div id="galeria" class="galeria galeria--h container">
+        <div id="galeria" class="galeria galeria--h container galeria-page">
             <div class="galeria-brick galeria-brick--h" v-for="product in products">
                 <a :href="'{{ url('/product/') }}'+'/'+product.slug">
                     <div class="galeria_name">
