@@ -3,10 +3,11 @@
 @media (min-width: 0px) and (max-width: 767px) {
     .elipse img {
 
-        width: 80%!important;
-        margin-left: 5rem!important;
-        margin-top: 5rem!important;
+        width: 96% !important;
+        margin-left: 5rem !important;
+        margin-top: 5rem !important;
     }
+
     .brand-xs {
         display: block !important;
         padding: 12px;
@@ -36,7 +37,7 @@
     }
 
     .navbar-expand-md .navbar-nav .nav-link {
-
+        padding-right: 0;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -69,8 +70,101 @@
         flex-direction: column;
         padding: 0;
     }
-    .logoxs{
-        display: flex!important;
+
+    .logoxs {
+        display: flex !important;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .flaticon-zoom-in-1 {
+        display: none !important;
+    }
+
+    .dimens {
+        display: block;
+    }
+
+    #img-zoomer-box {
+        width: auto;
+
+    }
+
+    .item_product {
+        display: contents;
+    }
+
+    .producto-item .row {
+        display: grid;
+
+        grid-template-columns: 25% 25% 30% 20%;
+    }
+
+    .item_texto {
+        padding-left: 0;
+    }
+    .item_img{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-right: 10px;
+    }
+    .item_texto span {
+        font-size: 9px;
+   
+    }
+    .title-bold {
+       
+        margin: 0;
+    }
+    #collapseTwo .form-group i {
+        top: 40% !important;
+    }
+    .pswp__top-bar {
+        position: absolute!important;
+        left: -34%!important;
+        top: 74%!important;
+        height: auto!important;
+        display: block!important;
+        text-align: end;
+        left: -29%;
+        width: -webkit-fill-available;
+    }
+    .firma {
+        width: 130px;
+        margin-left: -39px;
+        position: absolute;
+        bottom: -90%;
+    }
+    .main_pagos li {
+        display: block;
+      
+    }
+    .img-non{
+        display: initial!important;
+    }
+    .img-pago2{
+        display: none;
+    }
+    .main_pagos img {
+
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .footer {
+        display: block;
+  
+    }
+    .atention {
+        display: block;
+     
+    }
+    .atention-item {
+        width: 100%;
+        padding: 13px;
+    }
+    html,body{
+        overflow-x: hidden;
     }
 }
 
@@ -88,20 +182,21 @@
 
 @media (min-width: 768px) and (max-width: 991px) {
     .offcanvas-collapse {
-		position: fixed;
-		top: 82px;
-		bottom: 0;
-		left: 100%;
-		width: 100%;
-		padding-right: 0rem;
-		padding-left: 0rem;
-		overflow-y: auto;
-		visibility: hidden;
-		background-color: #fff;
-		transition-timing-function: ease-in-out;
-		transition-duration: 0.3s;
-		transition-property: left, visibility;
+        position: fixed;
+        top: 82px;
+        bottom: 0;
+        left: 100%;
+        width: 100%;
+        padding-right: 0rem;
+        padding-left: 0rem;
+        overflow-y: auto;
+        visibility: hidden;
+        background-color: #fff;
+        transition-timing-function: ease-in-out;
+        transition-duration: 0.3s;
+        transition-property: left, visibility;
     }
+
     .brand-xs {
         display: block !important;
         padding: 12px;
@@ -150,7 +245,7 @@
         margin-left: 0;
     }
 
- 
+
     .main-banner_text li {
         margin-bottom: 10px;
     }

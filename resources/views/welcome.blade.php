@@ -113,6 +113,7 @@
                    
                     <li class="w-200" v-if="selectedLanguage == 'spanish'" @mouseover="modaldhl()"> Envíos nacionales e internacionales por DHL! </li>
                     <li class="w-200" v-if="selectedLanguage == 'english'">National & International Shipping via DHL!</li>
+                    <img class="img-pago img-pago2 img-non"  src="http://imgfz.com/i/mufyBjh.png" alt="">
                 </ul>
             </div>
         </section>

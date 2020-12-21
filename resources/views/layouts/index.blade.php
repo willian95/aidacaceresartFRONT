@@ -21,9 +21,10 @@
     <link rel="stylesheet" href="{{ asset('assets/fonts/Flaticon.woff') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/detalle.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
+   
     <link href="{{ asset('alertify/css/alertify.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('alertify/css/themes/bootstrap.min.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('assets/css/responsive.css') }}">
     <style>
         .swal-overlay{
             z-index: 100000000 !important;
@@ -41,6 +42,9 @@
                 <div class="d-flex w-100 logoxs">
                     <a class='brand-xs' href='#'>
                         <img alt='' src='{{ asset('assets/img/logo.png') }}'>
+                    </a>
+                     <a  href="{{ url('/cart') }}">
+                       <i class="flaticon-shopping-bag"></i>
                     </a>
                     <button class='navbar-toggler p-2 border-0 hamburger hamburger--elastic d-none-lg'
                         data-toggle='offcanvas' type='button'>
