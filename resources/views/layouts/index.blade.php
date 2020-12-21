@@ -168,7 +168,7 @@
                                             </p>
                                             <p v-if="selectedLanguage == 'english'">
                                                 <span>Items:@{{ amount }}</span>
-                                            </p>
+                                            </p>        
                                             <ul>
                                                 <li><a class="btn-custom sub-h" href="{{ url('/cart') }}" v-if="selectedLanguage == 'spanish'">Ver carrito</a><a class="btn-custom sub-h" href="{{ url('/cart') }}" v-if="selectedLanguage == 'english'">See cart</a></li>
                                             </ul>
