@@ -107,13 +107,13 @@
                     <li v-if="selectedLanguage == 'spanish'"  @mouseover="modalpago()"> Pagos seguros y garantizados  </li>
                     <li v-if="selectedLanguage == 'english'">Safety payments by!</li>
                     <li>
-                        <img class="img-pago" src="https://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c530.png" alt=""> 
+                        <img class="img-pago" src="{{ asset('assets/img/paypal.png') }}" alt=""> 
                         <img class="img-pago img-pago2"  src="http://imgfz.com/i/mufyBjh.png" alt="">
                     </li>
                    
                     <li class="w-200" v-if="selectedLanguage == 'spanish'" @mouseover="modaldhl()"> Envíos nacionales e internacionales por DHL! </li>
                     <li class="w-200" v-if="selectedLanguage == 'english'">National & International Shipping via DHL!</li>
-                    <img class="img-pago img-pago2 img-non"  src="http://imgfz.com/i/mufyBjh.png" alt="">
+                   <!-- <img class="img-pago img-pago2 img-non"  src="http://imgfz.com/i/mufyBjh.png" alt="">-->
                 </ul>
             </div>
         </section>
@@ -220,8 +220,9 @@
                                 <div class="col-md-6">
                                     <div class="news">
                                 
-                                        <p v-if="selectedLanguage == 'english'">Hi! Become an Art Collector or just get a  notified about my new art work</p>
-                                        <p v-if="selectedLanguage == 'spanish'">Hola! Convierte en un Coleccionista de Arte o simplemente  mantente informado de mis nuevos trabajos</p>
+                                        <p v-if="selectedLanguage == 'english'">
+                                            Hello! Subscribe if you want to be informed of my new jobs.k</p>
+                                        <p v-if="selectedLanguage == 'spanish'">¡Hola! Suscríbete si quieres estar informado de mis nuevos trabajos.</p>
                 
                                         <div class="form-group">
                                             <!--<label for="password">Contraseña</label>-->
@@ -230,8 +231,8 @@
                                             
                 
                                             <button type="button" href="#" class="btn btn-custom mt-4" @click="subscribe()">
-                                                <span v-if="selectedLanguage == 'english'">Subscribe!</span>
-                                                <span v-if="selectedLanguage == 'spanish'">Suscribete!</span>
+                                                <span v-if="selectedLanguage == 'english'">¡Suscríbete!</span>
+                                                <span v-if="selectedLanguage == 'spanish'">¡Suscríbete!</span>
                                             </button>
 
                                             <p class="text-center">
