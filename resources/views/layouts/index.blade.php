@@ -163,7 +163,12 @@
                                         </li>--}}
                                         <div class="sub">
                                             <span>Total:$ @{{ number_format(total * exchangeRate, 2, ",", ".") }}</span>
-                                            <span>Items:@{{ amount }}</span>
+                                            <p v-if="selectedLanguage == 'spanish'">
+                                                <span>Pinturas:@{{ amount }}</span>
+                                            </p>
+                                            <p v-if="selectedLanguage == 'english'">
+                                                <span>Items:@{{ amount }}</span>
+                                            </p>
                                             <ul>
                                                 <li><a class="btn-custom sub-h" href="{{ url('/cart') }}" v-if="selectedLanguage == 'spanish'">Ver carrito</a><a class="btn-custom sub-h" href="{{ url('/cart') }}" v-if="selectedLanguage == 'english'">See cart</a></li>
                                             </ul>
@@ -1070,7 +1075,7 @@ En aplicación del artículo 47 de la ley 1480 de 2011, los consumidores que adq
                         exchangeRate:1,
                         authCheck:false,
                         productsGuest:[],
-                        amount:0
+                        amount:0,
                         products:[]
                     }
                 },
