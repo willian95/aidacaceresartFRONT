@@ -141,7 +141,7 @@
                                         </div>
                                         <div class="row">
                             
-                                            <div class="col-md-8">
+                                            <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="dirección"><i class="fa fa-globe icon_form"></i></label>
                                                     <input type="text" v-if="selectedLanguage == 'spanish'" placeholder="Dirección" class="form-control" v-model="guestAddress" id="dirección">
@@ -150,7 +150,11 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-4">
+                                         
+                            
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="dirección"><i class="fa fa-globe icon_form"></i></label>
                                                     <select class="form-control" v-model="guestCountry">
@@ -161,9 +165,6 @@
                                                     <small v-if="errors.hasOwnProperty('country')">@{{ errors['country'][0] }}</small>
                                                 </div>
                                             </div>
-                            
-                                        </div>
-                                        <div class="row">
                                             <div class="col-md-6">
                             
                                                 <div class="form-group">
