@@ -144,8 +144,8 @@
                                             <div class="col-md-8">
                                                 <div class="form-group">
                                                     <label for="dirección"><i class="fa fa-globe icon_form"></i></label>
-                                                    <input type="text" v-if="selectedLanguage == 'spanish'" placeholder="Dirección" class="form-control" v-model="guestAddress" id="dirección" :readonly="isAuth.length > 0">
-                                                    <input type="text" v-if="selectedLanguage == 'english'" placeholder="Address" class="form-control" v-model="guestAddress" id="dirección" :readonly="isAuth.length > 0">
+                                                    <input type="text" v-if="selectedLanguage == 'spanish'" placeholder="Dirección" class="form-control" v-model="guestAddress" id="dirección">
+                                                    <input type="text" v-if="selectedLanguage == 'english'" placeholder="Address" class="form-control" v-model="guestAddress" id="dirección">
                                                     <small v-if="errors.hasOwnProperty('address')">@{{ errors['address'][0] }}</small>
                                                 </div>
                                             </div>
@@ -153,7 +153,7 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label for="dirección"><i class="fa fa-globe icon_form"></i></label>
-                                                    <select class="form-control" v-model="guestCountry" :disabled="isAuth.length > 0">
+                                                    <select class="form-control" v-model="guestCountry">
                                                         <option value="" v-if="selectedLanguage == 'spanish'">País</option>
                                                         <option value="" v-if="selectedLanguage == 'english'">Country</option>
                                                         <option :value="country.id" v-for="country in countries">@{{ country.name }}</option>
@@ -168,8 +168,8 @@
                             
                                                 <div class="form-group">
                                                     <label for="phone"><i class="fa fa-phone icon_form"></i></label>
-                                                    <input type="text" v-if="selectedLanguage == 'spanish'" placeholder="Teléfono" class="form-control" v-model="guestPhone" id="phone" @keypress="isNumber($event)" :readonly="isAuth.length > 0">
-                                                    <input type="text" v-if="selectedLanguage == 'english'" placeholder="Phone" class="form-control" v-model="guestPhone" id="phone" @keypress="isNumber($event)" :readonly="isAuth.length > 0">
+                                                    <input type="text" v-if="selectedLanguage == 'spanish'" placeholder="Teléfono" class="form-control" v-model="guestPhone" id="phone" @keypress="isNumber($event)">
+                                                    <input type="text" v-if="selectedLanguage == 'english'" placeholder="Phone" class="form-control" v-model="guestPhone" id="phone" @keypress="isNumber($event)">
                                                     <small v-if="errors.hasOwnProperty('phone')">@{{ errors['phone'][0] }}</small>
                                                 </div>
                             
@@ -369,32 +369,35 @@
                             var currency = res.data.currency
                             if(window.localStorage.getItem('aida_token') !=null){
                                 
-                                if(this.guestCountry == ""){
+                                if(this.guestAddress == "" || this.guestAddress == null){
 
                                     if(this.selectedLanguage == "english"){
-                                        alertify.error("You have to select a country in your profile")
+                                        alertify.error("You have to set an address")
                                     }else{
-                                        alertify.error("Debes seleccionar un país en tu perfil")
+                                        alertify.error("Debes agregar una dirección")
                                     }
 
-                                }else if(this.guestTelephone == ""){
+                                }else if(this.guestCountry == ""){
 
                                     if(this.selectedLanguage == "english"){
-                                        alertify.error("You have to set a telephone number in your profile")
+                                        alertify.error("You have to select a country")
                                     }else{
-                                        alertify.error("Debes agregar un número de teléfono en tu perfil")
+                                        alertify.error("Debes seleccionar un país")
                                     }
 
-                                }else if(this.guestAddress == ""){
+                                }
+                                
+                                else if(this.guestPhone == "" || this.guestPhone == null){
 
                                     if(this.selectedLanguage == "english"){
-                                        alertify.error("You have to set an address in your profile")
+                                        alertify.error("You have to set a telephone number")
                                     }else{
-                                        alertify.error("Debes agregar una dirección en tu perfil")
+                                        alertify.error("Debes agregar un número de teléfono")
                                     }
 
                                 }else{
 
+                                    this.updateProfile()
                                     axios.get("{{ url('/checkout/encrypt-user') }}", { headers: {
                                         Authorization: "Bearer "+window.localStorage.getItem('aida_token')
                                     }}).then(res => {
@@ -460,6 +463,19 @@
                             
                         }
                         
+                    })
+
+                },
+                updateProfile(){
+                    
+                    axios.post("{{ url('profile/update') }}", {name: this.guestName, email: this.guestEmail, address: this.guestAddress, phone: this.guestPhone, country: this.guestCountry}, {
+                        headers: {
+                            Authorization: "Bearer "+window.localStorage.getItem('aida_token')
+                        }
+                    }).then(res => {
+                        if(res.data.success == true){
+                            window.localStorage.setItem("aida_user", JSON.stringify({name: this.guestName, email: this.guestEmail, address: this.guestAddress, telephone: this.guestPhone, country_id: this.guestCountry, dni: this.dni, role_id: this.role_id}))
+                        }
                     })
 
                 }
