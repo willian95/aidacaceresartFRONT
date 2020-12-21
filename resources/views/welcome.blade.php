@@ -64,7 +64,8 @@
                 <video loop autoplay="true" muted="muted">
                     <!--<source src="ejemplo.webm" type="video/webm">
                     <source src="ejemplo.ogg" type="video/ogg">-->
-                    <source src="{{ App\HomeVideo::first()->video }}" type="video/mp4">
+                    {{--<source src="{{ App\HomeVideo::first()->video }}" type="video/mp4">--}}
+                    <source src="https://admin.aidacaceresart.com/images/1607095638_5fca55564b324.mp4" type="video/mp4">
                 </video>
             </div>
         </section>
