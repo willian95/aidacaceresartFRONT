@@ -438,8 +438,8 @@
                     <!--- <button class="pswp__button pswp__button--share" title="Share"></button>--->
                     <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
                     <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-                    <div class="eye" data-toggle="modal" data-target="#banner_expande"> <i class="flaticon-eye-variant-with-enlarged-pupil"></i>
-                    </div>
+                    <button class="eye" data-toggle="modal" data-target="#escala"  > <i class="flaticon-eye-variant-with-enlarged-pupil" ></i>
+                    </button>
                     
           <div>
             <img class="firma" alt='' src='assets/img/logo.png'>
