@@ -269,14 +269,14 @@
         
                                               <div class="row">
                                                   <div class="col-md-6 form-group">
-                                                    <input placeholder="Cédula" type="text" class="form-control" v-model="dni" v-if="selectedLanguage == 'spanish'">
-                                                    <input placeholder="DNI" type="text" class="form-control" v-model="dni" v-if="selectedLanguage == 'english'">  
+                                                    <input placeholder="Cédula" type="text" class="form-control" v-model="dni" v-if="selectedLanguage == 'spanish'" @keypress="isNumber($event)">
+                                                    <input placeholder="DNI" type="text" class="form-control" v-model="dni" v-if="selectedLanguage == 'english'" @keypress="isNumber($event)">  
                                                     <i class="fa fa-id-card icon_form"></i> 
                                                     <small v-if="errors.hasOwnProperty('dni')">@{{ errors['dni'][0] }}</small>                                    
                                                   </div>
                                                   <div class="col-md-6 form-group">
-                                                    <input placeholder="Télefono" type="telephone" class="form-control" v-model="phone" v-if="selectedLanguage == 'spanish'">
-                                                    <input placeholder="Phone" type="telephone" class="form-control" v-model="phone" v-if="selectedLanguage == 'english'">
+                                                    <input @keypress="isNumber($event)" placeholder="Télefono" type="telephone" class="form-control" v-model="phone" v-if="selectedLanguage == 'spanish'">
+                                                    <input @keypress="isNumber($event)" placeholder="Phone" type="telephone" class="form-control" v-model="phone" v-if="selectedLanguage == 'english'">
                                                     <i class="fa fa-phone icon_form"></i>
                                                     <small v-if="errors.hasOwnProperty('phone')">@{{ errors['phone'][0] }}</small>
                                                 </div>
