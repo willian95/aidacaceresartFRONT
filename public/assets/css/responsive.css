@@ -184,8 +184,11 @@
         width: 100%;
         object-fit: cover;
     }
-    .video-home{
+    .video-home,.video_loader_lg{
         display: none!important;
+    }
+    .loader-video_xs{
+        display: block!important;
     }
 }
 

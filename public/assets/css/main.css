@@ -245,7 +245,7 @@ body.offcanvas-expanded {
 .nav-item {}
 
 .m-155 {
-    margin: 10px 155px;
+    margin: 10px 125px;
 }
 
 .pt-60 {
@@ -1060,7 +1060,10 @@ a:hover .fa-angle-right {
 
 .form-control {
 
-    padding-left: 30px;
+    padding-left: 40px;
+}
+.sub{
+    text-align: center;
 }
 
 .demo-footer {
@@ -1168,7 +1171,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 
 .news .form-group i {
 
-    margin-left: -36px;
+    margin-left: -25px;
     top: 12% !important;
 }
 
@@ -1355,5 +1358,8 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
     width: 21px;
 }
 .img-xs_home  {
+    display: none!important;
+}
+.loader-video_xs{
     display: none!important;
 }
