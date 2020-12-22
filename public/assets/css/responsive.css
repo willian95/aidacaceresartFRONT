@@ -104,66 +104,88 @@
     .item_texto {
         padding-left: 0;
     }
-    .item_img{
+
+    .item_img {
         display: flex;
         justify-content: center;
         align-items: center;
         margin-right: 10px;
     }
+
     .item_texto span {
         font-size: 9px;
-   
+
     }
+
     .title-bold {
-       
+
         margin: 0;
     }
+
     #collapseTwo .form-group i {
         top: 40% !important;
     }
+
     .pswp__top-bar {
-        position: absolute!important;
-        left: -34%!important;
-        top: 74%!important;
-        height: auto!important;
-        display: block!important;
+        position: absolute !important;
+        left: -34% !important;
+        top: 74% !important;
+        height: auto !important;
+        display: block !important;
         text-align: end;
         left: -29%;
         width: -webkit-fill-available;
     }
+
     .firma {
         width: 130px;
         margin-left: -39px;
         position: absolute;
         bottom: -90%;
     }
+
     .main_pagos li {
         flex-direction: column;
-      
+
     }
-    .img-non{
-        display: initial!important;
+
+    .img-non {
+        display: initial !important;
     }
-  
+
     .main_pagos img {
 
         margin-left: 0;
         margin-right: 0;
     }
+
     .footer {
         display: block;
-  
+
     }
+
     .atention {
         display: block;
-     
+
     }
+
     .atention-item {
         width: 100%;
         padding: 13px;
     }
-    html,body{
+
+    html,
+    body {
         overflow-x: hidden;
+    }
+    .img-xs_home {
+        display: block!important;
+        height: 50vh;
+        width: 100%;
+        object-fit: cover;
+    }
+    .video-home{
+        display: none;
     }
 }
 
@@ -253,6 +275,13 @@
 
         flex-direction: column;
         padding: 0;
+    }
+
+    .img-xs_home {
+        display: block!important;
+        height: 50vh;
+        width: 100%;
+        object-fit: cover;
     }
 }
 
