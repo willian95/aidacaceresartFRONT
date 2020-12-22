@@ -185,7 +185,7 @@
         object-fit: cover;
     }
     .video-home{
-        display: none;
+        display: none!important;
     }
 }
 

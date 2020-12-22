@@ -1361,5 +1361,5 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
     width: 21px;
 }
 .img-xs_home  {
-    display: none;
+    display: none!important;
 }
