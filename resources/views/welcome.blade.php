@@ -60,12 +60,10 @@
         @if(App\HomeVideo::where("active", 1)->first())
         <!----VIDEO----->
         <section class="">
+            
             <div class="main_video">
-                <video loop autoplay="true" muted="muted">
-                    <!--<source src="ejemplo.webm" type="video/webm">
-                    <source src="ejemplo.ogg" type="video/ogg">-->
-                    <source src="{{ App\HomeVideo::first()->video }}" type="video/mp4">
-                </video>
+                <img class="img-xs_home " src="{{ asset('assets/img/new.jpg') }}" alt="imagen caceres">
+                <video id="video"  class=" d-sm-block video video-home" autoplay muted loop  preload playsinline   src="{{ App\HomeVideo::first()->video }}"></video>
             </div>
         </section>
         <!----VIDEO----->
@@ -113,7 +111,7 @@
                    
                     <li class="w-200" v-if="selectedLanguage == 'spanish'" @mouseover="modaldhl()"> Envíos nacionales e internacionales por DHL! </li>
                     <li class="w-200" v-if="selectedLanguage == 'english'">National & International Shipping via DHL!</li>
-                    <img class="img-pago img-pago2 img-non"  src="http://imgfz.com/i/mufyBjh.png" alt="">
+                   <!--- <img class="img-pago img-pago2 img-non"  src="http://imgfz.com/i/mufyBjh.png" alt="">--->
                 </ul>
             </div>
         </section>

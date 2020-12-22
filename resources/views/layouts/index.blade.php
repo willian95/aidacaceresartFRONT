@@ -124,6 +124,18 @@
                                 <a class='nav-link ' href="{{ url('about') }}"> <span v-if="selectedLanguage == 'english'">About me</span> <span v-if="selectedLanguage == 'spanish'">Acerca de mí</span></a>
                             </li>
                         </div>
+                        <div class="icon-redes mr-4">
+                            <a target="_blank" href="https://www.instagram.com/aidacaceresart/?igshid=1b5fy53tvwzc5" class="mr-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 512 512" viewBox="0 0 512 512"><path fill="none" d="M401.7 101.9c-7.8 0-14.1 6.3-14.1 14.1s6.3 14.1 14.1 14.1 14.1-6.3 14.1-14.1S409.5 101.9 401.7 101.9zM256 153c-56.8 0-103 46.2-103 103s46.2 103 103 103 103-46.2 103-103S312.8 153 256 153z"/><path fill="none" d="M399.5,29.5h-287C64.8,29.5,26,68.3,26,116v280c0,47.7,38.8,86.5,86.5,86.5h287c47.7,0,86.5-38.8,86.5-86.5
+                                    V116C486,68.3,447.2,29.5,399.5,29.5z M256,379c-67.8,0-123-55.2-123-123s55.2-123,123-123s123,55.2,123,123S323.8,379,256,379z
+                                     M401.7,150.1c-18.8,0-34.1-15.3-34.1-34.1s15.3-34.1,34.1-34.1s34.1,15.3,34.1,34.1S420.5,150.1,401.7,150.1z"/><path fill="#231f20" d="M399.5,9.5h-287C53.8,9.5,6,57.3,6,116v280c0,58.7,47.8,106.5,106.5,106.5h287c58.7,0,106.5-47.8,106.5-106.5
+                                    V116C506,57.3,458.2,9.5,399.5,9.5z M486,396c0,47.7-38.8,86.5-86.5,86.5h-287C64.8,482.5,26,443.7,26,396V116
+                                    c0-47.7,38.8-86.5,86.5-86.5h287c47.7,0,86.5,38.8,86.5,86.5V396z"/><path fill="#231f20" d="M256 133c-67.8 0-123 55.2-123 123s55.2 123 123 123 123-55.2 123-123S323.8 133 256 133zM256 359c-56.8 0-103-46.2-103-103s46.2-103 103-103 103 46.2 103 103S312.8 359 256 359zM401.7 81.9c-18.8 0-34.1 15.3-34.1 34.1s15.3 34.1 34.1 34.1 34.1-15.3 34.1-34.1S420.5 81.9 401.7 81.9zM401.7 130.1c-7.8 0-14.1-6.3-14.1-14.1s6.3-14.1 14.1-14.1 14.1 6.3 14.1 14.1S409.5 130.1 401.7 130.1z"/></svg>
+                            </a>
+                            <a target="_blank" href="https://www.facebook.com/aidacaceresart">
+                                <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="60px" height="60px" viewBox="0 0 60 60" xml:space="preserve"><path d="M37 11.9h6.5c.4 0 .8-.3.8-.8V1c0-.4-.3-.8-.8-.8h-8.9c-4.4 0-7.7 1.1-10 3.4-2.1 2.1-3.1 4.9-3.1 8.6v7.2h-5.1c-.4 0-.8.3-.8.8V30c0 .4.3.8.8.8h5.1V59c0 .4.3.8.8.8h12c.4 0 .8-.3.8-.8V30.7h7.3c.4 0 .7-.3.7-.6 0 0 .8-4.8 1.1-9.9 0-.2-.1-.4-.2-.6-.1-.2-.3-.2-.5-.2h-8.4v-5.9c0-.6 1-1.6 1.9-1.6zm-2.6 9h8.3c-.3 3.6-.8 7-1 8.3h-7.4c-.4 0-.8.3-.8.8v28.3H23.1V30c0-.4-.3-.8-.8-.8h-5.1V21h5.1c.4 0 .8-.3.8-.8v-8-.1c0-3.2.9-5.6 2.6-7.4 2-2 5-3 8.9-3h8.2v8.7H37c-1.6 0-3.4 1.6-3.4 3.1v6.7c0 .4.4.7.8.7z"/><metadata><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:dc="http://purl.org/dc/elements/1.1/"><rdf:Description about="https://iconscout.com/legal#licenses" dc:title="facebook" dc:description="facebook" dc:publisher="Iconscout" dc:date="2018-06-18" dc:format="image/svg+xml" dc:language="en"><dc:creator><rdf:Bag><rdf:li>Roundicons.com</rdf:li></rdf:Bag></dc:creator></rdf:Description></rdf:RDF></metadata></svg>
+                            </a>
+                        </div>
                         <div class="flex-content ">
                             <li class='nav-item active'>
                             
