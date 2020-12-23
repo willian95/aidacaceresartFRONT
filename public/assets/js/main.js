@@ -4,7 +4,8 @@ $(document).ready(function () {
     }, 3000);
 
     setTimeout(function () {
-      $(".loader_video").fadeOut(1000);
+      $(".loader_video").fadeOut(100);
+        $(".xs-videos").fadeOut(1000);
       //window.setTimeout(function(){
       if(localStorage.getItem("aida_newsletter") == null){
           window.setTimeout(function(){
@@ -28,7 +29,7 @@ $(document).ready(function () {
 
       }
     //}, 5000)
-  }, 3000);
+  }, 5000);
 });
 
 $(document).ready(function($) {
