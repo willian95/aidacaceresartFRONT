@@ -62,7 +62,7 @@
         <section class="">
             
             <div class="main_video">
-                <img class="img-xs_home " src="{{ asset('assets/img/aida.jpg') }}" alt="imagen caceres">
+                <img class="img-xs_home " src="{{ asset('assets/img/new.jpg') }}" alt="imagen caceres">
                 <video id="video"  class=" d-sm-block video video-home" autoplay muted loop  preload playsinline   src="{{ App\HomeVideo::first()->video }}"></video>
             </div>
         </section>
@@ -213,7 +213,7 @@
                             </button>
                             <div class="row">
                                 <div class="col-md-6 p-0">
-                                    <img class="img-new" src="{{ asset('assets/img/new.jpg') }}" alt="">
+                                    <img class="img-new" src="{{ asset('assets/img/aida.jpg') }}" alt="">
                                 </div>
                                 <div class="col-md-6">
                                     <div class="news">
