@@ -442,7 +442,7 @@
                     </div>
                     
           <div>
-            <img class="firma" alt='' src='assets/img/logo.png'>
+            <img class="firma" alt='' src='{{ asset('assets/img/logo.png') }}'>
           </div>
 
 
