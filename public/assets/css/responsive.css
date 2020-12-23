@@ -189,6 +189,7 @@
     }
     .loader-video_xs{
         display: block;
+            object-fit: fill;
     }
     .modal-bod .close {
 
