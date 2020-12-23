@@ -4,7 +4,7 @@ $(document).ready(function () {
     }, 3000);
 
     setTimeout(function () {
-      $(".loader_video").fadeOut(100);
+      $(".loader_video").fadeOut(1000);
       //window.setTimeout(function(){
       if(localStorage.getItem("aida_newsletter") == null){
           window.setTimeout(function(){
