@@ -14,3 +14,17 @@
  
 
 <!--------------------------LOGO FIRMA--------------------------------->
+<style type="text/css">
+	  .xs-videos{
+        background: #fff;
+        position: fixed;
+        z-index: 9999999;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+    }
+</style>
