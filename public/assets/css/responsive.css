@@ -209,6 +209,22 @@
     .modal-bod {
         overflow: hidden;
     }
+     .xs-videos{
+        background: #fff;
+        position: fixed;
+        z-index: 9999999;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+    }
+    .news .form-group i {
+    margin-left: -94px;
+    top: 22% !important;
+}
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
