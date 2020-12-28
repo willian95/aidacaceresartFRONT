@@ -26,13 +26,7 @@
                                         <a class="show-english" onclick="goToProduct('{{ url('/product/'.$carousel->slug) }}')">See more <i class="fa fa-angle-right" aria-hidden="true"></i>
                                         </a>
                                     </li>
-                                    {{--<li class="show-usd">
-                                        $ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "desc")->first()->price, 2, ",", ".") }}
-                                    </li>
-                                    <li class="show-cop">
-                                        $ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "desc")->first()->price * App\DolarPrice::first()->rate, 2, ",", ".") }}
-                                    </li>--}}
-                                    {{--<li>Available on Canvas & Super HD Print <br> --}}
+                                    
 
                                     <li class="show-usd show-spanish">US$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price, 2, ",", ".") }} 
                                      </li>
