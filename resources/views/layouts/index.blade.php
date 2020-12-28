@@ -484,9 +484,14 @@
         </div>
 
     </div>
+
+  
         <footer>
             <div class="footer container mt-5">
                 <a class="mr-5" href="" data-toggle="modal" data-target="#terminos">Términos & Condiciones </a>
+                <a  v-if="selectedLanguage == 'spanish'" class="mr-5" href="mailto:aida@aidacaceresart.com">Ayuda/Contacto: aida@aidacaceresart.com</a>
+               <!-- <a  v-if="selectedLanguage == 'english'" class="mr-5" href="mailto:aida@aidacaceresart.com"> Help/Contact: aida@aidacaceresart.com</a>-->
+
                 <p>All Rights Reserved @ 2020</p>
             </div>
         </footer>
