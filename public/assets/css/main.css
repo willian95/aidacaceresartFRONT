@@ -268,7 +268,7 @@ body.offcanvas-expanded {
 .navbar-expand-md .navbar-nav .nav-link {
     padding-right: 0.9rem;
     cursor: pointer;
-
+    padding-bottom: 0;
 }
 
 .slick-dotted.slick-slider {
@@ -1362,4 +1362,12 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 }
 .loader-video_xs{
     display: none;
+}
+.dropdown-item svg{
+    width: 20px;
+    margin-right: 10px;
+    height: 29px;
+}
+.dropdown-item{
+    display: flex;
 }
