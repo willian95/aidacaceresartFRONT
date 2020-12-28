@@ -33,14 +33,27 @@
                                         $ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "desc")->first()->price * App\DolarPrice::first()->rate, 2, ",", ".") }}
                                     </li>--}}
                                     {{--<li>Available on Canvas & Super HD Print <br> --}}
-                                    <li class="show-usd">$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price, 2, ",", ".") }} 
+                                    <li class="show-usd show-spanish">$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price, 2, ",", ".") }} 
                                         @if(App\ProductFormatSize::where("product_id", $carousel->id)->count() > 1) - 
-                                            $ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "desc")->first()->price, 2, ",", ".") }}
+                                            US$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "desc")->first()->price, 2, ",", ".") }}
                                         @endif 
                                      </li>
-                                     <li class="show-cop">$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price * App\DolarPrice::first()->rate, 2, ",", ".") }} 
+
+                                     <li class="show-usd show-english">$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price, 2, ",", ".") }} 
                                         @if(App\ProductFormatSize::where("product_id", $carousel->id)->count() > 1) - 
-                                            $ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "desc")->first()->price * App\DolarPrice::first()->rate, 2, ",", ".") }}
+                                            US$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "desc")->first()->price, 2, ".", ",") }}
+                                        @endif 
+                                     </li>
+
+                                     <li class="show-cop show-spanish">$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price * App\DolarPrice::first()->rate, 2, ",", ".") }} 
+                                        @if(App\ProductFormatSize::where("product_id", $carousel->id)->count() > 1) - 
+                                            COP$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "desc")->first()->price * App\DolarPrice::first()->rate, 2, ",", ".") }}
+                                        @endif 
+                                     </li>
+
+                                     <li class="show-cop show-english">$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price * App\DolarPrice::first()->rate, 2, ",", ".") }} 
+                                        @if(App\ProductFormatSize::where("product_id", $carousel->id)->count() > 1) - 
+                                            COP$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "desc")->first()->price * App\DolarPrice::first()->rate, 2, ".", ",") }}
                                         @endif 
                                      </li>
                                     <li><a class="btn-add" onclick="addToCart('{{ App\ProductFormatSize::where('product_id', $carousel->id)->first()->id }}')"><i class="flaticon-shopping-bag
