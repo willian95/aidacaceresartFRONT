@@ -213,7 +213,7 @@
                             </button>
                             <div class="row">
                                 <div class="col-md-6 p-0">
-                                    <img class="img-new" src="{{ asset('assets/img/new.jpg') }}" alt="">
+                                    <img class="img-new" src="{{ asset('assets/img/aida.jpg') }}" alt="">
                                 </div>
                                 <div class="col-md-6">
                                     <div class="news">

@@ -782,7 +782,7 @@ a:hover .fa-angle-right {
 
 .main-banner__content .flaticon-zoom-in-2 {
     position: absolute;
-    top: 70%;
+    top: 50%;
     color: #ffffff;
     left: 50%;
     border-radius: 50%;
@@ -1252,8 +1252,8 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 
 
 #img-zoomer-box {
-    width: 500px;
-    height: auto;
+    /*width: 500px;
+    height: auto;*/
     position: relative;
     margin-top: 10px;
 }
@@ -1361,5 +1361,5 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
     display: none!important;
 }
 .loader-video_xs{
-    display: none!important;
+    display: none;
 }
