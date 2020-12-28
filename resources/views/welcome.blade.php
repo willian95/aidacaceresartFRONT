@@ -28,13 +28,13 @@
                                     </li>
                                     
 
-                                    {{--<li class="show-usd show-spanish">US$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price, 2, ",", ".") }} 
+                                    <li class="show-usd show-spanish">US$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price, 2, ",", ".") }} 
                                      </li>
 
                                      <li class="show-usd show-english">US$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price, 2, ".", ",")
                                      </li>
 
-                                     <li class="show-cop show-spanish">COP {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price * App\DolarPrice::first()->rate, 2, ",", ".") }} 
+                                     {{--<li class="show-cop show-spanish">COP {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price * App\DolarPrice::first()->rate, 2, ",", ".") }} 
                                         
                                      </li>
 
