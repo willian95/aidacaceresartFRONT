@@ -28,19 +28,21 @@
                                     </li>
                                     
 
-                                    <li class="show-usd show-spanish">US$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price, 2, ",", ".") }} 
+                                    <li class="show-spanish"><span class="show-usd">US$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price, 2, ",", ".") }}</span> 
                                      </li>
 
-                                     <li class="show-usd show-english">US$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price, 2, ".", ",") }}
+                                     <li class="show-english"><span class="show-usd">US$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price, 2, ".", ",") }}</span>
                                      </li>
 
-                                     <li class="show-cop show-spanish">COP {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price * App\DolarPrice::first()->rate, 2, ",", ".") }} 
+                                     <li class="show-spanish"><span class="show-cop">COP {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price * App\DolarPrice::first()->rate, 2, ",", ".") }}</span> 
                                         
                                      </li>
 
-                                     <li class="show-cop show-english">COP {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price * App\DolarPrice::first()->rate, 2, ".", ",") }} 
-                                         
-                                     </li>--}}
+                                     <li class="show-cop show-english"> 
+                                         <span class="show-cop">
+                                         COP {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price * App\DolarPrice::first()->rate, 2, ".", ",") }}
+                                         </span>
+                                     </li>
                                     <li><a class="btn-add" onclick="addToCart('{{ App\ProductFormatSize::where('product_id', $carousel->id)->first()->id }}')"><i class="flaticon-shopping-bag
                                         "><span>+</span></i></a> </li>
                                 </ul>
