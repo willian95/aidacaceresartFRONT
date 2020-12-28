@@ -204,7 +204,7 @@
 
         <section class="container">
           <div class="atention">
-            <div class="atention-item" @mouseover="showShippingInfo()">
+            <div class="atention-item" @click="showShippingInfo()">
               <p v-if="selectedLanguage == 'english'">
               
                 <img class="img-pago"  src="http://imgfz.com/i/mufyBjh.png" alt=""><br>
@@ -221,7 +221,7 @@
                 <img class="img-pago" style="object-fit: contain;"  src="http://imgfz.com/i/EOhGH12.png" alt=""> <br>
                 Cada obra desarrollada por la artista es original y pieza única. Cualquiera que sea el medio, el trabajo se envía al comprador con un certificado de autenticidad. </p>
             </div>
-            <div class="atention-item" @mouseover="showReturnInfo()">
+            <div class="atention-item" @click="showReturnInfo()">
               <p v-if="selectedLanguage == 'english'">
                 <img class="img-pago" src="http://imgfz.com/i/9dtPeXp.png" alt=""> <br>
                 Returns?</p>
