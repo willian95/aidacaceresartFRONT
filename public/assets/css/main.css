@@ -614,7 +614,7 @@ div#galeria:hover img:hover {
 
 .main_pagos li {
     display: flex;
-
+    cursor: pointer;
     text-align: center;
     align-items: center;
 }

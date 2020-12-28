@@ -137,6 +137,7 @@
 }
 .atention-item{
     width: 50%;
+    cursor: pointer;
 }
 .main-top__title{
     border-bottom: 1px solid #18293412;
