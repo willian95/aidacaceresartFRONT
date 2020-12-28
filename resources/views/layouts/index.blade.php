@@ -174,7 +174,10 @@
                                             </div>
                                         </li>--}}
                                         <div class="sub">
-                                            <span>Total:$ @{{ number_format(total * exchangeRate, 2, ",", ".") }}</span>
+                                            <span v-if="selectedLanguage == 'spanish'">Total: <span v-if="selectedCurrency == 'USD'">US$</span><span v-else>COP</span>  @{{ number_format(total * exchangeRate, 2, ",", ".") }}</span>
+                                            
+                                            <span v-if="selectedLanguage == 'english'">Total: <span v-if="selectedCurrency == 'USD'">US$</span><span v-else>COP</span>  @{{ number_format(total * exchangeRate, 2, ".", ",") }}</span>
+
                                             <p v-if="selectedLanguage == 'spanish'">
                                                 <span>Pinturas:@{{ amount }}</span>
                                             </p>

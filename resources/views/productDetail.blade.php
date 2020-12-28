@@ -63,8 +63,11 @@
                               </option>
                             </select>
                           </div>--}}
-                          <div class="main-top__price">
-                            <p>$ @{{ number_format(price * exchangeRate, 2, ",", ".") }} </p>
+                          <div class="main-top__price" v-if="selectedLanguage == 'spanish'">
+                            <p> <span v-if="selectedCurrency == 'USD'">US$</span><span v-else>COP</span> @{{ number_format(price * exchangeRate, 2, ",", ".") }} </p>
+                          </div>
+                          <div class="main-top__price" v-else>
+                            <p> <span v-if="selectedCurrency == 'USD'">US$</span><span v-else>COP</span> @{{ number_format(price * exchangeRate, 2, ".", ",") }} </p>
                           </div>
                         
                         </div>
