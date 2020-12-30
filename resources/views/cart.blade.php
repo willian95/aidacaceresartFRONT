@@ -55,10 +55,10 @@
 
                                                         </div>
                                                         <div class="col-md-4 center-group" v-if="selectedLanguage == 'spanish'">
-                                                            <p class="space"><span><span v-if="selectedCurrency == 'USD'">US$</span><span v-else>COP</span> @{{ number_format(product.product_format_size.price * exchangeRate, 2, ",", ".") }}</span> </p>
+                                                            <p class="space"><span><span v-if="selectedCurrency == 'USD'">US$ @{{ number_format(product.product_format_size.price * exchangeRate, 2, ",", ".") }}</span><span v-else>COP  @{{ number_format(product.product_format_size.price * exchangeRate, 0, ",", ".") }}</span></span> </p>
                                                         </div>
                                                         <div class="col-md-4 center-group" v-if="selectedLanguage == 'english'">
-                                                            <p class="space"><span><span v-if="selectedCurrency == 'USD'">US$</span><span v-else>COP</span> @{{ number_format(product.product_format_size.price * exchangeRate, 2, ".", ",") }}</span> </p>
+                                                            <p class="space"><span><span v-if="selectedCurrency == 'USD'">US$ @{{ number_format(product.product_format_size.price * exchangeRate, 2, ",", ".") }}</span><span v-else>COP @{{ number_format(product.product_format_size.price * exchangeRate, 0, ".", ",") }}</span></span> </p>
                                                         </div>
                                                         <div class="col-md-2 center-group">
                                                             <button class="btn" @click="removeFromCart(product.id)"><i class="fa fa-times"></i></button>
@@ -86,10 +86,10 @@
 
                                                         </div>
                                                         <div class="col-md-4 center-group" v-if="selectedLanguage == 'spanish'">
-                                                            <p class="space "><span><span v-if="selectedCurrency == 'USD'">US$</span><span v-else>COP</span> @{{ number_format(product.price * exchangeRate, 2, ",", ".") }}</span> </p>
+                                                            <p class="space "><span><span v-if="selectedCurrency == 'USD'">US$ @{{ number_format(product.price * exchangeRate, 2, ".", ",") }}</span><span v-else>COP @{{ number_format(product.price * exchangeRate, 0, ",", ".") }}</span> </span> </p>
                                                         </div>
                                                         <div class="col-md-4 center-group" v-if="selectedLanguage == 'english'">
-                                                            <p class="space "><span>$ @{{ number_format(product.price * exchangeRate, 2, ".", ",") }}</span> </p>
+                                                            <p class="space "><span><span v-if="selectedCurrency == 'USD'">US$ @{{ number_format(product.price * exchangeRate, 2, ".", ",") }}</span><span v-else>COP @{{ number_format(product.price * exchangeRate, 0, ",", ".") }}</span> </span> </p>
                                                         </div>
                                                         <div class="col-md-2 center-group">
                                                     
@@ -210,10 +210,10 @@
                             <p class="title-bold" style="    font-size: 21px;" v-if="selectedLanguage == 'english'">Order sumary</p>
                             <p class="title-bold" style="    font-size: 21px;" v-if="selectedLanguage == 'spanish'">Total de la orden </p>
 
-                            <p class="space_total" v-if="selectedLanguage == 'spanish'">Total: <span><span v-if="selectedCurrency == 'USD'">US$</span><span v-else>COP</span> @{{ number_format(total * exchangeRate, 2, ",", ".") }}</span> </p>      
-                            <p class="space_total" v-if="selectedLanguage == 'english'">Total: <span><span v-if="selectedCurrency == 'USD'">US$</span><span v-else>COP</span> @{{ number_format(total * exchangeRate, 2, ".", ",") }}</span> </p>
-                            <p class="space_total" v-if="selectedLanguage == 'spanish'">Subtotal: <span><span v-if="selectedCurrency == 'USD'">US$</span><span v-else>COP</span> @{{ number_format(total * exchangeRate, 2, ",", ".") }}</span> </p>      
-                            <p class="space_total" v-if="selectedLanguage == 'english'">Subtotal: <span><span v-if="selectedCurrency == 'USD'">US$</span><span v-else>COP</span> @{{ number_format(total * exchangeRate, 2, ".", ",") }}</span> </p>
+                            <p class="space_total" v-if="selectedLanguage == 'spanish'">Total: <span><span v-if="selectedCurrency == 'USD'">US$ @{{ number_format(total * exchangeRate, 2, ".", ",") }}</span><span v-else>COP @{{ number_format(total * exchangeRate, 0, ",", ".") }}</span></span> </p>      
+                            <p class="space_total" v-if="selectedLanguage == 'english'">Total: <span><span v-if="selectedCurrency == 'USD'">US$ @{{ number_format(total * exchangeRate, 2, ".", ",") }}</span><span v-else>COP @{{ number_format(total * exchangeRate, 0, ",", ".") }}</span></span> </p>
+                            <p class="space_total" v-if="selectedLanguage == 'spanish'">Subtotal: <span><span v-if="selectedCurrency == 'USD'">US$ @{{ number_format(total * exchangeRate, 2, ".", ",") }}</span><span v-else>COP @{{ number_format(total * exchangeRate, 0, ",", ".") }}</span></span> </p>      
+                            <p class="space_total" v-if="selectedLanguage == 'english'">Subtotal: <span><span v-if="selectedCurrency == 'USD'">US$ @{{ number_format(total * exchangeRate, 2, ".", ",") }}</span><span v-else>COP @{{ number_format(total * exchangeRate, 0, ",", ".") }}</span></span> </p>
 
                             <!---<div class="text-center">
                                 <a href=""><button class="btn-custom">Finalizar compra ></button></a>

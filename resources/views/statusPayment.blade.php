@@ -26,8 +26,8 @@
 
                     </div>
                     <div class="col-md-6">
-                        <p class="space" v-if="selectedLanguage == 'spanish'"><span><span><span v-if="selectedCurrency == 'USD'">US$</span><span v-else>COP</span> @{{ number_format(product.product_format_size.price * exchangeRate, 2, ",", ".") }}</span> </p>
-                        <p class="space" v-if="selectedLanguage == 'english'"><span><span><span v-if="selectedCurrency == 'USD'">US$</span><span v-else>COP</span> @{{ number_format(product.product_format_size.price * exchangeRate, 2, ".", ",") }}</span> </p>
+                        <p class="space" v-if="selectedLanguage == 'spanish'"><span><span><span v-if="selectedCurrency == 'USD'">US$ @{{ number_format(product.product_format_size.price * exchangeRate, 2, ".", ",") }}</span><span v-else>COP @{{ number_format(product.product_format_size.price * exchangeRate, 0, ",", ".") }}</span></span> </p>
+                        <p class="space" v-if="selectedLanguage == 'english'"><span><span><span v-if="selectedCurrency == 'USD'">US$ @{{ number_format(product.product_format_size.price * exchangeRate, 2, ".", ",") }}</span><span v-else>COP @{{ number_format(product.product_format_size.price * exchangeRate, 0, ",", ".") }}</span></span> </p>
                     </div>
                 </div>
                 
@@ -49,8 +49,8 @@
 
                     </div>
                     <div class="col-md-6">
-                        <p class="space" v-if="selectedLanguage == 'spanish'"><span><span><span v-if="selectedCurrency == 'USD'">US$</span><span v-else>COP</span> @{{ number_format(product.price * exchangeRate, 2, ",", ".") }}</span> </p>
-                        <p class="space" v-if="selectedLanguage == 'english'"><span><span><span v-if="selectedCurrency == 'USD'">US$</span><span v-else>COP</span> @{{ number_format(product.price * exchangeRate, 2, ".", ",") }}</span> </p>
+                        <p class="space" v-if="selectedLanguage == 'spanish'"><span><span><span v-if="selectedCurrency == 'USD'">US$ @{{ number_format(product.product_format_size.price * exchangeRate, 2, ".", ",") }}</span><span v-else>COP @{{ number_format(product.product_format_size.price * exchangeRate, 0, ",", ".") }}</span></span> </p>
+                        <p class="space" v-if="selectedLanguage == 'english'"><span><span><span v-if="selectedCurrency == 'USD'">US$ @{{ number_format(product.product_format_size.price * exchangeRate, 2, ".", ",") }}</span><span v-else>COP @{{ number_format(product.product_format_size.price * exchangeRate, 0, ",", ".") }}</span></span> </p>
                     </div>
                 </div>
                 

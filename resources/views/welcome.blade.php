@@ -28,19 +28,19 @@
                                     </li>
                                     
 
-                                    <li class="show-spanish"><span class="show-usd">US$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price, 2, ",", ".") }}</span> 
+                                    <li class="show-spanish"><span class="show-usd">US$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price, 2, ".", ",") }}</span> 
                                      </li>
 
                                      <li class="show-english"><span class="show-usd">US$ {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price, 2, ".", ",") }}</span>
                                      </li>
 
                                      <li class="show-spanish">
-                                        <span class="show-cop">COP {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price * App\DolarPrice::first()->rate, 2, ",", ".") }}</span> 
+                                        <span class="show-cop">COP {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price * App\DolarPrice::first()->rate, 0, ",", ".") }}</span> 
                                      </li>
 
                                      <li class="show-cop show-english"> 
                                          <span class="show-cop">
-                                         COP {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price * App\DolarPrice::first()->rate, 2, ".", ",") }}
+                                         COP {{ number_format(App\ProductFormatSize::where("product_id", $carousel->id)->orderBy("price", "asc")->first()->price * App\DolarPrice::first()->rate, 0, ",", ".") }}
                                          </span>
                                      </li>
                                     <li><a class="btn-add" onclick="addToCart('{{ App\ProductFormatSize::where('product_id', $carousel->id)->first()->id }}')"><i class="flaticon-shopping-bag
@@ -83,8 +83,8 @@
                             <p v-if="selectedLanguage == 'english'">@{{ product.english_name }}</p>
                         </div>
                         <div class="galeria_dimension">
-                            <p v-for="size in product.product_format_sizes"  v-if="selectedLanguage == 'spanish'">@{{ size.size.width }}cm x @{{ size.size.height }}cm <span v-if="selectedCurrency == 'USD'">US$</span><span v-else>COP</span> @{{ number_format(size.price * exchangeRate, 2, ",", ".") }}</p>
-                            <p v-for="size in product.product_format_sizes" v-if="selectedLanguage == 'english'">@{{ (size.size.width/2.54).toFixed(2) }}in x @{{ (size.size.height/2.54).toFixed(2) }}in <span v-if="selectedCurrency == 'USD'">US$</span><span v-else>COP</span> @{{ number_format(size.price * exchangeRate, 2, ".", ",") }}</p>
+                            <p v-for="size in product.product_format_sizes"  v-if="selectedLanguage == 'spanish'">@{{ size.size.width }}cm x @{{ size.size.height }}cm <span v-if="selectedCurrency == 'USD'">US$ @{{ number_format(size.price * exchangeRate, 2, ",", ".") }}</span><span v-else>COP @{{ number_format(size.price * exchangeRate, 0, ".", ",") }} </span> </p>
+                            <p v-for="size in product.product_format_sizes" v-if="selectedLanguage == 'english'">@{{ (size.size.width/2.54).toFixed(2) }}in x @{{ (size.size.height/2.54).toFixed(2) }}in <span v-if="selectedCurrency == 'USD'">US$ @{{ number_format(size.price * exchangeRate, 2, ",", ".") }}</span><span v-else>COP @{{ number_format(size.price * exchangeRate, 0, ".", ",") }}</span> </p>
                         </div>
                         <img :src="product.image" class="galeria-img" alt="galeria aidaart">
                     
