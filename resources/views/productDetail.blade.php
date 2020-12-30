@@ -556,6 +556,9 @@
                   
                   selectedLanguage:"",
                   products:[],
+                  selectedLanguage:"",
+                  selectedCurrency:"",
+                  exchangeRate:1,
   
                 }
             },
@@ -631,10 +634,24 @@
                       $("#scaleText").html("View Scale")
                     $("#zoomText").html("Zoom/Better View")
                     }
-
-                    
                     
                 }
+
+                if(window.localStorage.getItem("aida_language") == null){
+                    window.localStorage.setItem("aida_language", "spanish")
+                    this.selectedLanguage = "spanish"
+                }else{
+                    this.selectedLanguage = window.localStorage.getItem("aida_language")
+                }
+
+                if(window.localStorage.getItem("aida_currency") == null){
+                    window.localStorage.setItem("aida_currency", "USD")
+                    this.selectedCurrency = "USD"
+                }else{
+                    this.selectedCurrency = window.localStorage.getItem("aida_currency")
+                }
+
+                this.getFetchExchangeRate()
 
             }
 
