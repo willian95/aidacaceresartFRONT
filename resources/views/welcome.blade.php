@@ -84,7 +84,7 @@
                         </div>
                         <div class="galeria_dimension">
                             <p v-for="size in product.product_format_sizes"  v-if="selectedLanguage == 'spanish'">@{{ size.size.width }}cm x @{{ size.size.height }}cm <span v-if="selectedCurrency == 'USD'">US$ @{{ number_format(size.price * exchangeRate, 2, ".", ",") }}</span><span v-else>COP @{{ number_format(size.price * exchangeRate, 0, ".", ",") }} </span> </p>
-                            <p v-for="size in product.product_format_sizes" v-if="selectedLanguage == 'english'">@{{ (size.size.width/2.54).toFixed(2) }}in x @{{ (size.size.height/2.54).toFixed(2) }}in <span v-if="selectedCurrency == 'USD'">US$ @{{ number_format(size.price * exchangeRate, 2, ",", ".") }}</span><span v-else>COP @{{ number_format(size.price * exchangeRate, 0, ".", ",") }}</span> </p>
+                            <p v-for="size in product.product_format_sizes" v-if="selectedLanguage == 'english'">@{{ (size.size.width/2.54).toFixed(2) }}in x @{{ (size.size.height/2.54).toFixed(2) }}in <span v-if="selectedCurrency == 'USD'">US$ @{{ number_format(size.price * exchangeRate, 2, ".", ",") }}</span><span v-else>COP @{{ number_format(size.price * exchangeRate, 0, ",", ".") }}</span> </p>
                         </div>
                         <img :src="product.image" class="galeria-img" alt="galeria aidaart">
                     
