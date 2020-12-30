@@ -611,6 +611,20 @@
 
                 return number;
               },
+              getFetchExchangeRate(){
+
+                if(this.selectedCurrency == "COP"){
+                    axios.get("{{ url('dolar-price') }}").then(res => {
+
+                        this.exchangeRate = res.data.dolar
+
+                    })
+                }else{
+                    this.exchageRate = 1
+                }
+
+
+              },
 
             },
             created(){
