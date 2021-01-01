@@ -1371,3 +1371,6 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 .dropdown-item{
     display: flex;
 }
+.icon-redes{
+    margin-top: 8px;
+}
