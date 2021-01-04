@@ -1341,6 +1341,7 @@ ul.nav li.dropdown:hover ul.dropdown-menu {
 }
 #cartPreview{
     cursor: pointer;
+        margin-top: 10px;
 }
 .img-non{
     display: none!important;
