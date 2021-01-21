@@ -116,8 +116,12 @@
                           </a>
                         </div>
                         @else
-
-                        <span v-if="selectedLanguage == 'english'">Sold</span> <span v-if="selectedLanguage == 'spanish'">Vendido</span> <i class="fa fa-angle-right" aria-hidden="true"></i>
+                        <div class="text-center main-top__btn ml-auto mr-4">
+                          <p class="btn-custom-sold mr-4"  >
+                            <span v-if="selectedLanguage == 'english'">Sold  <i class="fa fa-tag" aria-hidden="true"></i>
+                            </span> <span v-if="selectedLanguage == 'spanish'">Vendido  <i class="fa fa-tag" aria-hidden="true"></i></span>
+                          </p>
+                        </div>
 
                         @endif
                       </div>

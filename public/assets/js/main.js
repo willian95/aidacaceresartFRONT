@@ -194,7 +194,7 @@ var zoomer = function () {
       style.backgroundPositionX = (xperc - 9) + '%';
       style.backgroundPositionY = (yperc - 9) + '%';
 
-      style.left = (x - 180) + 'px';
+      style.left = (x - 120) + 'px';
       style.top = (y - 180) + 'px';
 
     }, false);
