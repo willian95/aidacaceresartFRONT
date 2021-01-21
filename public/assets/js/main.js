@@ -196,6 +196,7 @@ var zoomer = function () {
 
       style.left = (x - 120) + 'px';
       style.top = (y - 180) + 'px';
+      
 
     }, false);
 }();
