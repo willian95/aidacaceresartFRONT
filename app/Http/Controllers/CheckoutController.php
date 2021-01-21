@@ -10,6 +10,7 @@ use PayPal\Api\Payer;
 use PayPal\Api\Payment;
 use App\Payment as PaymentInfo;
 use App\ProductPurchase;
+use App\Product;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
 use PayPal\Api\PaymentExecution;

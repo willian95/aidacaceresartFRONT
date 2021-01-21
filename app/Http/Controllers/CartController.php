@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Cart;
+use App\Product;
 use App\ProductFormatSize;
 use JWTAuth;
 
@@ -38,7 +39,17 @@ class CartController extends Controller
         $user = JWTAuth::parseToken()->toUser();
         
         $itemArray = [];
-        $carts = Cart::where("user_id", $user->id)->with("productFormatSize", "productFormatSize.product", "productFormatSize.format", "productFormatSize.size", "productFormatSize.cart")->get();
+        $carts = Cart::where("user_id", $user->id)->with("productFormatSize", "productFormatSize.product", "productFormatSize.format", "productFormatSize.size", "productFormatSize.cart")->whereHas("productFormatSize.product")->get();
+
+        foreach($carts as $cart){
+
+            if($this->checkProductIsSold($cart->productFormatSize->product->id)){
+                Cart::where("id", $cart->id)->first()->delete();
+            }
+
+        }
+
+        $carts = Cart::where("user_id", $user->id)->with("productFormatSize", "productFormatSize.product", "productFormatSize.format", "productFormatSize.size", "productFormatSize.cart")->whereHas("productFormatSize.product")->get();
 
         return response()->json(["items" => $carts]);
 
@@ -50,13 +61,23 @@ class CartController extends Controller
         foreach($request->item as $item){
             
             $product = ProductFormatSize::where("id", $item['id'])->with("product", "format","size")->first();
-            if($product){
-                array_push($itemArray, $product);
+
+            if(!$this->checkProductIsSold($product->product->id)){
+                if($product){
+                    array_push($itemArray, $product);
+                }
             }
             
         }
 
         return response()->json(["items" => $itemArray]);
+
+    }
+
+    function checkProductIsSold($productId){
+
+        $product = Product::find($productId);
+        return $product->is_sold;
 
     }
 
