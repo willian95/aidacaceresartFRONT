@@ -109,11 +109,17 @@
                             50 x 70
                           </label>
                         </div>--}}
+                        @if($product->is_sold == 0)
                         <div class="text-center main-top__btn ml-auto mr-4">
                           <a class="btn-custom mr-4"  @click="addToCart()">
                             <span v-if="selectedLanguage == 'english'">Buy</span> <span v-if="selectedLanguage == 'spanish'">Comprar</span> <i class="fa fa-angle-right" aria-hidden="true"></i>
                           </a>
                         </div>
+                        @else
+
+                        <span v-if="selectedLanguage == 'english'">Sold</span> <span v-if="selectedLanguage == 'spanish'">Vendido</span> <i class="fa fa-angle-right" aria-hidden="true"></i>
+
+                        @endif
                       </div>
 
                     </div>
