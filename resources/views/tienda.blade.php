@@ -39,9 +39,10 @@
                         <p v-for="size in product.product_format_sizes"  v-if="selectedLanguage == 'spanish'">@{{ size.size.width }}cm x @{{ size.size.height }}cm - <span v-if="selectedCurrency == 'USD'">US$ @{{ number_format(size.price * exchangeRate, 2, ",", ".") }}</span><span v-else>COP @{{ number_format(size.price * exchangeRate, 2, ".", ",") }}</span></p>
                         <p v-for="size in product.product_format_sizes" v-if="selectedLanguage == 'english'">@{{ (size.size.width/2.54).toFixed(2) }}in x @{{ (size.size.height/2.54).toFixed(2) }}in <span v-if="selectedCurrency == 'USD'">US$ @{{ number_format(size.price * exchangeRate, 2, ",", ".") }}</span><span v-else>COP @{{ number_format(size.price * exchangeRate, 2, ".", ",") }}</span></p>
                     </div>
-                     <div class="overflow-hidden position-relative">
+                     <div class="overflow-hidden position-relative" v-if="product.sold == 1">
                         <img :src="product.image" class="galeria-img" alt="galeria aidaart">
-                       <div class="cinta">Sold <i class="fa fa-tag" aria-hidden="true"></i></div>
+                        <div class="cinta" v-if="selectedLanguage == 'english'">Sold <i class="fa fa-tag" aria-hidden="true"></i></div>
+                        <div class="cinta" v-if="selectedLanguage == 'spanish'">Vendido <i class="fa fa-tag" aria-hidden="true"></i></div>
                      </div>
                 
                 </a>
