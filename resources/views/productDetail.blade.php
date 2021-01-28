@@ -74,7 +74,7 @@
                       </div>
 
 
-                      <p class="dimens-title" v-if="selectedLanguage == 'english'">Dimenssions</p>
+                      <p class="dimens-title" v-if="selectedLanguage == 'english'">Dimensions</p>
                       <p class="dimens-title" v-if="selectedLanguage == 'spanish'">Dimensiones</p>
                       <div class="dimens">
 
