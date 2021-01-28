@@ -2,6 +2,9 @@
 .demo-gallery figure {
     display: none;
 }
+.demo-gallery-2 figure {
+    display: block;
+}
 .pswp__img{
     object-fit: contain; 
 }

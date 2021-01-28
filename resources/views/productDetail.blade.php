@@ -7,15 +7,15 @@
         <div class="main main-details__product">
           <div class="row">
             <div class="col-md-6">
-              <div id="demo-test-gallery" class="demo-gallery" data-pswp-uid="1">
+              <div id="demo-test-gallery" class="demo-gallery demo-gallery-2" data-pswp-uid="1">
                 <div class="main-banner_item main-detalle_item">
                   <a href="{{ $product->image }}" data-size="1600x1068" data-author=""
                     data-med="{{ $product->image }}" data-med-size="1024x683">
                   
-                    <div id="img-zoomer-box">
-                      <img class="img-height" src="{{ $product->image }}" alt="" id="img1" >
-                      <div id="img2" style="  background: url('{{ $product->image }}') no-repeat #FFF;"></div>
-                    </div>
+                  <figure class="zoom" onmousemove="zoom(event)" style="background-image: url('{{ $product->image }}')">
+  <img src="{{ $product->image }}" />
+</figure>
+                  
                       
                   </a>
                 </div>
