@@ -60,14 +60,14 @@
                 <ul>
                     
                     <li v-if="selectedLanguage == 'spanish'"  @mouseover="modalpago()"> Pagos seguros y garantizados  </li>
-                    <li v-if="selectedLanguage == 'english'">Safety payments by!</li>
+                    <li v-if="selectedLanguage == 'english'">Secure payments by</li>
                     <li>
                         <img class="img-pago" src="https://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c530.png" alt=""> 
                         <img class="img-pago img-pago2"  src="http://imgfz.com/i/mufyBjh.png" alt="">
                     </li>
                    
                     <li class="w-200" v-if="selectedLanguage == 'spanish'" @mouseover="modaldhl()"> Envíos nacionales e internacionales por DHL! </li>
-                    <li class="w-200" v-if="selectedLanguage == 'english'">National & International Shipping via DHL!</li>
+                    <li class="w-200" v-if="selectedLanguage == 'english'">National & International Shipping</li>
                     <img class="img-pago img-pago2 img-non"  src="http://imgfz.com/i/mufyBjh.png" alt="">
                 </ul>
             </div>
